@@ -1,0 +1,118 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  font-family: Century Gothic;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #F1C40F;
+}
+
+.active {
+  background-color: #F1C40F;
+}
+
+box {
+	width: 100%;
+	margin: 4px 2px;
+}
+
+content {
+	width: 50%;
+}
+
+textarea {
+  width: 96%;
+  height: 300px;
+  margin-left: 2%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #333;
+  font-size: 16px;
+  color: #fff;
+  resize: none;
+}
+
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: Century Gothic;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.btnCheck {
+  width: 45%;
+  margin-left: 2%;
+  position: center;
+  background-color: #F1C40F;
+  color: #1B1B1F;
+}
+
+.btnReset {
+  width: 45%;
+  margin-left: 5.5%;
+  position: center;
+  background-color: #F1C40F;
+  color: #1B1B1F;
+}
+
+.datatable {
+  width: 96%;
+  height: 300px;
+  margin-left: 2%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  background-color: #1B1B1F;
+  font-size: 16px;
+  color: #fff;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td {
+	padding: 8px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+	background-color: #F1C40F;
+	color: #1B1B1F;
+}
+
+
+
+
+
