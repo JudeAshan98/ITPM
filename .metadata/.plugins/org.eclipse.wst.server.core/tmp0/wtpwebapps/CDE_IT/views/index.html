@@ -1,48 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>CDE CODE EXTRACTOR</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../style/bootsrtap.min.css">
-  <script src="../style/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <style>
-	<!-- body {background-color:white;padding:50px 50px} -->
+<title>CDE CODE EXTRACTOR</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../style/bootsrtap.min.css">
+<script src="../style/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"> </script>
+<style>
+<!--
+body {
+	background-color: white;
+	padding: 50px 50px
+}
 
-	pre {
-	  background-color:black;
-	  overflow:auto;
-	  margin:0 0 1em;
-	  padding:.5em 1em;
-	}
+-->
+pre {
+	background-color: black;
+	overflow: auto;
+	margin: 0 0 1em;
+	padding: .5em 1em;
+}
 
-	pre code,
-	pre .line-number {
-	  /* Ukuran line-height antara teks di dalam tag <code> dan <span class="line-number"> harus sama! */
-	  font:normal normal 12px/14px "Courier New",Courier,Monospace;
-	  color:white;
-	  display:block;
-	}
+pre code, pre .line-number {
+	/* Ukuran line-height antara teks di dalam tag <code> dan <span class="line-number"> harus sama! */
+	font: normal normal 12px/14px "Courier New", Courier, Monospace;
+	color: white;
+	display: block;
+}
 
-	pre .line-number {
-	 user-select: none;
-	  float:left;
-	  margin:0 1em 0 -1em;
-	  border-right:1px solid;
-	  text-align:right;
-	}
+pre .line-number {
+	user-select: none;
+	float: left;
+	margin: 0 1em 0 -1em;
+	border-right: 1px solid;
+	text-align: right;
+}
 
-	pre .line-number span {
-	  display:block;
-	  padding:0 .5em 0 1em;
-	}
+pre .line-number span {
+	display: block;
+	padding: 0 .5em 0 1em;
+}
 
-	pre .cl {
-	  display:block;
-	  clear:both;
-	}
+pre .cl {
+	display: block;
+	clear: both;
+}
 </style>
 
 
@@ -71,21 +77,36 @@ function updateSize() {
 </head>
 
 <body>
-<div class="container">
-  <!-- <div class="row"> -->
-	<div>
-		<!-- <p>CDE IT Solutions</p> -->
-		<img src="../img/logoe.png" style="max-height:75px; width: 141px; height: 81px"/> 
-		<hr/>
-	</div>      
- <div class="custom-file">
-    <input type="file" class="custom-file-input" id="myFile" onchange="updateSize">
-    <label class="custom-file-label" for="customFile">Choose file</label>
-  </div>
-<hr><form id="myF">
-<pre><code><div id="output" style="max-height:650px;height:500px">
-</div></pre></form>
-<script>
+	<div class="container">
+		<!-- <div class="row"> -->
+		<div>
+			<!-- <p>CDE IT Solutions</p> -->
+			<img src="../img/logoe.png"
+				style="max-height: 75px; width: 141px; height: 81px" />
+			<hr />
+		</div>
+		<div class="row">
+		<div class="col">
+		<div class="custom-file">
+			<input type="file" class="custom-file-input" id="myFile"
+				onchange="updateSize"> <label class="custom-file-label"
+				for="customFile">Choose file</label>
+				</div>
+				</div>
+				    <div class="col-md-auto">
+			<button type="button" class="btn btn-success">New *</button>
+		</div>
+		</div>
+		
+		<hr>
+		<form id="myF">
+			<pre>
+				<code>
+					<div id="output" style="max-height: 650px; height: 500px">
+</div>
+			</pre>
+		</form>
+		<script>
 
 var input = document.getElementById("myFile");
 var output = document.getElementById("output");
@@ -140,25 +161,33 @@ var output = document.getElementById("output");
 </script>
 
 
-<script>
+		<script>
 // Add the following code if you want the name of the file appear on select
 $(".custom-file-input").on("change", function() {
   var fileName = $(this).val().split("\\").pop();
   $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 });
 </script>
-<div>
-	<button type="button" class="btn btn-primary btn-lg" style = "padding:15px; width:160px ;height:100px">SVM</button>
-	<button type="button" class="btn btn-primary btn-lg" style = "padding:15px; width:160px;height:100px">Inheritance</button>
-	<button type="button" class="btn btn-primary btn-lg" style = "padding:15px; width:160px;height:100px">Coupling</button>
-	<button type="button" class="btn btn-primary btn-lg" style = "padding:15px; width:160px;height:100px">Control Structures</button>
-	<button type="button" class="btn btn-info btn-lg" style = "padding:45px;height:100px">Summary</button>
-</div>
-<div style = "float:right;margin-top:-99px;" hidden>
-	<div >Imported File Detail(s):<br/>
-	<textarea id="fileSize" readonly></textarea></div>
-</div>
+		<div>
+			<button type="button" class="btn btn-primary btn-lg"
+				style="padding: 15px; width: 160px; height: 100px">SVM</button>
+			<button type="button" class="btn btn-primary btn-lg"
+				style="padding: 15px; width: 160px; height: 100px">Inheritance</button>
+			<button type="button" class="btn btn-primary btn-lg"
+				style="padding: 15px; width: 160px; height: 100px">Coupling</button>
+			<button type="button" class="btn btn-primary btn-lg"
+				style="padding: 15px; width: 160px; height: 100px">Control
+				Structures</button>
+			<button type="button" class="btn btn-info btn-lg"
+				style="padding: 45px; height: 100px">Summary</button>
+		</div>
+		<div style="float: right; margin-top: -99px;" hidden>
+			<div>
+				Imported File Detail(s):<br />
+				<textarea id="fileSize" readonly></textarea>
+			</div>
+		</div>
 
-</div>
+	</div>
 </body>
 </html>
