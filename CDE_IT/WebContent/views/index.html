@@ -49,6 +49,11 @@ pre .cl {
 	display: block;
 	clear: both;
 }
+
+.vl {
+  border-left: 1px solid gray;
+  height: 40px;
+}
 </style>
 
 
@@ -90,12 +95,13 @@ function updateSize() {
 		<div class="custom-file">
 			<input type="file" class="custom-file-input" id="myFile"
 				onchange="updateSize"> <label class="custom-file-label"
-				for="customFile">Choose file</label>
+				for="customFile" >Choose file</label>
 				</div>
 				</div>
 				    <div class="col-md-auto">
-			<button type="button" class="btn btn-success">New *</button>
+			<input type="button" class="btn btn-success" id= "newFile" onclick="clearAll()" value="New *"></input>
 		</div>
+		<div class="col-md-auto"><div class="vl"> &nbsp  &nbsp <img src="../img/green-settings.png" style="height:40px;width:40px"></div></div>
 		</div>
 		
 		<hr>
@@ -106,68 +112,67 @@ function updateSize() {
 </div>
 			</pre>
 		</form>
-		<script>
-
-var input = document.getElementById("myFile");
-var output = document.getElementById("output");
-
-  input.addEventListener("change", function () {
-  if (this.files && this.files[0]) {
-    var myFile = this.files[0];
-    var reader = new FileReader();
-     document.getElementById('myF').reset();
-    reader.addEventListener('load', function (e) {
-		var pre = document.getElementsByTagName('pre'),
-        pl = pre.length;
-        for (var i = 0; i < pl; i++) {
-		output.textContent = e.target.result;
-        pre[i].innerHTML = '<span class="line-number"></span>' + pre[i].innerHTML + '<span class="cl"></span>';
-        var num = pre[i].innerHTML.split(/\n/).length;
-        for (var j = 0; j < num; j++) {
-            var line_num = pre[i].getElementsByTagName('span')[0];
-            line_num.innerHTML += '<span>' + (j + 1) + '</span>';
-			
-        }
-    }
-      
-    });
-
-    reader.readAsBinaryString(myFile);
+	<script>
+	var input = document.getElementById("myFile");
+	var output = document.getElementById("output");
 	
-  }
-	var file = input.files[0];
-	var filename = file.name;
-// Get the file extention.
-	var fileExtension = filename.substr((filename.lastIndexOf('.') + 1));
-	console.log(fileExtension);
+	  input.addEventListener("change", function () {
+	  if (this.files && this.files[0]) {
+	    var myFile = this.files[0];
+	    var reader = new FileReader();
+	     document.getElementById('myF').reset();
+	    reader.addEventListener('load', function (e) {
+			var pre = document.getElementsByTagName('pre'),
+	        pl = pre.length;
+	        for (var i = 0; i < pl; i++) {
+			output.textContent = e.target.result;
+	        pre[i].innerHTML = '<span class="line-number"></span>' + pre[i].innerHTML + '<span class="cl"></span>';
+	        var num = pre[i].innerHTML.split(/\n/).length;
+	        for (var j = 0; j < num; j++) {
+	            var line_num = pre[i].getElementsByTagName('span')[0];
+	            line_num.innerHTML += '<span>' + (j + 1) + '</span>';
+				
+	        }
+	     //   sessionStorage.setItem("lastname", output.textContent);
+	    }
+	      
+	    });
 	
-	// Check the file type.. Should only support for .java and .cpp files only.
-	if (fileExtension =='java') {
-	//	editor.session.setMode("ace/mode/java");
-	//	alert("I am JAVA!")
-		}
-	else if (fileExtension =='cpp')
-		{	
-		//editor.session.setMode("ace/mode/c_cpp");
-	//	alert("I am c++!");
-		}
-	else{
-		alert("Invalid file format, Please select java or c++ file!");
-		window.location.reload(false); 
-		}  
-
-});
-
-</script>
-
-
-		<script>
-// Add the following code if you want the name of the file appear on select
-$(".custom-file-input").on("change", function() {
-  var fileName = $(this).val().split("\\").pop();
-  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-});
-</script>
+	    reader.readAsBinaryString(myFile);
+	    input.setAttribute("disabled", true);
+		
+	  }
+		var file = input.files[0];
+		var filename = file.name;
+	// Get the file extention.
+		var fileExtension = filename.substr((filename.lastIndexOf('.') + 1));
+		console.log(fileExtension);
+		
+		// Check the file type.. Should only support for .java and .cpp files only.
+		if (fileExtension =='java') {
+		//	editor.session.setMode("ace/mode/java");
+		//	alert("I am JAVA!")
+			}
+		else if (fileExtension =='cpp')
+			{	
+			//editor.session.setMode("ace/mode/c_cpp");
+		//	alert("I am c++!");
+			}
+		else{
+			alert("Invalid file format, Please select java or c++ file!");
+			window.location.reload(false); 
+			}  
+	
+	});
+	
+	</script>
+	<script>
+	// Add the following code if you want the name of the file appear on select
+	$(".custom-file-input").on("change", function() {
+	  var fileName = $(this).val().split("\\").pop();
+	  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+	});
+	</script>
 		<div>
 			<button type="button" class="btn btn-primary btn-lg"
 				style="padding: 15px; width: 160px; height: 100px">SVM</button>
@@ -178,16 +183,22 @@ $(".custom-file-input").on("change", function() {
 			<button type="button" class="btn btn-primary btn-lg"
 				style="padding: 15px; width: 160px; height: 100px">Control
 				Structures</button>
-			<button type="button" class="btn btn-info btn-lg"
+			<button type="button" class="btn btn-success btn-lg"
 				style="padding: 45px; height: 100px">Summary</button>
 		</div>
-		<div style="float: right; margin-top: -99px;" hidden>
-			<div>
+		<div style="float: right; margin-top: -99px;">
+			<div hidden>
 				Imported File Detail(s):<br />
 				<textarea id="fileSize" readonly></textarea>
 			</div>
 		</div>
 
 	</div>
+	
+<script>
+	function clearAll(){
+		window.location.reload(false);
+}
+</script>
 </body>
 </html>
