@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="CSS/IT18014914-main.css" />
-
-<link rel="stylesheet" href="../style/CSS/bootsrtap.min.css">
-<script src="../style/CSS/jquery.min.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/style/CSS/bootsrtap.min.css">
+<script src="<%=request.getContextPath()%>/style/CSS/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
@@ -18,24 +16,29 @@
 </head>
 <body style="background-color: #fff;">
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 	<br>
 	<div class="container">
 		<div>
-			<img src="../img/logoe.png"
+			<img src="<%=request.getContextPath()%>/img/logoe.png"
 				style="max-height: 75px; width: 141px; height: 81px" />
 			<text style="font-size:30px; color:gray ; margin-left:30px">
 			Control Structures<text>&nbsp
 			<button type="button" class="btn btn-info btn-lg"
 				style="background-color: transparent; float: right; margin-top: 30px; margin-left: 30px">
-				<img src="print.png" style="max-height: 40px; max-width =: 40px;">
+				<img src="<%=request.getContextPath()%>/img/print.png" style="max-height: 40px; max-width =: 40px;">
 			</button>
 			<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
 				data-target="#myModal" style="float: right; margin-top: 30px;">View
 				Keywords</button>
 			<hr />
 		</div>
+		
 		<div class="row">
 			<table class="table table-bordered table-hover">
+			
 				<thead class="thead-dark">
 					<tr>
 						<th scope="col">Line No.</th>
@@ -46,15 +49,17 @@
 						<th scope="col">CCS</th>
 					</tr>
 				</thead>
+				 <c:forEach items="${Code_string}" var="post" varStatus="theCount">
 				<tbody>
 					<tr>
-						<th scope="row">1</th>
-						<td>-</td>
+						<td scope="row">${theCount.count}</td>
+						<td>${post}</td>
 						<td>-</td>
 						<td>-</td>
 						<td>-</td>
 						<td>-</td>
 					</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>

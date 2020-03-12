@@ -14,6 +14,19 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	
+	<link rel="stylesheet" href="../style/bootsrtap.min.css">
+<script src="../style/jquery.min.js"></script>
+<!-- <script -->
+<!-- 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
+<!-- <script -->
+<!-- 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"> </script> -->
+<!-- <style> -->
+
+<link rel="stylesheet" href="../style/bootsrtap.min.css">
+<script src="../style/jquery.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"> </script>
 </head>
 <body>
 	<br>
@@ -29,9 +42,9 @@
 
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs" role="tablist">
-			<li class="nav-item"><a class="nav-link" data-toggle="tab"
+			<li class="nav-item"><a class="nav-link active" data-toggle="tab"
 				href="#vms">VMS</a></li>
-			<li class="nav-item"><a class="nav-link active"
+			<li class="nav-item"><a class="nav-link"
 				data-toggle="tab" href="#inheritance">Inheritance</a></li>
 			<li class="nav-item"><a class="nav-link" data-toggle="tab"
 				href="#Coupling">Coupling</a></li>
@@ -164,7 +177,7 @@
 				</div>
 				<br>
 			</div>
-			<div id="inheritance" class="container tab-pane active">
+			<div id="inheritance" class="container tab-pane fade">
 				<br>
 				<div class="col-sm border border-success">
 					<br>
