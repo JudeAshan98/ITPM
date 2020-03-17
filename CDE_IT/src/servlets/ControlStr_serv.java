@@ -26,16 +26,12 @@ public class ControlStr_serv extends HttpServlet {
 	String[][] arrayRefVar;
 	String Result;
 	String token1 = "\n";
-	//String[] lines ;
-	//ArrayList<String> lines;
-	public int Wtcs = 0;
+	int Wtcs = 0;
 	int NC= 0;
 	int Ccspps =0;
-	List<String> cdLine = new ArrayList<String>();
-	List<Integer> wtc = new ArrayList<Integer>();
-	List<Integer> ncc = new ArrayList<Integer>();
-	List<Integer> ccpps = new ArrayList<Integer>();
-    public ControlStr_serv() {
+	int tot =0;
+	
+	public ControlStr_serv() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -56,29 +52,27 @@ public class ControlStr_serv extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		Result = request.getParameter("cont_res");
-
-	//	lines = Result.split(System.getProperty("line.separator")); //Read string without while loop -- Commented useful for now.
-		
 		Scanner scanner  = new Scanner(Result);
 		ControlData controlData = new ControlData();
+		List<List<Comparable>> p =new ArrayList<List<Comparable>>();
 		while(scanner.hasNextLine())  
 		{  
 			token1 = scanner.nextLine();
 			Wtcs = controlData.CtrlWeight(token1);
 			NC = controlData.NofConditions(token1);
 			Ccspps = controlData.previousComplex(token1);
-			
-			cdLine.add(token1);
-			wtc.add(Ccspps);
-			ncc.add(NC);
-			ccpps.add(Wtcs);
- 
+			List<Comparable> c = new ArrayList<Comparable>();
+			tot = Wtcs+NC+Ccspps;
+			c.add(token1);
+			c.add(Wtcs);
+			c.add(NC);
+			c.add(Ccspps);
+			c.add(tot);
+			p.add(c);
 		}  
-		
-		List arr[]={cdLine,wtc,ncc,ccpps};   
 		scanner.close();     //close the scanner  
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/views/Control_structures.jsp");
-		request.setAttribute("Code_string", arr);
+		request.setAttribute("Code_string", p);
 		dispatcher.forward(request, response);
 	}
 

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page isELIgnored="false"%>
+ <%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,16 +54,18 @@
 				</thead>
 				<c:forEach items="${Code_string}" var="post" varStatus="theCount1">
 					<tbody>
-					
-							<tr>
-								
+<%-- 											 <c:forEach items="${post}" var="value"> --%>
+						<tr>
+							<c:forEach items="${post}" var="value">
 								<td>${theCount1.count}</td>
-								<td>${post[0]}</td>
-								<td>${post[1]}</td>
-								<td>${post[2]}</td>
-								<td>${post[3]}</td>
-								<td>${post[4]}</td>
-							</tr>
+								<td>${value.wtc}</td>
+								<td>${value}</td>
+								<td>${value}</td>
+								<td>${value}</td>
+								<td>-</td>
+							</c:forEach>
+						</tr>
+						<%-- 					</c:forEach> --%>
 					</tbody>
 				</c:forEach>
 			</table>
