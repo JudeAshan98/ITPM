@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <ITPM_Functions>
 	<Csvariables>
-		<Wtcs>1</Wtcs>
-		<NC>2</NC>
-		<hCcspps>3</hCcspps>
+		<IfCon>2</IfCon>
+		<Fwd>3</Fwd>
+		<SwitchCon>2</SwitchCon>
+		<CaseCon>1</CaseCon>
 	</Csvariables>
-	<Inhvariables>
-		<Wtcs>1</Wtcs>
-		<NC>2</NC>
-		<hCcspps>3</hCcspps>
-	</Inhvariables>
 </ITPM_Functions>

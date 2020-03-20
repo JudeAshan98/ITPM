@@ -102,12 +102,12 @@ pre .cl {
 			<img src="img/logoe.png"
 				style="max-height: 75px; width: 141px; height: 81px" />
 			<hr />
-		</div>
+		</div>  
 		<div class="row">
 			<div class="col">
 				<div class="custom-file">
-					<input type="file" class="custom-file-input" id="myFile"
-						onchange="updateSize"> <label class="custom-file-label"
+					<input type="file" class="custom-file-input" id="myFile">
+						 <label class="custom-file-label"
 						for="customFile">Choose file</label>
 				</div>
 			</div>
@@ -116,9 +116,9 @@ pre .cl {
 					onclick="clearAll()" value="New *"></input>
 			</div>
 			<div class="col-md-auto">
-				<div class="vl">
-					&nbsp &nbsp <a><img src="img/green-settings.png"
-						style="height: 40px; width: 40px" id="settings_btn"></a>
+				<div class="vl"><form action="Settings_serv" method="post">
+					&nbsp &nbsp <button type="submit" style="border: none;padding: 0;background: none;"><img src="img/green-settings.png"
+						style="height: 40px; width: 40px" id="settings_btn"></button></form>
 				</div>
 			</div>
 		</div>
@@ -128,7 +128,7 @@ pre .cl {
 			<pre>
 				<code>
 					<div id="output" style="max-height: 650px; height: 500px">
-</div>
+</div></code>
 			
 			</pre>
 		</form>
@@ -136,35 +136,23 @@ pre .cl {
 			var input = document.getElementById("myFile");
 			var output = document.getElementById("output");
 
-			input
-					.addEventListener(
-							"change",
-							function() {
-								if (this.files && this.files[0]) {
-									var myFile = this.files[0];
-									var reader = new FileReader();
-									document.getElementById('myF').reset();
-									reader
-											.addEventListener(
-													'load',
-													function(e) {
-														var pre = document
-																.getElementsByTagName('pre'), pl = pre.length;
-														for (var i = 0; i < pl; i++) {
-															output.textContent = e.target.result;
-															pre[i].innerHTML = '<span class="line-number"></span>'
-																	+ pre[i].innerHTML
-																	+ '<span class="cl"></span>';
-															var num = pre[i].innerHTML
-																	.split(/\n/).length;
-															for (var j = 0; j < num; j++) {
-																var line_num = pre[i]
-																		.getElementsByTagName('span')[0];
-																line_num.innerHTML += '<span>'
-																		+ (j + 1)
-																		+ '</span>';
-
-															}
+			input.addEventListener("change", function () {
+				  if (this.files && this.files[0]) {
+				    var myFile = this.files[0];
+				    var reader = new FileReader();
+				     document.getElementById('myF').reset();
+				    reader.addEventListener('load', function (e) {
+						var pre = document.getElementsByTagName('pre'),
+				        pl = pre.length;
+				        for (var i = 0; i < pl; i++) {
+						output.textContent = e.target.result;
+				        pre[i].innerHTML = '<span class="line-number"></span>' + pre[i].innerHTML + '<span class="cl"></span>';
+				        var num = pre[i].innerHTML.split(/\n/).length;
+				        for (var j = 0; j < num; j++) {
+				            var line_num = pre[i].getElementsByTagName('span')[0];
+				            line_num.innerHTML += '<span>' + (j + 1) + '</span>';
+							
+				        }
 															   sessionStorage.setItem("Result", output.textContent);
 															   document.getElementById("cont_res").value = sessionStorage.getItem("Result");
 															   //document.getElementById("cont_res").value = "Jude";
@@ -203,9 +191,7 @@ pre .cl {
 		</script>
 		<script>
 			// Add the following code if you want the name of the file appear on select
-			$(".custom-file-input").on(
-					"change",
-					function() {
+			$(".custom-file-input").on("change",function() {
 						var fileName = $(this).val().split("\\").pop();
 						$(this).siblings(".custom-file-label").addClass(
 								"selected").html(fileName);
@@ -250,6 +236,6 @@ pre .cl {
 		function clearAll() {
 			window.location.reload(false);
 		}
-
+	</script>
 </body>
 </html>

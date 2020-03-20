@@ -7,58 +7,59 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CsReader {
 
-	public static void main(String argv[]) {
-
-	  int Li_type;
-	  int Li_NcP;
-	  int Li_Prev;
-	  
-	  
-	List<Integer> GetAllcsValues(){
+	  int Li_if;
+	  int Li_Fwd;
+	  int Li_Case;
+	  int Li_Switch;
+	  List <Integer>XmlValues = new ArrayList<Integer>();
+	  // This method can read values from the xml and return data to the valuegenerator class.
+	public List<Integer> GetAllcsValues(){
 		  
     try {
 
-	File fXmlFile = new File("WebContent/xml/csParser.xml");
+	File fXmlFile = new File("C:\\Users\\Jude Ashan\\Desktop\\Project\\Branch-Jude\\ITPM\\CDE_IT\\WebContent\\xml\\csParser.xml");
 	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 	Document doc = dBuilder.parse(fXmlFile);
 	
+	
+	
 	doc.getDocumentElement().normalize();
 
-	System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+	//System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 			
-	NodeList nList = doc.getElementsByTagName("Inhvariables");
+	NodeList nList = doc.getElementsByTagName("Csvariables");
 
 	for (int temp = 0; temp < nList.getLength(); temp++) {
 
 		Node nNode = nList.item(temp);
 		
-		System.out.println("\nCurrent Element :" + nNode.getNodeName());
+	//	System.out.println("\nCurrent Element :" + nNode.getNodeName());
 				
 		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
 			Element eElement = (Element) nNode;
 			
-			Li_type = Integer.parseInt((eElement.getElementsByTagName("Wtcs").item(0).getTextContent()));
-			System.out.println(Li_type);
-			
-			Li_NcP = Integer.parseInt(eElement.getElementsByTagName("NC").item(0).getTextContent());
-			System.out.println(Li_NcP);
-			
-			Li_Prev =Integer.parseInt(eElement.getElementsByTagName("hCcspps").item(0).getTextContent());
-			System.out.println(Li_Prev);
-
+			Li_if = Integer.parseInt((eElement.getElementsByTagName("IfCon").item(0).getTextContent()));
+			XmlValues.add(Li_if);
+			Li_Fwd = Integer.parseInt(eElement.getElementsByTagName("Fwd").item(0).getTextContent());
+			XmlValues.add(Li_Fwd);
+			Li_Switch =Integer.parseInt(eElement.getElementsByTagName("SwitchCon").item(0).getTextContent());
+			XmlValues.add(Li_Switch);
+			Li_Switch =Integer.parseInt(eElement.getElementsByTagName("CaseCon").item(0).getTextContent());
+			XmlValues.add(Li_Switch);
 		}
 	}
     } catch (Exception e) {
 	e.printStackTrace();
     }
+	return XmlValues;
     
-	  }
-  }
+	 }
 
 }

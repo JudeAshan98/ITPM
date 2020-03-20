@@ -1,15 +1,23 @@
+import java.util.ArrayList;
+import java.util.List;
+
+import xmlReader.CsReader;
 
 public class MyTesterClass {
 
-	public static void main(String[] args) {
+
 		// TODO Auto-generated method stub
 		
-		int i=0;
-		String res= "if I am Jude if";
-		ControlData controlData = new ControlData();
+
+		static List <Integer>test = new ArrayList<>();
 		
-		i = controlData.CtrlWeight(res);
-		System.out.println("Oh Man I got It : " + i);
+		public static void main(String[] args) {
+				
+				CsReader csReader = new CsReader();
+				
+				test = csReader.GetAllcsValues();
+				
+				System.out.println(test.get(2));
 	}
 
 }

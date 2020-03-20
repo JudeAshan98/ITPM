@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Bootstrap Example</title>
+<title>CDE IT || Settings</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -15,25 +16,18 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	
-	<link rel="stylesheet" href="../style/bootsrtap.min.css">
-<script src="../style/jquery.min.js"></script>
-<!-- <script -->
-<!-- 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
-<!-- <script -->
-<!-- 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"> </script> -->
-<!-- <style> -->
-
-<link rel="stylesheet" href="../style/bootsrtap.min.css">
-<script src="../style/jquery.min.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/style/bootsrtap.min.css">
+<script src="<%=request.getContextPath()%>/style/jquery.min.js"></script>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"> </script>
 </head>
 <body>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<br>
 
 	<div class="container">
 		<div>
-			<img src="../img/logoe.png" style="max-height: 75px">
+			<img src="<%=request.getContextPath()%>/img/logoe.png" style="max-height: 75px">
 			<text style="font-size:30px; color:gray ; margin-left:30px;">
 			Settings<text>
 			<hr />
@@ -69,14 +63,15 @@
 										<th>Weight</th>
 									</tr>
 								</thead>
+<%-- 								<c:forEach items="${CsList}" var="post" varStatus="theCount1"> --%>
 								<tbody>
 									<tr>
 										<td>Keyword</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
+										<td><input type="number" class="form-control" style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Identifier</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
+										<td><input type="number" class="form-control"    style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Operator</td>
@@ -91,6 +86,7 @@
 										<td><input type="number" class="form-control"   style="width:60px"></td>
 									</tr>
 								</tbody>
+<%-- 								</c:forEach> --%>
 							</table>
 						</div>
 						<button type="button" class="btn btn-success">Save</button>
@@ -307,24 +303,26 @@
 									<th>Weight</th>
 								</tr>
 							</thead>
+							<c:forEach items="${CsList}" var="post" varStatus="theCount1">
 							<tbody>
 								<tr>
-									<td>A conditional control structure such as an ‘if’ or ‘else-if’ condition</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td>A conditional control structure such as an 'if' or 'else-if' condition</td>
+									<td><input type="number" class="form-control" value="${post[0]}"  style="width:60px"></td>
 								</tr>
 								<tr>
-									<td>An iterative control structure such as a ‘for’, ‘while’, or ‘do-while’ loop</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td>An iterative control structure such as a 'for', 'while', or 'do-while' loop</td>
+									<td><input type="number" class="form-control" value="${post[1]}"  style="width:60px"></td>
 								</tr>
 								<tr>
-									<td>The ‘switch’ statement in a ‘switch-case’ control structure</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td>The 'switch' statement in a 'switch-case' control structure</td>
+									<td><input type="number" class="form-control" value="${post[2]}"  style="width:60px"></td>
 								</tr>
 								<tr>
-									<td>Each ‘case’ statement in a ‘switch-case’ control structure</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td>Each 'case' statement in a 'switch-case' control structure </td>
+									<td><input type="number" class="form-control"  value="${post[3]}" style="width:60px"></td>
 								</tr>
 							</tbody>
+							</c:forEach>
 						</table>
 					</div>
 					<button type="button" class="btn btn-success">Save</button>
