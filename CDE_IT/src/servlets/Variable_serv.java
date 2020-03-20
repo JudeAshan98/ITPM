@@ -12,21 +12,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ValueGenerator.*;
+import ValueGenerator.VariableData;
 
-@WebServlet("/ControlStr_serv")
-public class ControlStr_serv extends HttpServlet {
+@WebServlet("/Variable_serv")
+public class Variable_serv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+     
 	String[][] arrayRefVar;
 	String Result;
 	String token1 = "\n";
-	int Wtcs = 0;
-	int NC= 0;
-	int Ccspps =0;
-	int Ccs =0;
+	int Wvs = 0;
+	int Npdtv = 0;
+	int Ncdtv = 0;
+	int Cv = 0;
 	
-	public ControlStr_serv() {
+    public Variable_serv() {
         super();
     }
 
@@ -36,29 +36,32 @@ public class ControlStr_serv extends HttpServlet {
 
 	@SuppressWarnings("rawtypes")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		//doGet(request, response);
-		Result = request.getParameter("cont_res");
+		
+		Result = request.getParameter("variable_res");
 		Scanner scanner  = new Scanner(Result);
-		ControlData controlData = new ControlData();
+		VariableData variabledata = new VariableData();
 		List<List<Comparable>> p =new ArrayList<List<Comparable>>();
 		while(scanner.hasNextLine())  
 		{  
 			token1 = scanner.nextLine();
-			Wtcs = controlData.CtrlWeight(token1);
-			NC = controlData.NofConditions(token1);
-			Ccspps = controlData.previousComplex(token1);
+			
+			Wvs = variabledata.FindWvs(token1);
+			Npdtv = variabledata.FindNpdtv(token1);
+			Ncdtv = variabledata.FindNcdtv(token1);
+			Cv = variabledata.FindCv(token1);
+			
 			List<Comparable> c = new ArrayList<Comparable>();
-			Ccs = (Wtcs*NC)+Ccspps;
+			
 			c.add(token1);
-			c.add(Wtcs);
-			c.add(NC);
-			c.add(Ccspps);
-			c.add(Ccs);
+			c.add(Wvs);
+			c.add(Npdtv);
+			c.add(Ncdtv);
+			c.add(Cv);
 			p.add(c);
 		}  
 		scanner.close();     //close the scanner  
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/views/Control_structures.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/views/Variable.jsp");
 		request.setAttribute("Code_string", p);
 		dispatcher.forward(request, response);
 	}

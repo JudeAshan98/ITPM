@@ -157,7 +157,9 @@ pre .cl {
 															   document.getElementById("cont_res").value = sessionStorage.getItem("Result");
 															   //document.getElementById("cont_res").value = "Jude";
 															   document.getElementById("inh_res").value = sessionStorage.getItem("Result");
-															   document.getElementById("svm_res").value = sessionStorage.getItem("Result");
+															   document.getElementById("size_res").value = sessionStorage.getItem("Result");
+															   document.getElementById("method_res").value = sessionStorage.getItem("Result");
+															   document.getElementById("variable_res").value = sessionStorage.getItem("Result");
 															   document.getElementById("couple_res").value = sessionStorage.getItem("Result");
 															   document.getElementById("summary_res").value = sessionStorage.getItem("Result");
 														}
@@ -197,39 +199,58 @@ pre .cl {
 								"selected").html(fileName);
 					});
 		</script>
-		<div class="row">&nbsp &nbsp
-			<form method="post" action="SVM_serv" accept-charset=utf-8>
-				<button type="Submit" id="svm_btn" class="btn btn-primary btn-lg"
-					style="padding: 15px; width: 160px; height: 100px">SVM</button>&nbsp<div id = "svm_res" hidden></div>
-			</form>
+		<div class="row">&nbsp &nbsp 
+			<form method="post" action="Size_serv" accept-charset=utf-8> 
+				<textarea id = "size_res" name = "size_res" style="width:30%;Height:30%" hidden></textarea>
+			<button type="Submit" id="size_btn" class="btn btn-primary btn-lg"
+				style="padding: 15px; width: 140px; height: 100px">Size</button>&nbsp
+			</form> 
+			
+			<form method="post" action="Method_serv" accept-charset=utf-8> 
+				<textarea id = "method_res" name = "method_res" style="width:30%;Height:30%" hidden></textarea>
+			<button type="Submit" id="method_btn" class="btn btn-primary btn-lg"
+				style="padding: 15px; width: 140px; height: 100px">Method</button>&nbsp
+			</form> 
+			
+			<form method="post" action="Variable_serv" accept-charset=utf-8> 
+				<textarea id = "variable_res" name = "variable_res" style="width:30%;Height:30%" hidden></textarea>
+			<button type="Submit" id="size_btn" class="btn btn-primary btn-lg"
+				style="padding: 15px; width: 140px; height: 100px">Variable</button>&nbsp
+			</form> 
+			
 			<form method="post" action="Inheritance_serv" accept-charset=utf-8>
 			<button type="Submit" id="inheritance_btn"
 				class="btn btn-primary btn-lg"
-				style="padding: 15px; width: 160px; height: 100px">Inheritance</button>&nbsp<div id = "inh_res" hidden></div>
+				style="padding: 15px; width: 140px; height: 100px">Inheritance</button>&nbsp<div id = "inh_res" hidden></div>
 			</form>
+			
 			<form method="post" action="Coupling_serv" accept-charset=utf-8>
 			<button type="Submit" id="coupling_btn"
 				class="btn btn-primary btn-lg"
-				style="padding: 15px; width: 160px; height: 100px">Coupling</button>&nbsp <div id = "couple_res" hidden></div>
+				style="padding: 15px; width: 140px; height: 100px">Coupling</button>&nbsp <div id = "couple_res" hidden></div>
 			</form>
+			
 			<form method="post" action="ControlStr_serv" accept-charset=utf-8> 
 				<textarea id = "cont_res" name = "cont_res" style="width:30%;Height:30%" hidden></textarea>
 			<button type="Submit" id="control_btn" class="btn btn-primary btn-lg"
-				style="padding: 15px; width: 160px; height: 100px">Control
+				style="padding: 15px; width: 140px; height: 100px">Control
 				Structures</button>&nbsp
 			</form> 
+			
 			<form method="post" action="Summary_serv" accept-charset=utf-8>
 			<button type="Submit" id="summary_btn" class="btn btn-success btn-lg"
-				style="padding: 45px; height: 100px">Summary</button>&nbsp <div id = "summary_res" hidden></div>
+				style="padding: 15px; width: 250px; height: 100px">Summary</button>&nbsp <div id = "summary_res" hidden></div>
 			</form>
 		</div>
-		<div style="float: right; margin-top: -99px;">
-			<div>
-				Imported File Detail(s):<br />
-				<textarea id="fileSize" readonly></textarea>
-			</div>
+		<br>
+		<div class="row">&nbsp &nbsp 
+			
+				<div>
+					Imported File Detail(s):<br />
+					<textarea id="fileSize" readonly></textarea>
+				</div>
+			
 		</div>
-
 	</div>
 
 	<script>

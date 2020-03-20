@@ -14,21 +14,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import ValueGenerator.*;
 
-@WebServlet("/ControlStr_serv")
-public class ControlStr_serv extends HttpServlet {
+@WebServlet("/Size_serv")
+public class Size_serv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 	String[][] arrayRefVar;
 	String Result;
 	String token1 = "\n";
-	int Wtcs = 0;
-	int NC= 0;
-	int Ccspps =0;
-	int Ccs =0;
+	int Nkw = 0;
+	int Nid = 0;
+	int Nop = 0;
+	int Nnv = 0;
+	int Nsl = 0;
 	
-	public ControlStr_serv() {
+    public Size_serv() {
         super();
     }
+
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -36,29 +38,34 @@ public class ControlStr_serv extends HttpServlet {
 
 	@SuppressWarnings("rawtypes")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		//doGet(request, response);
-		Result = request.getParameter("cont_res");
+		
+		Result = request.getParameter("size_res");
 		Scanner scanner  = new Scanner(Result);
-		ControlData controlData = new ControlData();
+		SizeData sizeData = new SizeData();
 		List<List<Comparable>> p =new ArrayList<List<Comparable>>();
 		while(scanner.hasNextLine())  
 		{  
 			token1 = scanner.nextLine();
-			Wtcs = controlData.CtrlWeight(token1);
-			NC = controlData.NofConditions(token1);
-			Ccspps = controlData.previousComplex(token1);
+			
+			Nkw = sizeData.FindNkw(token1);
+			Nid = sizeData.FindNid(token1);
+			Nop = sizeData.FindNop(token1);
+			Nnv = sizeData.FindNnv(token1);
+			Nsl = sizeData.FindNsl(token1);
+			
 			List<Comparable> c = new ArrayList<Comparable>();
-			Ccs = (Wtcs*NC)+Ccspps;
+			
 			c.add(token1);
-			c.add(Wtcs);
-			c.add(NC);
-			c.add(Ccspps);
-			c.add(Ccs);
+			c.add(Nkw);
+			c.add(Nid);
+			c.add(Nop);
+			c.add(Nnv);
+			c.add(Nsl);
 			p.add(c);
 		}  
 		scanner.close();     //close the scanner  
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/views/Control_structures.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/views/Size.jsp");
 		request.setAttribute("Code_string", p);
 		dispatcher.forward(request, response);
 	}

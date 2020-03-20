@@ -63,30 +63,30 @@
 										<th>Weight</th>
 									</tr>
 								</thead>
-<%-- 								<c:forEach items="${CsList}" var="post" varStatus="theCount1"> --%>
+								<c:forEach items="${SizeList}" var="post1" varStatus="theCount1">
 								<tbody>
 									<tr>
 										<td>Keyword</td>
-										<td><input type="number" class="form-control" style="width:60px"></td>
+										<td><input type="number" class="form-control" value="${post1[0]}" style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Identifier</td>
-										<td><input type="number" class="form-control"    style="width:60px"></td>
+										<td><input type="number" class="form-control"  value="${post1[1]}"  style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Operator</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
+										<td><input type="number" class="form-control" value="${post1[2]}"  style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Numerical value</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
+										<td><input type="number" class="form-control"  value="${post1[3]}" style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>String literal</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
+										<td><input type="number" class="form-control"  value="${post1[4]}" style="width:60px"></td>
 									</tr>
 								</tbody>
-<%-- 								</c:forEach> --%>
+								</c:forEach>
 							</table>
 						</div>
 						<button type="button" class="btn btn-success">Save</button>
@@ -104,28 +104,30 @@
 										<th>Weight</th>
 									</tr>
 								</thead>
+								<c:forEach items="${MethodList}" var="post2" varStatus="theCount1">
 								<tbody>
 									<tr>
 										<td>Method with a primitive return type</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
+										<td><input type="number" class="form-control" value="${post2[0]}"  style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Method with a composite return type</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
+										<td><input type="number" class="form-control" value="${post2[1]}"  style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Method with a void return type</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
+										<td><input type="number" class="form-control" value="${post2[2]}"  style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Primitive data type parameter</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
+										<td><input type="number" class="form-control" value="${post2[3]}"  style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Composite data type parameter</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
+										<td><input type="number" class="form-control" value="${post2[4]}"  style="width:60px"></td>
 									</tr>
 								</tbody>
+								</c:forEach>
 							</table>
 							
 						</div>
@@ -147,24 +149,26 @@
 										<th>Weight</th>
 									</tr>
 								</thead>
+								<c:forEach items="${VariableList}" var="post3" varStatus="theCount1">
 								<tbody>
 									<tr>
 										<td>Global variable</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
+										<td><input type="number" class="form-control" value="${post3[0]}"  style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Local variable</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
+										<td><input type="number" class="form-control" value="${post3[1]}"  style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Primitive data type variable</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
+										<td><input type="number" class="form-control" value="${post3[2]}"  style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Composite data type variable</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
+										<td><input type="number" class="form-control" value="${post3[3]}"  style="width:60px"></td>
 									</tr>
 								</tbody>
+								</c:forEach>
 							</table>
 						</div>
 						<button type="button" class="btn btn-success">Save</button>

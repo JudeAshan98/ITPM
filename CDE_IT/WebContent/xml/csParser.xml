@@ -2,7 +2,7 @@
 <ITPM_Functions>
 	<Csvariables>
 		<IfCon>2</IfCon>
-		<Fwd>3</Fwd>
+		<Fwd>10</Fwd>
 		<SwitchCon>2</SwitchCon>
 		<CaseCon>1</CaseCon>
 	</Csvariables>

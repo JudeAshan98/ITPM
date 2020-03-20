@@ -12,21 +12,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ValueGenerator.*;
+import ValueGenerator.MethodData;
 
-@WebServlet("/ControlStr_serv")
-public class ControlStr_serv extends HttpServlet {
+@WebServlet("/Method_serv")
+public class Method_serv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 	String[][] arrayRefVar;
 	String Result;
 	String token1 = "\n";
-	int Wtcs = 0;
-	int NC= 0;
-	int Ccspps =0;
-	int Ccs =0;
+	int Wmrt = 0;
+	int Npdtp = 0;
+	int Ncdtp = 0;
+	int Cm = 0;
 	
-	public ControlStr_serv() {
+    public Method_serv() {
         super();
     }
 
@@ -36,29 +36,32 @@ public class ControlStr_serv extends HttpServlet {
 
 	@SuppressWarnings("rawtypes")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		//doGet(request, response);
-		Result = request.getParameter("cont_res");
+		
+		Result = request.getParameter("method_res");
 		Scanner scanner  = new Scanner(Result);
-		ControlData controlData = new ControlData();
+		MethodData methoddata = new MethodData();
 		List<List<Comparable>> p =new ArrayList<List<Comparable>>();
 		while(scanner.hasNextLine())  
 		{  
 			token1 = scanner.nextLine();
-			Wtcs = controlData.CtrlWeight(token1);
-			NC = controlData.NofConditions(token1);
-			Ccspps = controlData.previousComplex(token1);
+			
+			Wmrt = methoddata.FindWmrt(token1);
+			Npdtp = methoddata.FindNpdtp(token1);
+			Ncdtp = methoddata.FindNcdtp(token1);
+			Cm = methoddata.FindCm(token1);
+			
 			List<Comparable> c = new ArrayList<Comparable>();
-			Ccs = (Wtcs*NC)+Ccspps;
+			
 			c.add(token1);
-			c.add(Wtcs);
-			c.add(NC);
-			c.add(Ccspps);
-			c.add(Ccs);
+			c.add(Wmrt);
+			c.add(Npdtp);
+			c.add(Ncdtp);
+			c.add(Cm);
 			p.add(c);
 		}  
 		scanner.close();     //close the scanner  
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/views/Control_structures.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/views/Methods.jsp");
 		request.setAttribute("Code_string", p);
 		dispatcher.forward(request, response);
 	}
