@@ -48,7 +48,7 @@
 						<th scope="col">NOP</th>
 						<th scope="col">NNV</th>
 						<th scope="col">NSL</th>
-						
+						<th scope="col">CS</th>
 					</tr>
 				</thead>
 				 <c:forEach items="${Code_string}" var="post" varStatus="theCount1">
@@ -61,7 +61,7 @@
 						<td>${post[3]}</td>
 						<td>${post[4]}</td>
 						<td>${post[5]}</td>
-						
+						<td>${post[6]}</td>
 					</tr>
 					</c:forEach>
 				</tbody>

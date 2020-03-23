@@ -18,6 +18,7 @@ public class SizeReader {
 	  int Li_c;
 	  int Li_d;
 	  int Li_e;
+	  int Li_f;
 	  List <Integer>XmlValues = new ArrayList<Integer>();
 	  // This method can read values from the xml and return data to the valuegenerator class.
 	
@@ -58,6 +59,8 @@ public class SizeReader {
 					XmlValues.add(Li_d);
 					Li_e =Integer.parseInt(eElement.getElementsByTagName("literalS").item(0).getTextContent());
 					XmlValues.add(Li_e);
+					Li_f =Integer.parseInt(eElement.getElementsByTagName("csS").item(0).getTextContent());
+					XmlValues.add(Li_f);
 				}
 			}
 			

@@ -26,6 +26,7 @@ public class Size_serv extends HttpServlet {
 	int Nop = 0;
 	int Nnv = 0;
 	int Nsl = 0;
+	int Cs = 0;
 	
     public Size_serv() {
         super();
@@ -53,6 +54,7 @@ public class Size_serv extends HttpServlet {
 			Nop = sizeData.FindNop(token1);
 			Nnv = sizeData.FindNnv(token1);
 			Nsl = sizeData.FindNsl(token1);
+			Cs = sizeData.FindCs(token1);
 			
 			List<Comparable> c = new ArrayList<Comparable>();
 			
@@ -62,6 +64,7 @@ public class Size_serv extends HttpServlet {
 			c.add(Nop);
 			c.add(Nnv);
 			c.add(Nsl);
+			c.add(Cs);
 			p.add(c);
 		}  
 		scanner.close();     //close the scanner  
