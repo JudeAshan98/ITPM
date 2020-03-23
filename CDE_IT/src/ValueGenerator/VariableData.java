@@ -12,6 +12,10 @@ public class VariableData {
 	int Ncdtv;
 	int Cv;
 	
+	int a = 0;
+	int b = 0;
+	int c = 0;
+	
 	String token1 ="";
 	List<Integer> ValueList = new ArrayList<Integer>();
 	VariableReader variablereader = new VariableReader();
@@ -54,31 +58,39 @@ public class VariableData {
 			while (scanner.hasNext()) {
 				token1 = scanner.next();
 				
-				if ((token1.contains("static")) || (token1.contains("public"))) {
-					String vwvs = token1;
-					vwvs = scanner.next();
-					
-					if((vwvs.contains("byte")) || (vwvs.contains("short")) || (vwvs.contains("int"))
-							|| (vwvs.contains("long")) || (vwvs.contains("float")) || (vwvs.contains("double"))
-							|| (vwvs.contains("boolean")) || (vwvs.contains("char")) || (vwvs.contains("byte[]")) || (vwvs.contains("short[]")) || (vwvs.contains("int[]"))
-							|| (vwvs.contains("long[]")) || (vwvs.contains("float[]")) || (vwvs.contains("double[]"))
-							|| (vwvs.contains("boolean[]")) || (vwvs.contains("char[]"))) {
+				if((token1.contains("for")) || (token1.contains("while"))) {
+					a = 0;
+					return 0;
+				}
+				if((token1.contains("byte")) || (token1.contains("short")) || (token1.contains("int"))
+						|| (token1.contains("long")) || (token1.contains("float")) || (token1.contains("double"))
+						|| (token1.contains("boolean")) || (token1.contains("char")) || (token1.contains("byte[]")) || (token1.contains("short[]")) || (token1.contains("int[]"))
+						|| (token1.contains("long[]")) || (token1.contains("float[]")) || (token1.contains("double[]"))
+						|| (token1.contains("boolean[]")) || (token1.contains("char[]"))) {
 						
+					if((!token1.contains("System.out.print")) && (!token1.contains("System.out.println"))) {
 						Li_Count = Li_Count + 1;
-					}
+					}	
 				}
 			}
-			scanner.close();	
+		
+			scanner.close();
+			a = Li_Count;
 			return Li_Count;
 		}
 		
 		//NPDTV Done
 		public int FindNpdtv(String CodeLine) {
-			String token1 = "";
 			int Li_Count = 0;
 			Scanner scanner = new Scanner(CodeLine);
 			while (scanner.hasNext()) {
 				token1 = scanner.next();
+				
+				if((token1.contains("for")) || (token1.contains("while")) || (token1.contains("System.out.println")) || (token1.contains("System.out.print"))) {
+					b = 0;
+					return 0;
+				}
+				
 				if ((token1.contains("byte")) || (token1.contains("short")) || (token1.contains("int"))
 						|| (token1.contains("long")) || (token1.contains("float")) || (token1.contains("double"))
 						|| (token1.contains("boolean")) || (token1.contains("char"))) {
@@ -90,17 +102,23 @@ public class VariableData {
 					}
 				}
 			}
-			scanner.close();	
+			scanner.close();
+			b = Li_Count;
 			return Li_Count;
 		}
 		
 		//NCDTV Done
 		public int FindNcdtv(String CodeLine) {
-			String token1 = "";
 			int Li_Count = 0;
 			Scanner scanner = new Scanner(CodeLine);
 			while (scanner.hasNext()) {
 				token1 = scanner.next();
+				
+				if((token1.contains("for")) || (token1.contains("while")) || (token1.contains("System.out.println")) || (token1.contains("System.out.print"))) {
+					c = 0;
+					return 0;
+				}
+				
 				if ((token1.contains("byte")) || (token1.contains("short")) || (token1.contains("int"))
 						|| (token1.contains("long")) || (token1.contains("float")) || (token1.contains("double"))
 						|| (token1.contains("boolean")) || (token1.contains("char"))) {
@@ -113,73 +131,13 @@ public class VariableData {
 				}
 			}
 			scanner.close();	
+			c = Li_Count;
 			return Li_Count;
 		}
 		
 		//CV Done
-		public int FindCv(String CodeLine) {
-			String token1 = "";
-			int Li_Count = 0;
-			Scanner scanner1 = new Scanner(CodeLine);
-			while (scanner1.hasNext()) {
-				token1 = scanner1.next();
-				if ((token1.contains("byte")) || (token1.contains("short")) || (token1.contains("int"))
-						|| (token1.contains("long")) || (token1.contains("float")) || (token1.contains("double"))
-						|| (token1.contains("boolean")) || (token1.contains("char"))) {
-						
-					
-					if((!token1.equals("byte[]")) && (!token1.equals("short[]")) && (!token1.equals("int[]")) && (!token1.equals("long[]"))
-							&& (!token1.equals("float[]")) && (!token1.equals("double[]")) && (!token1.equals("boolean[]")) && (!token1.equals("char[]"))) {
-						Li_Count = Li_Count + 1;
-					}
-				}
-			}
-			scanner1.close();
-			int a = Li_Count;
-			
-			token1 = "";
-			Li_Count = 0;
-			Scanner scanner2 = new Scanner(CodeLine);
-			while (scanner2.hasNext()) {
-				token1 = scanner2.next();
-				if ((token1.contains("byte")) || (token1.contains("short")) || (token1.contains("int"))
-						|| (token1.contains("long")) || (token1.contains("float")) || (token1.contains("double"))
-						|| (token1.contains("boolean")) || (token1.contains("char"))) {
-						
-					
-					if((token1.equals("byte[]")) || (token1.equals("short[]")) || (token1.equals("int[]")) || (token1.equals("long[]"))
-							|| (token1.equals("float[]"))|| (token1.equals("double[]")) || (token1.equals("boolean[]")) || (token1.equals("char[]"))) {
-						Li_Count = Li_Count + 1;
-					}
-				}
-			}
-			scanner2.close();
-			int b = Li_Count;
-			
-			token1 = "";
-			Li_Count = 0;
-			Scanner scanner3 = new Scanner(CodeLine);
-			while (scanner3.hasNext()) {
-				token1 = scanner3.next();
-				
-				if ((token1.contains("static")) || (token1.contains("public"))) {
-					String vwvs = token1;
-					vwvs = scanner3.next();
-					
-					if((vwvs.contains("byte")) || (vwvs.contains("short")) || (vwvs.contains("int"))
-							|| (vwvs.contains("long")) || (vwvs.contains("float")) || (vwvs.contains("double"))
-							|| (vwvs.contains("boolean")) || (vwvs.contains("char")) || (vwvs.contains("byte[]")) || (vwvs.contains("short[]")) || (vwvs.contains("int[]"))
-							|| (vwvs.contains("long[]")) || (vwvs.contains("float[]")) || (vwvs.contains("double[]"))
-							|| (vwvs.contains("boolean[]")) || (vwvs.contains("char[]"))) {
-						
-						Li_Count = Li_Count + 1;
-					}
-				}
-			}
-			scanner3.close();
-			int c = Li_Count;
-			
-			int rv = c * (a+b);
+		public int FindCv(String CodeLine) {			
+			int rv = (a * b) + (a * c);
 			return rv;
 		}
 }
