@@ -47,63 +47,57 @@ public class MethodData {
 	
 	//Logic.
 	
+	//WMRT Done
 	public int FindWmrt(String CodeLine) {
 		int Li_Count = 0;
+		String token1 = "";
 		Scanner scanner = new Scanner(CodeLine);
 		while (scanner.hasNext()) {
 			token1 = scanner.next();
-			if ((token1.contains("if")) || (token1.contains("for")) || (token1.contains("while"))
-					|| (token1.contains("while")) || (token1.contains("do")) || (token1.contains("switch"))
-					|| (token1.contains("case"))) {
-				Li_Count = Li_Count + 1;
+			
+			if((token1.contains("public")) || (token1.contains("private"))) {
+				
+				token1 = scanner.next();
+				
+				while (!token1.contains("(")) {
+					
+					if ((token1.contains("int")) || (token1.contains("long")) || (token1.contains("double"))
+							|| (token1.contains("float")) || (token1.contains("boolean")) || (token1.contains("char"))
+							|| (token1.contains("arrays")) || (token1.contains("objects")) || (token1.contains("records"))
+							|| (token1.contains("interfaces")) || (token1.contains("lists"))) {
+						Li_Count = Li_Count + 1;
+					}
+										
+					token1 = scanner.next();
+				}
+				
 			}
+			
+			Li_Count = 0;
+			return 0;
+			
+					
 		}
 		scanner.close();	
 		return Li_Count;
+
 	}
 	
 	public int FindNpdtp(String CodeLine) {
 		int Li_Count = 0;
-		Scanner scanner = new Scanner(CodeLine);
-		while (scanner.hasNext()) {
-			token1 = scanner.next();
-			if ((token1.contains("if")) || (token1.contains("for")) || (token1.contains("while"))
-					|| (token1.contains("while")) || (token1.contains("do")) || (token1.contains("switch"))
-					|| (token1.contains("case"))) {
-				Li_Count = Li_Count + 1;
-			}
-		}
-		scanner.close();	
+			
 		return Li_Count;
 	}
 	
 	public int FindNcdtp(String CodeLine) {
 		int Li_Count = 0;
-		Scanner scanner = new Scanner(CodeLine);
-		while (scanner.hasNext()) {
-			token1 = scanner.next();
-			if ((token1.contains("if")) || (token1.contains("for")) || (token1.contains("while"))
-					|| (token1.contains("while")) || (token1.contains("do")) || (token1.contains("switch"))
-					|| (token1.contains("case"))) {
-				Li_Count = Li_Count + 1;
-			}
-		}
-		scanner.close();	
+		
 		return Li_Count;
 	}
 	
 	public int FindCm(String CodeLine) {
 		int Li_Count = 0;
-		Scanner scanner = new Scanner(CodeLine);
-		while (scanner.hasNext()) {
-			token1 = scanner.next();
-			if ((token1.contains("if")) || (token1.contains("for")) || (token1.contains("while"))
-					|| (token1.contains("while")) || (token1.contains("do")) || (token1.contains("switch"))
-					|| (token1.contains("case"))) {
-				Li_Count = Li_Count + 1;
-			}
-		}
-		scanner.close();	
+		
 		return Li_Count;
 	}
 }
