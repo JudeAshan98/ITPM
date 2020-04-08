@@ -174,14 +174,6 @@ pre .cl {
 								var fileExtension = filename.substr((filename
 										.lastIndexOf('.') + 1));
 								console.log(fileExtension);
-								sessionStorage.setItem("Ext", fileExtension);
-								document.getElementById("CExtention").value = sessionStorage.getItem("Ext");
-								document.getElementById("IExtention").value = sessionStorage.getItem("Ext");
-								document.getElementById("CpExtention").value = sessionStorage.getItem("Ext");
-								document.getElementById("SExtention").value = sessionStorage.getItem("Ext");
-								document.getElementById("VExtention").value = sessionStorage.getItem("Ext");
-								document.getElementById("MExtention").value = sessionStorage.getItem("Ext");
-								// Check the file type.. Should only support for .java and .cpp files only.
 								if (fileExtension == 'java') {
 									//	editor.session.setMode("ace/mode/java");
 									//	alert("I am JAVA!")
@@ -190,9 +182,17 @@ pre .cl {
 									//	alert("I am c++!");
 								} else {
 									alert("Invalid file format, Please select java or c++ file!");
-									window.location.reload(false);
+									clearAll();
 								}
-
+								sessionStorage.setItem("Ext", fileExtension);
+								document.getElementById("CExtention").value = sessionStorage.getItem("Ext");
+								document.getElementById("IExtention").value = sessionStorage.getItem("Ext");
+								document.getElementById("CpExtention").value = sessionStorage.getItem("Ext");
+								document.getElementById("SExtention").value = sessionStorage.getItem("Ext");
+								document.getElementById("VExtention").value = sessionStorage.getItem("Ext");
+								document.getElementById("MExtention").value = sessionStorage.getItem("Ext");
+								// Check the file type.. Should only support for .java and .cpp files only.
+								
 							});
 		</script>
 		<script>
@@ -209,7 +209,8 @@ pre .cl {
 					style="padding: 15px; width: 160px; height: 100px">SVM</button>&nbsp<div id = "svm_res" hidden></div>
 			</form>
 			<form method="post" action="Inheritance_serv" accept-charset=utf-8>
-			<textarea id = "cont_res" name = "inh_res" style="width:30%;Height:30%" hidden></textarea>
+			<textarea id = "inh_res" name = "inh_res" style="width:30%;Height:30%" hidden></textarea>
+			<input type ="text" name = "IExtention" id="IExtention" hidden>
 			<button type="Submit" id="inheritance_btn"
 				class="btn btn-primary btn-lg"
 				style="padding: 15px; width: 160px; height: 100px">Inheritance</button>&nbsp<div id = "inh_res" hidden></div>

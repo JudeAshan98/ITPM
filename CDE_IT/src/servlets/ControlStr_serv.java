@@ -70,6 +70,7 @@ public class ControlStr_serv extends HttpServlet {
 			c.add(Ccs);
 			p.add(c);
 		}  
+//		System.out.println(Result);
 		scanner.close();     //close the scanner  
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/views/Control_structures.jsp");
 		request.setAttribute("Code_string", p);

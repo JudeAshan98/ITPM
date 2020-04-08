@@ -103,7 +103,7 @@ public class Inheritance_serv extends HttpServlet {
 		//doGet(request, response);
 		
 		Result = request.getParameter("inh_res");
-		
+		String extention = request.getParameter("IExtention");
 		Scanner scanner  = new Scanner(Result);
 		InheritData inheritData = new InheritData();
 		List<List<Comparable>> p =new ArrayList<List<Comparable>>();
@@ -112,7 +112,7 @@ public class Inheritance_serv extends HttpServlet {
 			token1 = scanner.nextLine();
 			//zero = inheritData.DirectInd(token1);
 			//One = inheritData.DirectInhone(token1);
-			One=inheritData.DirectInh(token1);
+			One=inheritData.DirectInh(token1,extention);
 			Two=inheritData.InDirectInh(token1);
 			//Three=inheritData.totalInDirectInh();
 			Three=One+Two;
@@ -133,7 +133,7 @@ public class Inheritance_serv extends HttpServlet {
 			System.out.print(c);
 		}  
 		scanner.close();     //close the scanner  
-		System.out.print(p);
+		System.out.print(extention);
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/views/Inheritance.jsp");
 		request.setAttribute("Code_string", p);

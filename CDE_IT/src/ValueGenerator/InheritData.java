@@ -62,14 +62,14 @@ public class InheritData {
 	
 	// methods
 	
-	public int DirectInh(String CodeLine) {
+	public int DirectInh(String CodeLine, String ext) {
 		String s1="";
 		String s2="";
 		String s3="";
 		String s4="";
 		String s5="";
-	
 		int Li_one_count= 0;
+	if(ext.equals("java")) {
 		Scanner scanner = new Scanner(CodeLine);
 		while (scanner.hasNext()) {
 			token1 = scanner.next();
@@ -116,10 +116,20 @@ public class InheritData {
 
 			}
 		}
-		
 		scanner.close();
 		System.out.println(Li_one_count);
 		return Li_one_count;
+	}
+		else if(ext.equals("cpp")) {
+			Scanner scanner = new Scanner(CodeLine);
+			/*c++ logic*/
+			scanner.close();
+			System.out.println(Li_one_count);
+			return Li_one_count;
+		}
+
+	return Li_one_count;
+		
 	}
 	
 	
