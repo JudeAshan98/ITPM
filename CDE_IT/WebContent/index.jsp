@@ -174,7 +174,13 @@ pre .cl {
 								var fileExtension = filename.substr((filename
 										.lastIndexOf('.') + 1));
 								console.log(fileExtension);
-
+								sessionStorage.setItem("Ext", fileExtension);
+								document.getElementById("CExtention").value = sessionStorage.getItem("Ext");
+								document.getElementById("IExtention").value = sessionStorage.getItem("Ext");
+								document.getElementById("CpExtention").value = sessionStorage.getItem("Ext");
+								document.getElementById("SExtention").value = sessionStorage.getItem("Ext");
+								document.getElementById("VExtention").value = sessionStorage.getItem("Ext");
+								document.getElementById("MExtention").value = sessionStorage.getItem("Ext");
 								// Check the file type.. Should only support for .java and .cpp files only.
 								if (fileExtension == 'java') {
 									//	editor.session.setMode("ace/mode/java");
@@ -215,6 +221,7 @@ pre .cl {
 			</form>
 			<form method="post" action="ControlStr_serv" accept-charset=utf-8> 
 				<textarea id = "cont_res" name = "cont_res" style="width:30%;Height:30%" hidden></textarea>
+				<input type ="text" name = "Extention" id="CExtention" hidden>
 			<button type="Submit" id="control_btn" class="btn btn-primary btn-lg"
 				style="padding: 15px; width: 160px; height: 100px">Control
 				Structures</button>&nbsp
@@ -235,6 +242,11 @@ pre .cl {
 
 	<script>
 		function clearAll() {
+			document.getElementById('cont_res').value = '';
+			document.getElementById('inh_res').value = '';
+			document.getElementById('svm_res').value = '';
+			document.getElementById('couple_res').value = '';
+			document.getElementById('summary_res').value = '';
 			window.location.reload(false);
 		}
 	</script>
