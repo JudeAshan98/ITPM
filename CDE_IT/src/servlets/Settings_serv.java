@@ -25,8 +25,10 @@ public class Settings_serv extends HttpServlet {
 	
 	
 	List<Integer> csList =new ArrayList<Integer>();
-	//ArrayList<Integer> Csettings = new ArrayList<Integer>();
 	List<List<Integer>> Csettings =new ArrayList<List<Integer>>();
+	
+	List<Integer> InhList =new ArrayList<Integer>();
+	List<List<Integer>> Inhttings =new ArrayList<List<Integer>>();
 	
     public Settings_serv() {
         super();
@@ -53,24 +55,21 @@ public class Settings_serv extends HttpServlet {
 		csList.clear();
 		Csettings.clear();
 		csList = csReader.GetAllcsValues();
-		//csList.toArray();
-//		int[] myArray = new int[csList.size()];
-//		 csList.toArray();
-//		 
-//		 int[] array = csList.stream().mapToInt(i->i).toArray();
-//		 
-//		 for(int i=0; i<csList.size(); i++){
-//			 myArray[i] = csList.get(i);
-//	         System.out.println("Element at the index "+i+" is ::"+myArray[i]);
-//	      }
-		 
-		System.out.println(csList);
-		System.out.println("---------------");
+
+	 	inheritanceReader inheritanceReader = new inheritanceReader();
+		InhList.clear();
+		Inhttings.clear();
+		InhList = inheritanceReader.GetAllcsValues();
+		
+//		System.out.println(csList);
+//		System.out.println("---------------");
+		
 		Csettings.add(csList);
+		Inhttings.add(InhList);
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/views/settings.jsp");
 		request.setAttribute("CsList",Csettings);
-	//	request.setAttribute("InhList",csList);
+		request.setAttribute("InhList",Inhttings);
 		dispatcher.forward(request, response);
 	}
 

@@ -203,6 +203,7 @@ pre .cl {
 					style="padding: 15px; width: 160px; height: 100px">SVM</button>&nbsp<div id = "svm_res" hidden></div>
 			</form>
 			<form method="post" action="Inheritance_serv" accept-charset=utf-8>
+			<textarea id = "cont_res" name = "inh_res" style="width:30%;Height:30%" hidden></textarea>
 			<button type="Submit" id="inheritance_btn"
 				class="btn btn-primary btn-lg"
 				style="padding: 15px; width: 160px; height: 100px">Inheritance</button>&nbsp<div id = "inh_res" hidden></div>

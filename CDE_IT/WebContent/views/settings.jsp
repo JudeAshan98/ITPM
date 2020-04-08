@@ -187,28 +187,30 @@
 									<th>Weight</th>
 								</tr>
 							</thead>
+							<c:forEach items="${InhList}" var="inhpost" varStatus="theCount1">
 							<tbody>
 								<tr>
 									<td>A class with no inheritance (direct or indirect)</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control" value="${inhpost[0]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A class inheriting (directly or indirectly) from one user-defined class</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control" value="${inhpost[1]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A class inheriting (directly or indirectly) from two user-defined classes</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control"  value="${inhpost[2]}" style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A class inheriting (directly or indirectly) from three user-defined classes</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control"  value="${inhpost[3]}" style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A class inheriting (directly or indirectly) from more than three user-defined classes</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control"  value="${inhpost[4]}" style="width:60px"></td>
 								</tr>
 							</tbody>
+							</c:forEach>
 						</table>
 					</div>
 					<button type="button" class="btn btn-success">Save</button>

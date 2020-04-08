@@ -5,20 +5,22 @@
 <head>
   <meta charset="ISO-8859-1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../style/bootsrtap.min.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/style/bootsrtap.min.css">
   <script src="<%=request.getContextPath()%>/style/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <title>Inheritance| CDE Solutions</title>
 </head>
 <body style="background-color: #fff;">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <br>
 <div class="container">
 <div>
 	<img src="<%=request.getContextPath()%>/img/logoe.png" style="max-height:75px"/>
 	<text style="font-size:30px; color:gray ; margin-left:30px">Inheritance<text>
-	<button type="button" class="btn btn-info btn-lg"style="background-color:transparent;float:right; margin-top:30px ;margin-left:30px"><img src="print.png" style="max-height:40px;max-width=:40px;"></button>
+	<button type="button" class="btn btn-info btn-lg"style="background-color:transparent;float:right; margin-top:30px ;margin-left:30px"><img src="<%=request.getContextPath()%>/img/print.png"
+					style="max-height: 40px; max-width =: 40px;"></button>
 	 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="float:right; margin-top:30px;">View Keywords</button>
 		<hr/>
 	</div>   
@@ -34,16 +36,18 @@
 				  <th scope="col">Ci</th>
 			    </tr>
 			  </thead>
+			  <c:forEach items="${Code_string}" var="post" varStatus="theCount1">
 			  <tbody>
 			    <tr>
-			      <th scope="row">1</th>
-			      <td>-</td>
-			      <td>-</td>
-			      <td>-</td>
-			      <td>-</td>
-			      <td>-</td>
+			      <th scope="row">${theCount1.count}</th>
+			      <td>${post[0]}</td>
+			      <td>${post[1]}</td>
+			      <td>${post[2]}</td>
+			      <td>${post[3]}</td>
+			      <td>${post[4]}</td>
 			    </tr>
 			  </tbody>
+			  </c:forEach>
 			</table>
 		</div>
 <!-- The Modal -->
