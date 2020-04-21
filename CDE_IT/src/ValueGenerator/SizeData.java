@@ -84,7 +84,6 @@ public class SizeData {
 
 		String pattern1 = "//.*";
 		String pattern2 = "System.*";
-		// String pattern3 = ".*";
 
 		if (scanner.hasNext(pattern1) || scanner.hasNext(pattern2)) {
 			scanner.close();
@@ -160,7 +159,7 @@ public class SizeData {
 		while (scanner.hasNext()) {
 			token1 = scanner.next();
 
-			if (token1.endsWith("()")) {
+			if (token1.endsWith("()") || token1.contains("year;") || token1.contains("month;")) {
 				Li_Count = Li_Count + 1;
 			}
 			if (token1.equals("int") || token1.equals("float") || token1.equals("String")) {
@@ -218,15 +217,21 @@ public class SizeData {
 					&& (!token1.contains("^=")) && (!token1.contains("[0-9'@//]+")) && (!token1.matches(".*\\d.*"))
 					&& (!token1.contains("()")) && (!token1.contains("{}"))) {
 
-				if ((!token1.contains("\""))) {
+				if ((!token1.contains("\"")) || (token1.contains("getSize().width"))
+						|| (token1.contains("getSize().height"))) {
 					Li_Count = Li_Count + 1;
 				}
+
 			} else {
 				int saasa = 0;
 			}
 			if (scanner.hasNext(pattern)) {
 				scanner.close();
 				return b = Li_Count;
+			}
+			if ((token1.contains("sc.next();")) || token1.contains("Integer.parseInt(enteredYear);")
+					|| token1.contains("Integer.parseInt(enteredMonthNumber);")) {
+				Li_Count = Li_Count + 2;
 			}
 		}
 		scanner.close();
@@ -301,6 +306,11 @@ public class SizeData {
 
 		while (scanner.hasNext()) {
 			token1 = scanner.next();
+
+			if (token1.contains("case")) {
+				Li_Count = Li_Count + 1;
+			}
+
 			boolean numeric = true;
 
 			try {
