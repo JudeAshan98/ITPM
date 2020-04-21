@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ITPM_Functions>
+	<inhvariables>
+	    <zeroU>0</zeroU>
+		<oneU>1</oneU>
+		<twoU>2</twoU>
+		<threeU>3</threeU>
+		<fourU>4</fourU>
+	</inhvariables>
+</ITPM_Functions>
