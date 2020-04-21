@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/style/CSS/bootsrtap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/style/CSS/style.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/style/CSS/bootsrtap.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/style/CSS/style.css">
 <script src="<%=request.getContextPath()%>/style/CSS/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -17,7 +19,7 @@
 </head>
 <body style="background-color: #fff;">
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 
@@ -41,7 +43,7 @@
 
 		<div class="row">
 			<table class="table table-bordered table-hover">
-			
+
 				<thead class="thead-dark">
 					<tr>
 						<th scope="col">Line No.</th>
@@ -52,17 +54,17 @@
 						<th scope="col">CM</th>
 					</tr>
 				</thead>
-				 <c:forEach items="${Code_string}" var="post" varStatus="theCount1">
-				<tbody>
-					<tr>
-						<td>${theCount1.count}</td>
-						<td>${post[0]}</td>
-						<td>${post[1]}</td>
-						<td>${post[2]}</td>
-						<td>${post[3]}</td>
-						<td>${post[4]}</td>
-					</tr>
-					</c:forEach>
+				<c:forEach items="${Code_string}" var="post" varStatus="theCount1">
+					<tbody>
+						<tr>
+							<td>${theCount1.count}</td>
+							<td>${post[0]}</td>
+							<td>${post[1]}</td>
+							<td>${post[2]}</td>
+							<td>${post[3]}</td>
+							<td>${post[4]}</td>
+						</tr>
+				</c:forEach>
 				</tbody>
 			</table>
 		</div>
