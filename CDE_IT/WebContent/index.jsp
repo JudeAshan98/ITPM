@@ -157,7 +157,9 @@ pre .cl {
 															   document.getElementById("cont_res").value = sessionStorage.getItem("Result");
 															   //document.getElementById("cont_res").value = "Jude";
 															   document.getElementById("inh_res").value = sessionStorage.getItem("Result");
-															   document.getElementById("svm_res").value = sessionStorage.getItem("Result");
+															   document.getElementById("size_res").value = sessionStorage.getItem("Result");
+															   document.getElementById("method_res").value = sessionStorage.getItem("Result");
+															   document.getElementById("variable_res").value = sessionStorage.getItem("Result");
 															   document.getElementById("couple_res").value = sessionStorage.getItem("Result");
 															   document.getElementById("summary_res").value = sessionStorage.getItem("Result");
 														}
@@ -204,10 +206,23 @@ pre .cl {
 					});
 		</script>
 		<div class="row">&nbsp &nbsp
-			<form method="post" action="SVM_serv" accept-charset=utf-8>
-				<button type="Submit" id="svm_btn" class="btn btn-primary btn-lg"
-					style="padding: 15px; width: 160px; height: 100px">SVM</button>&nbsp<div id = "svm_res" hidden></div>
-			</form>
+			<form method="post" action="Size_serv" accept-charset=utf-8> 
+				<textarea id = "size_res" name = "size_res" style="width:30%;Height:30%" hidden></textarea>
+			<button type="Submit" id="size_btn" class="btn btn-primary btn-lg"
+				style="padding: 15px; width: 140px; height: 100px">Size</button>&nbsp
+			</form> 
+			
+			<form method="post" action="Method_serv" accept-charset=utf-8> 
+				<textarea id = "method_res" name = "method_res" style="width:30%;Height:30%" hidden></textarea>
+			<button type="Submit" id="method_btn" class="btn btn-primary btn-lg"
+				style="padding: 15px; width: 140px; height: 100px">Method</button>&nbsp
+			</form> 
+			
+			<form method="post" action="Variable_serv" accept-charset=utf-8> 
+				<textarea id = "variable_res" name = "variable_res" style="width:30%;Height:30%" hidden></textarea>
+			<button type="Submit" id="size_btn" class="btn btn-primary btn-lg"
+				style="padding: 15px; width: 140px; height: 100px">Variable</button>&nbsp
+			</form> 
 			<form method="post" action="Inheritance_serv" accept-charset=utf-8>
 						<textarea id = "inh_res" name = "inh_res" style="width:30%;Height:30%" hidden></textarea>
 			<input type ="text" name = "IExtention" id="IExtention" hidden>
@@ -232,7 +247,8 @@ pre .cl {
 				style="padding: 45px; height: 100px">Summary</button>&nbsp <div id = "summary_res" hidden></div>
 			</form>
 		</div>
-		<div style="float: right; margin-top: -99px;">
+		<br/>
+		<div style="float: right; margin-top: -10px;">
 			<div>
 				Imported File Detail(s):<br />
 				<textarea id="fileSize" readonly></textarea>
