@@ -100,24 +100,19 @@ public class SizeData {
 				return 0;
 			}
 
-			if ((token1.contains("abstract")) || (token1.contains("assert")) || (token1.contains("boolean"))
-					|| (token1.contains("break")) || (token1.contains("byte")) || (token1.contains("case"))
-					|| (token1.contains("catch")) || (token1.contains("char")) || (token1.contains("class"))
-					|| (token1.contains("const")) || (token1.contains("continue")) || (token1.contains("default"))
-					|| (token1.contains("do")) || (token1.contains("double")) || (token1.contains("else"))
+			if ((token1.contains("abstract")) || (token1.contains("assert")) || (token1.contains("break"))
+					|| (token1.contains("catch")) || (token1.contains("class")) || (token1.contains("const"))
+					|| (token1.contains("continue")) || (token1.contains("default")) || (token1.contains("else"))
 					|| (token1.contains("enum")) || (token1.contains("extends")) || (token1.contains("final"))
-					|| (token1.contains("finally")) || (token1.contains("goto")) || (token1.contains("if"))
-					|| (token1.contains("implements")) || (token1.contains("instanceof")) || (token1.contains("float"))
-					|| (token1.contains("for")) || (token1.contains("int")) || (token1.contains("long"))
-					|| (token1.contains("interface")) || (token1.contains("native")) || (token1.contains("new"))
-					|| (token1.contains("package")) || (token1.contains("private")) || (token1.contains("protected"))
-					|| (token1.contains("public")) || (token1.contains("return")) || (token1.contains("short"))
-					|| (token1.contains("static")) || (token1.contains("strictfp")) || (token1.contains("super"))
-					|| (token1.contains("switch")) || (token1.contains("synchronized")) || (token1.contains("this"))
+					|| (token1.contains("finally")) || (token1.contains("goto")) || (token1.contains("implements"))
+					|| (token1.contains("instanceof")) || (token1.contains("interface")) || (token1.contains("native"))
+					|| (token1.contains("new")) || (token1.contains("package")) || (token1.contains("private"))
+					|| (token1.contains("protected")) || (token1.contains("public")) || (token1.contains("return"))
+					|| (token1.contains("short")) || (token1.contains("static")) || (token1.contains("strictfp"))
+					|| (token1.contains("super")) || (token1.contains("synchronized")) || (token1.contains("this"))
 					|| (token1.contains("throw")) || (token1.contains("throws")) || (token1.contains("transient"))
 					|| (token1.contains("try")) || (token1.contains("void")) || (token1.contains("volatile"))
-					|| (token1.contains("while")) || (token1.contains("true")) || (token1.contains("false"))
-					|| (token1.contains("null")) || (token1.contains("import"))) {
+					|| (token1.contains("true")) || (token1.contains("false")) || (token1.contains("null"))) {
 
 				if ((!token1.contains("System.out.print")) && (!token1.contains("System.out.println"))
 						&& (!token1.contains("System.err.print")) && (!token1.contains("System.err.println"))) {
