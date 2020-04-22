@@ -231,6 +231,8 @@ pre .cl {
 				style="padding: 15px; width: 160px; height: 100px">Inheritance</button>&nbsp<div id = "inh_res" hidden></div>
 			</form>
 			<form method="post" action="Coupling_serv" accept-charset=utf-8>
+			<textarea id = "couple_res" name = "couple_res" style="width:30%;Height:30%" hidden></textarea>
+			<input type ="text" name = "CpExtention" id="CpExtention" hidden>
 			<button type="Submit" id="coupling_btn"
 				class="btn btn-primary btn-lg"
 				style="padding: 15px; width: 160px; height: 100px">Coupling</button>&nbsp <div id = "couple_res" hidden></div>
