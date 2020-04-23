@@ -242,12 +242,12 @@ public class SizeData {
 		String pattern = "//.*";
 		String pattern1 = "System.*";
 		String pattern2 = "import.*";
-		if (scanner.hasNext(pattern)) {
+		if (scanner.hasNext(pattern) || scanner.hasNext(pattern2)) {
 			scanner.close();
 			c = 0;
 			return 0;
 		}
-		if (scanner.hasNext(pattern1) || scanner.hasNext(pattern2)) {
+		if (scanner.hasNext(pattern1)) {
 			Li_Count = Li_Count + 2;
 		}
 

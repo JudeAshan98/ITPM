@@ -192,23 +192,22 @@ public class CouplingData {
 		String token1 = "";
 
 		Scanner scanner = new Scanner(CodeLine);
+
 		while (scanner.hasNext()) {
 			token1 = scanner.next();
 
-			if ((!token1.contains("static"))) {
-				System.out.println(token1);
-			} else {
-				if ((token1.contains("static"))) {
-					token1 = scanner.next();
-					if ((token1.contains("int")) || (token1.contains("float")) || (token1.contains("double"))) {
-						Li_Count = Li_Count + 1;
-					}
-				}
-			}
+			if (token1.contains("Scanner(System.in);") || token1.contains("sc.next();")
+					|| token1.contains("Integer.parseInt(enteredYear);")
+					|| token1.contains("Integer.parseInt(enteredMonthNumber);") || token1.contains("m.getMonth();")
+					|| token1.contains("Months()") || token1.contains("m.getYear();")) {
 
+				Li_Count = Li_Count + 1;
+
+			}
 		}
+
 		scanner.close();
-		return a = Li_Count;
+		return b = Li_Count;
 	}
 
 	// --------------------------------------------------------------------------------------------------------------------
@@ -268,11 +267,26 @@ public class CouplingData {
 	}
 
 	// --------------------------------------------------------------------------------------------------------------------
-	// NMCMS
+	// NMRGVS
 	public int findNmrgvs(String CodeLine) {
-		int variable = 0;
+		int Li_Count = 0;
+		String token1 = "";
 
-		return variable;
+		Scanner scanner = new Scanner(CodeLine);
+
+		while (scanner.hasNext()) {
+			token1 = scanner.next();
+
+			if (token1.contains("Scanner(System.in);") || token1.contains("Integer.parseInt(enteredYear);")
+					|| token1.contains("Integer.parseInt(enteredMonthNumber);")) {
+
+				Li_Count = Li_Count + 1;
+
+			}
+		}
+
+		scanner.close();
+		return c = Li_Count;
 	}
 
 	// --------------------------------------------------------------------------------------------------------------------
@@ -302,8 +316,7 @@ public class CouplingData {
 	// --------------------------------------------------------------------------------------------------------------------
 	// NMCMS
 	public int findCcp(String CodeLine) {
-		int variable = 0;
-
-		return variable;
+		
+		return sum = (2 * a) + (2 * b) + (1 * c);
 	}
 }
