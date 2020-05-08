@@ -328,15 +328,15 @@ public class SizeData {
 			}
 		} else if (extention.equals("cpp")) {
 			token1 = "";
-			
+
 			while (scanner.hasNext()) {
 				token1 = scanner.next();
 
-				if(token1.equals("#include")) {
+				if (token1.equals("#include")) {
 					scanner.close();
 					return c = 0;
 				}
-				
+
 				if (token1.equals("//")) {
 					break;
 				}
@@ -362,45 +362,41 @@ public class SizeData {
 
 	// NNV Done
 	// ---------------------------------------------------------------------------------------------------------------------
-	public int FindNnv(String CodeLine, String extention) {
+	public int FindNnv(String CodeLine) {
 		int Li_Count = 0;
 		Scanner scanner = new Scanner(CodeLine);
 
-		if (extention.equals("java")) {
-			String pattern = "//.*";
+		String pattern = "//.*";
 
+		if (scanner.hasNext(pattern)) {
+			scanner.close();
+			d = 0;
+			return 0;
+		}
+
+		while (scanner.hasNext()) {
+			token1 = scanner.next();
+
+			if (token1.contains("case")) {
+				Li_Count = Li_Count + 1;
+			}
+
+			boolean numeric = true;
+
+			try {
+				Double num;
+				num = Double.parseDouble(token1);
+			} catch (NumberFormatException e) {
+				numeric = false;
+			}
+
+			if (numeric) {
+				Li_Count = Li_Count + 1;
+			}
 			if (scanner.hasNext(pattern)) {
 				scanner.close();
-				d = 0;
-				return 0;
+				return d = Li_Count;
 			}
-
-			while (scanner.hasNext()) {
-				token1 = scanner.next();
-
-				if (token1.contains("case")) {
-					Li_Count = Li_Count + 1;
-				}
-
-				boolean numeric = true;
-
-				try {
-					Double num;
-					num = Double.parseDouble(token1);
-				} catch (NumberFormatException e) {
-					numeric = false;
-				}
-
-				if (numeric) {
-					Li_Count = Li_Count + 1;
-				}
-				if (scanner.hasNext(pattern)) {
-					scanner.close();
-					return d = Li_Count;
-				}
-			}
-		} else if (extention.equals("cpp")) {
-			// c++
 		}
 
 		scanner.close();

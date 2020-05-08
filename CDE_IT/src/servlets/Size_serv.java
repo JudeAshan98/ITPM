@@ -53,7 +53,7 @@ public class Size_serv extends HttpServlet {
 			Nkw = sizeData.FindNkw(token1, extention);
 			Nid = sizeData.FindNid(token1, extention);
 			Nop = sizeData.FindNop(token1, extention);
-			Nnv = sizeData.FindNnv(token1, extention);
+			Nnv = sizeData.FindNnv(token1);
 			Nsl = sizeData.FindNsl(token1, extention);
 			Cs = sizeData.FindCs(token1);
 
