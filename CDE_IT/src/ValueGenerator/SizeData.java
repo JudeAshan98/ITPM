@@ -116,10 +116,10 @@ public class SizeData {
 						|| (token1.contains("void")) || (token1.contains("volatile")) || (token1.contains("true"))
 						|| (token1.contains("false")) || (token1.contains("null"))) {
 
-					if ((!token1.contains("System.out.print")) && (!token1.contains("System.out.println"))
-							&& (!token1.contains("System.err.print")) && (!token1.contains("System.err.println"))) {
+//					if ((!token1.contains("System.out.print")) && (!token1.contains("System.out.println"))
+//							&& (!token1.contains("System.err.print")) && (!token1.contains("System.err.println"))) {
 						Li_Count = Li_Count + 1;
-					}
+//					}
 				}
 
 				if (scanner.hasNext(pattern1)) {
@@ -128,7 +128,34 @@ public class SizeData {
 				}
 			}
 		} else if (extention.equals("cpp")) {
-			// c++
+			while (scanner.hasNext()) {
+				token1 = scanner.next();
+
+				if ((token1.contains("asm")) || (token1.contains("else")) || (token1.contains("new"))
+						|| (token1.contains("this")) || (token1.contains("auto")) || (token1.contains("enum"))
+						|| (token1.contains("operator")) || (token1.contains("throw")) || (token1.contains("bool"))
+						|| (token1.contains("explicit")) || (token1.contains("private")) || (token1.contains("true"))
+						|| (token1.contains("break")) || (token1.contains("export")) || (token1.contains("protected"))
+						|| (token1.contains("try")) || (token1.contains("case")) || (token1.contains("extern"))
+						|| (token1.contains("public")) || (token1.contains("typedef")) || (token1.contains("catch"))
+						|| (token1.contains("false")) || (token1.contains("register")) || (token1.contains("typeid"))
+						|| (token1.contains("reinterpret_cast")) || (token1.contains("typename"))
+						|| (token1.contains("class")) || (token1.contains("for")) || (token1.contains("return"))
+						|| (token1.contains("union")) || (token1.contains("const")) || (token1.contains("friend"))
+						|| (token1.contains("unsigned")) || (token1.contains("const_cast")) || (token1.contains("goto"))
+						|| (token1.contains("signed")) || (token1.contains("using")) || (token1.contains("continue"))
+						|| (token1.contains("if")) || (token1.contains("sizeof")) || (token1.contains("virtual"))
+						|| (token1.contains("default")) || (token1.contains("inline")) || (token1.contains("static"))
+						|| (token1.contains("void")) || (token1.contains("delete")) || (token1.contains("static_cast"))
+						|| (token1.contains("volatile")) || (token1.contains("do")) || (token1.contains("long"))
+						|| (token1.contains("struct")) || (token1.contains("wchar_t")) || (token1.contains("mutable"))
+						|| (token1.contains("switch")) || (token1.contains("while"))
+						|| (token1.contains("dynamic_cast")) || (token1.contains("namespace"))
+						|| (token1.contains("template"))) {
+
+					Li_Count = Li_Count + 1;
+				}
+			}
 		}
 		scanner.close();
 		return a = Li_Count;
