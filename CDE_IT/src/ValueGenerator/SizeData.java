@@ -405,41 +405,35 @@ public class SizeData {
 
 	// NSL Done
 	// ---------------------------------------------------------------------------------------------------------------------
-	public int FindNsl(String CodeLine, String extention) {
+	public int FindNsl(String CodeLine) {
 		int Li_Count = 0;
 		Scanner scanner = new Scanner(CodeLine);
 
-		if (extention.equals("java")) {
-			String pattern = "//.*";
+		String pattern = "//.*";
+		if (scanner.hasNext(pattern)) {
+			scanner.close();
+			e = 0;
+			return 0;
+		}
+
+		while (scanner.hasNext()) {
+			token1 = scanner.next();
+
+			if (token1.equals("//")) {
+				break;
+			}
+
+			if ((token1.contains("\""))) {
+				Li_Count = Li_Count + 1;
+			}
 			if (scanner.hasNext(pattern)) {
 				scanner.close();
-				e = 0;
-				return 0;
+				return e = Li_Count;
 			}
-
-			while (scanner.hasNext()) {
-				token1 = scanner.next();
-
-				if (token1.equals("//")) {
-					break;
-				}
-
-				if ((token1.contains("\""))) {
-					Li_Count = Li_Count + 1;
-				}
-				if (scanner.hasNext(pattern)) {
-					scanner.close();
-					return e = Li_Count;
-				}
-			}
-
-		} else if (extention.equals("cpp")) {
-			// C++ Code
 		}
 
 		scanner.close();
 		return e = (Li_Count / 2);
-
 	}
 
 	// CS Done

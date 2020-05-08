@@ -54,7 +54,7 @@ public class Size_serv extends HttpServlet {
 			Nid = sizeData.FindNid(token1, extention);
 			Nop = sizeData.FindNop(token1, extention);
 			Nnv = sizeData.FindNnv(token1);
-			Nsl = sizeData.FindNsl(token1, extention);
+			Nsl = sizeData.FindNsl(token1);
 			Cs = sizeData.FindCs(token1);
 
 			List<Comparable> c = new ArrayList<Comparable>();
