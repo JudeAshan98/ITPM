@@ -118,7 +118,7 @@ public class SizeData {
 
 //					if ((!token1.contains("System.out.print")) && (!token1.contains("System.out.println"))
 //							&& (!token1.contains("System.err.print")) && (!token1.contains("System.err.println"))) {
-						Li_Count = Li_Count + 1;
+					Li_Count = Li_Count + 1;
 //					}
 				}
 
@@ -128,8 +128,13 @@ public class SizeData {
 				}
 			}
 		} else if (extention.equals("cpp")) {
+			token1 = "";
 			while (scanner.hasNext()) {
 				token1 = scanner.next();
+
+				if (token1.equals("//")) {
+					break;
+				}
 
 				if ((token1.contains("asm")) || (token1.contains("else")) || (token1.contains("new"))
 						|| (token1.contains("this")) || (token1.contains("auto")) || (token1.contains("enum"))
@@ -322,7 +327,33 @@ public class SizeData {
 				}
 			}
 		} else if (extention.equals("cpp")) {
-			// c++
+			token1 = "";
+			
+			while (scanner.hasNext()) {
+				token1 = scanner.next();
+
+				if(token1.equals("#include")) {
+					scanner.close();
+					return c = 0;
+				}
+				
+				if (token1.equals("//")) {
+					break;
+				}
+
+				if ((token1.contains("+")) || (token1.contains("-")) || (token1.equals("*")) || (token1.equals("/"))
+						|| (token1.contains("%")) || (token1.contains("++")) || (token1.contains("--"))
+						|| (token1.contains("=")) || (token1.contains("+=")) || (token1.contains("-="))
+						|| (token1.contains("*=")) || (token1.contains("/=")) || (token1.contains("%="))
+						|| (token1.contains("==")) || (token1.contains("!=")) || (token1.contains(">"))
+						|| (token1.contains("<")) || (token1.contains(">=")) || (token1.contains("<="))
+						|| (token1.contains("&&")) || (token1.equals("||")) || (token1.contains("!"))
+						|| (token1.contains("&")) || (token1.contains("|")) || (token1.contains("^"))
+						|| (token1.contains("~")) || (token1.contains("<<")) || (token1.contains(">>"))) {
+
+					Li_Count = Li_Count + 1;
+				}
+			}
 		}
 
 		scanner.close();
