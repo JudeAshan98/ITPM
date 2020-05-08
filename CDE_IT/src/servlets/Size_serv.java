@@ -17,7 +17,7 @@ import ValueGenerator.*;
 @WebServlet("/Size_serv")
 public class Size_serv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	String[][] arrayRefVar;
 	String Result;
 	String token1 = "\n";
@@ -27,37 +27,38 @@ public class Size_serv extends HttpServlet {
 	int Nnv = 0;
 	int Nsl = 0;
 	int Cs = 0;
-	
-    public Size_serv() {
-        super();
-    }
 
+	public Size_serv() {
+		super();
+	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	@SuppressWarnings("rawtypes")
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//doGet(request, response);
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// doGet(request, response);
+
 		Result = request.getParameter("size_res");
-		Scanner scanner  = new Scanner(Result);
+		String extention = request.getParameter("SExtention");
+		Scanner scanner = new Scanner(Result);
 		SizeData sizeData = new SizeData();
-		List<List<Comparable>> p =new ArrayList<List<Comparable>>();
-		while(scanner.hasNextLine())  
-		{  
+		List<List<Comparable>> p = new ArrayList<List<Comparable>>();
+		while (scanner.hasNextLine()) {
 			token1 = scanner.nextLine();
-			
-			Nkw = sizeData.FindNkw(token1);
-			Nid = sizeData.FindNid(token1);
-			Nop = sizeData.FindNop(token1);
-			Nnv = sizeData.FindNnv(token1);
-			Nsl = sizeData.FindNsl(token1);
+
+			Nkw = sizeData.FindNkw(token1, extention);
+			Nid = sizeData.FindNid(token1, extention);
+			Nop = sizeData.FindNop(token1, extention);
+			Nnv = sizeData.FindNnv(token1, extention);
+			Nsl = sizeData.FindNsl(token1, extention);
 			Cs = sizeData.FindCs(token1);
-			
+
 			List<Comparable> c = new ArrayList<Comparable>();
-			
+
 			c.add(token1);
 			c.add(Nkw);
 			c.add(Nid);
@@ -66,8 +67,8 @@ public class Size_serv extends HttpServlet {
 			c.add(Nsl);
 			c.add(Cs);
 			p.add(c);
-		}  
-		scanner.close();     //close the scanner  
+		}
+		scanner.close(); // close the scanner
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/views/Size.jsp");
 		request.setAttribute("Code_string", p);
 		dispatcher.forward(request, response);

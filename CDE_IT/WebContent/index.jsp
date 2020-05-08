@@ -207,18 +207,21 @@ pre .cl {
 		</script>
 		<div class="row">&nbsp &nbsp
 			<form method="post" action="Size_serv" accept-charset=utf-8> 
+				<input type ="text" name = "SExtention" id="SExtention" hidden>
 				<textarea id = "size_res" name = "size_res" style="width:30%;Height:30%" hidden></textarea>
 			<button type="Submit" id="size_btn" class="btn btn-primary btn-lg"
 				style="padding: 15px; width: 140px; height: 100px">Size</button>&nbsp
 			</form> 
 			
 			<form method="post" action="Method_serv" accept-charset=utf-8> 
+			<input type ="text" name = "MExtention" id="MExtention" hidden>
 				<textarea id = "method_res" name = "method_res" style="width:30%;Height:30%" hidden></textarea>
 			<button type="Submit" id="method_btn" class="btn btn-primary btn-lg"
 				style="padding: 15px; width: 140px; height: 100px">Method</button>&nbsp
 			</form> 
 			
 			<form method="post" action="Variable_serv" accept-charset=utf-8> 
+			<input type ="text" name = "VExtention" id="VExtention" hidden>
 				<textarea id = "variable_res" name = "variable_res" style="width:30%;Height:30%" hidden></textarea>
 			<button type="Submit" id="size_btn" class="btn btn-primary btn-lg"
 				style="padding: 15px; width: 140px; height: 100px">Variable</button>&nbsp
