@@ -97,7 +97,38 @@ public class VariableData {
 				}
 			}
 		} else if (extention.equals("cpp")) {
-			// c++
+			if (scanner.hasNext()) {
+				token1 = scanner.next();
+				
+				if(token1.startsWith("#") || token1.startsWith("//") || token1.startsWith("/*")) {
+					scanner.close();
+					return a = 0;
+				}
+				
+				if ((token1.equals("byte")) || (token1.equals("short")) || (token1.equals("int"))
+						|| (token1.equals("long")) || (token1.equals("float")) || (token1.equals("double"))
+						|| (token1.equals("boolean")) || (token1.equals("char")) || (token1.equals("byte[]"))
+						|| (token1.equals("short[]")) || (token1.equals("int[]")) || (token1.equals("long[]"))
+						|| (token1.equals("float[]")) || (token1.equals("double[]")) || (token1.equals("Dimension"))
+						|| (token1.equals("boolean[]")) || (token1.equals("char[]"))) {
+
+					if (scanner.hasNext()) {
+						token1 = scanner.next();
+						if (!token1.endsWith(")")) {
+							Li_Count = Li_Count + 2;
+						}
+					}
+
+				} else if (token1.startsWith("::")) {
+					if (scanner.hasNext()) {
+						token1 = scanner.next();
+						if (!token1.isEmpty()) {
+							Li_Count = Li_Count + 2;
+						}
+					}
+				}
+			}
+
 		}
 
 		scanner.close();
@@ -161,14 +192,57 @@ public class VariableData {
 							Li_Count = Li_Count + 1;
 						}
 					}
-
-				} else {
-					scanner.close();
-					return b = Li_Count;
 				}
 			}
 		} else if (extention.equals("cpp")) {
-			// c++
+			if (scanner.hasNext()) {
+				token1 = scanner.next();
+				
+				if(token1.startsWith("#") || token1.startsWith("//") || token1.startsWith("/*")) {
+					scanner.close();
+					return b = 0;
+				}
+				
+				if ((token1.equals("boolean")) || (token1.equals("byte")) || (token1.equals("char"))
+						|| (token1.equals("short")) || (token1.equals("int")) || (token1.equals("long"))
+						|| (token1.equals("float")) || (token1.equals("double"))) {
+
+					if (scanner.hasNext()) {
+						String token2 = "";
+						token2 = scanner.next();
+						if (!token2.endsWith(")")) {
+							Li_Count = Li_Count + 1;
+						}
+					} else {
+						Li_Count = Li_Count + 1;
+					}
+					if (scanner.hasNext()) {
+						token1 = scanner.next();
+
+						while (token1.endsWith(",")) {
+							Li_Count = Li_Count + 1;
+
+							if (scanner.hasNext()) {
+								token1 = scanner.next();
+							}
+						}
+						if (token1.endsWith(";")) {
+							Li_Count = Li_Count + 1;
+						} else {
+							Li_Count = Li_Count + 1;
+						}
+					}
+
+				} else if (token1.startsWith("::")) {
+					if (scanner.hasNext()) {
+						token1 = scanner.next();
+						if (!token1.isEmpty()) {
+							Li_Count = Li_Count + 1;
+						}
+					}
+				}
+			}
+
 		}
 
 		scanner.close();
@@ -241,7 +315,53 @@ public class VariableData {
 				}
 			}
 		} else if (extention.equals("cpp")) {
-			// c++
+			if (scanner.hasNext()) {
+				token1 = scanner.next();
+				
+				if(token1.startsWith("#") || token1.startsWith("//") || token1.startsWith("/*")) {
+					scanner.close();
+					return c = 0;
+				}
+				
+				if ((token1.equals("boolean[]")) || (token1.equals("byte[]")) || (token1.equals("char[]"))
+						|| (token1.equals("short[]")) || (token1.equals("int[]")) || (token1.equals("long[]"))
+						|| (token1.equals("float[]")) || (token1.equals("double[]")) || (token1.equals("Dimension"))) {
+
+					if (scanner.hasNext()) {
+						String token2 = "";
+						token2 = scanner.next();
+						if (!token2.endsWith(")")) {
+							Li_Count = Li_Count + 1;
+						}
+					} else {
+						Li_Count = Li_Count + 1;
+					}
+					if (scanner.hasNext()) {
+						token1 = scanner.next();
+
+						while (token1.endsWith(",")) {
+							Li_Count = Li_Count + 1;
+
+							if (scanner.hasNext()) {
+								token1 = scanner.next();
+							}
+						}
+						if (token1.endsWith(";")) {
+							Li_Count = Li_Count + 1;
+						} else {
+							Li_Count = Li_Count + 1;
+						}
+					}
+
+				} else if (token1.startsWith("::")) {
+					if (scanner.hasNext()) {
+						token1 = scanner.next();
+						if (!token1.isEmpty()) {
+							Li_Count = Li_Count + 2;
+						}
+					}
+				}
+			}
 		}
 
 		scanner.close();
