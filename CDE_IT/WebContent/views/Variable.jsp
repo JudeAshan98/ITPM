@@ -25,7 +25,7 @@
 				style="max-height: 75px; width: 141px; height: 81px" />
 			<text style="font-size:30px; color:gray ; margin-left:30px">
 			Variable<text>&nbsp
-			<button type="button" class="btn btn-info btn-lg"
+			<button type="button" onclick="window.print()" class="btn btn-info btn-lg"
 				style="background-color: transparent; float: right; margin-top: 30px; margin-left: 30px">
 				<img src="<%=request.getContextPath()%>/img/print.png"
 					style="max-height: 40px; max-width =: 40px;">
@@ -77,7 +77,12 @@
 					</div>
 
 					<!-- Modal body -->
-					<div class="modal-body">List of keywords..</div>
+					<div class="modal-body">
+						WVS - Weight due to variable scope <br>
+						NPDTV - Number of primitive data type variables <br>
+						NCDTV - Number of composite data type variables <br>
+						CV - Complexity of a program statement due to its variables <br>
+					</div>
 
 					<!-- Modal footer -->
 					<div class="modal-footer">

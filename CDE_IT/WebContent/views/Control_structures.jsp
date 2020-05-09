@@ -28,7 +28,7 @@
 				style="max-height: 75px; width: 141px; height: 81px" />
 			<text style="font-size:30px; color:gray ; margin-left:30px">
 			Control Structures<text>&nbsp
-			<button type="button" class="btn btn-info btn-lg"
+			<button type="button" onclick="window.print()" class="btn btn-info btn-lg"
 				style="background-color: transparent; float: right; margin-top: 30px; margin-left: 30px">
 				<img src="<%=request.getContextPath()%>/img/print.png"
 					style="max-height: 40px; max-width =: 40px;">
@@ -82,7 +82,12 @@
 					</div>
 
 					<!-- Modal body -->
-					<div class="modal-body">List of keywords..</div>
+					<div class="modal-body">
+						WTCS - Weight due to control structure type <br>
+						NC - Number of conditions in the control structure <br>
+						CCSPPS - Control structure complexity of the previous program statement<br>
+						CCS - Complexity of a program statement with a control structure <br>
+					</div>
 
 					<!-- Modal footer -->
 					<div class="modal-footer">

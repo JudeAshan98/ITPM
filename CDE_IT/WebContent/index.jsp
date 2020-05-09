@@ -247,10 +247,7 @@ pre .cl {
 				style="padding: 15px; width: 160px; height: 100px">Control
 				Structures</button>&nbsp
 			</form> 
-			<form method="post" action="Summary_serv" accept-charset=utf-8>
-			<button type="Submit" id="summary_btn" class="btn btn-success btn-lg"
-				style="padding: 45px; height: 100px">Summary</button>&nbsp <div id = "summary_res" hidden></div>
-			</form>
+			
 		</div>
 		<br/>
 		<div style="float: right; margin-top: -10px;">

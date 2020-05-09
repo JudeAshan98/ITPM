@@ -26,7 +26,7 @@
 				style="max-height: 75px; width: 141px; height: 81px" />
 			<text style="font-size:30px; color:gray ; margin-left:30px">
 			Coupling<text>&nbsp
-			<button type="button" class="btn btn-info btn-lg"
+			<button type="button" onclick="window.print()" class="btn btn-info btn-lg"
 				style="background-color: transparent; float: right; margin-top: 30px; margin-left: 30px">
 				<img src="<%=request.getContextPath()%>/img/print.png"
 					style="max-height: 40px; max-width =: 40px;">
@@ -97,7 +97,22 @@
 					</div>
 
 					<!-- Modal body -->
-					<div class="modal-body">List of keywords..</div>
+					<div class="modal-body">
+						NR - Number of recursive calls <br>
+						NMCMS - Number of calls from regular method(s) to other regular methods in the same file <br>
+						NMCMD - Number of calls from regular method(s) to other regular methods in different files <br>
+						NMCRMS - Number of calls from regular method(s) to recursive methods in the same file <br>
+						NMCRMD - Number of calls from regular method(s) to recursive methods in different files <br>
+						NRMCRMS - Number of calls from recursive method(s) to other recursive methods in the same file <br>
+						NRMCRMD - Number of calls from recursive method(s) to other recursive methods in different files <br>
+						NRMCMS - Number of calls from recursive method(s)  to regular methods in the same file <br>
+						NRMCMD - Number of calls from recursive method(s) to regular methods in different files <br>
+						NMRGVS - Number of references from regular method(s) to global variables in the same file <br>
+						NMRGVD - Number of references from regular method(s) to global variables in different files <br>
+						NRMRGVS - Number of references from recursive method(s) to global variables in the same file <br>
+						NRMRGVD - Number of references from recursive method(s) to global variable in different files <br>
+						CCP - Complexity of program statement due to coupling <br>
+					</div>
 
 					<!-- Modal footer -->
 					<div class="modal-footer">

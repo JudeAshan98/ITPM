@@ -93,7 +93,16 @@ public class MethodData {
 				}
 			}
 		} else if (extention.equals("cpp")) {
+			token1 = "";
+			while (scanner.hasNext()) {
+				token1 = scanner.next();
 
+				if(token1.startsWith("#") || token1.startsWith("//") || token1.startsWith("/*")) {
+					scanner.close();
+					return a = 0;
+				}
+			
+			}
 		}
 
 		scanner.close();

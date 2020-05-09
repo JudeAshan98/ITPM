@@ -30,7 +30,7 @@
 				style="max-height: 75px; width: 141px; height: 81px" />
 			<text style="font-size:30px; color:gray ; margin-left:30px">
 			Methods<text>&nbsp
-			<button type="button" class="btn btn-info btn-lg"
+			<button type="button" onclick="window.print()" class="btn btn-info btn-lg"
 				style="background-color: transparent; float: right; margin-top: 30px; margin-left: 30px">
 				<img src="<%=request.getContextPath()%>/img/print.png"
 					style="max-height: 40px; max-width =: 40px;">
@@ -82,7 +82,12 @@
 					</div>
 
 					<!-- Modal body -->
-					<div class="modal-body">List of keywords..</div>
+					<div class="modal-body">
+						WMRT - Weight due to method return type <br>
+						NPDTP - Number of primitive data type parameters <br>
+						NCDTP - Number of composite data type parameters <br>
+						CM - Complexity of a line which includes a method signature <br>
+					</div>
 
 					<!-- Modal footer -->
 					<div class="modal-footer">
