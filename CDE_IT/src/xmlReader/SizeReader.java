@@ -26,7 +26,7 @@ public class SizeReader {
 		  
 		  try {
 
-			File fXmlFile = new File("C:\\Users\\Jude Ashan\\Desktop\\Project\\Branch-Jude\\ITPM\\CDE_IT\\WebContent\\xml\\size.xml");
+			File fXmlFile = new File("C:\\Users\\Dinu_98x\\OneDrive\\Desktop\\ITPM FINAL PROJECT\\ITPM\\CDE_IT\\WebContent\\xml\\size.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
