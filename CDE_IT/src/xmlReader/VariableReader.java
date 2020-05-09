@@ -13,10 +13,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class VariableReader {
-	int Li_a;
-	int Li_b;
-	int Li_c;
-	int Li_d;
+	int Li_a=0;
+	int Li_b=0;
+	int Li_c=0;
+	int Li_d=0;
 	
 	List <Integer>XmlValues = new ArrayList<Integer>();
 
@@ -24,7 +24,7 @@ public class VariableReader {
 		  
 		  try {
 
-			File fXmlFile = new File("C:\\Users\\Dinu_98x\\git\\ITPM\\CDE_IT\\WebContent\\xml\\variable.xml");
+			File fXmlFile = new File("C:\\Users\\Jude Ashan\\Desktop\\Project\\Branch-Jude\\ITPM\\CDE_IT\\WebContent\\xml\\variable.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
@@ -61,6 +61,7 @@ public class VariableReader {
 		  } catch (Exception e) {
 			e.printStackTrace();
 		  }
+		  System.out.println("variable XML values :  " +XmlValues);
 			return XmlValues;
 	 }
 

@@ -25,8 +25,21 @@ public class Settings_serv extends HttpServlet {
 	
 	
 	List<Integer> csList =new ArrayList<Integer>();
+	List<Integer> CupList =new ArrayList<Integer>();
+	List<Integer> InhList =new ArrayList<Integer>();
+	List<Integer> SizeList =new ArrayList<Integer>();
+	List<Integer> MethList =new ArrayList<Integer>();
+	List<Integer> VarList =new ArrayList<Integer>();
+	
 	//ArrayList<Integer> Csettings = new ArrayList<Integer>();
 	List<List<Integer>> Csettings =new ArrayList<List<Integer>>();
+	List<List<Integer>> Cupettings =new ArrayList<List<Integer>>();
+	List<List<Integer>> Inhsettings =new ArrayList<List<Integer>>();
+	List<List<Integer>> Sizesettings =new ArrayList<List<Integer>>();
+	List<List<Integer>> Methsettings =new ArrayList<List<Integer>>();
+	List<List<Integer>> Varsettings =new ArrayList<List<Integer>>();
+	
+	
 	
     public Settings_serv() {
         super();
@@ -53,24 +66,54 @@ public class Settings_serv extends HttpServlet {
 		csList.clear();
 		Csettings.clear();
 		csList = csReader.GetAllcsValues();
-		//csList.toArray();
-//		int[] myArray = new int[csList.size()];
-//		 csList.toArray();
-//		 
-//		 int[] array = csList.stream().mapToInt(i->i).toArray();
-//		 
-//		 for(int i=0; i<csList.size(); i++){
-//			 myArray[i] = csList.get(i);
-//	         System.out.println("Element at the index "+i+" is ::"+myArray[i]);
-//	      }
+
+		inheritanceReader inhReader = new inheritanceReader();
+		InhList.clear();
+		Inhsettings.clear();
+		InhList = inhReader.GetAllcsValues();
+		
+		MethodReader methodReader = new MethodReader();
+		MethList.clear();
+		Methsettings.clear();
+		MethList = methodReader.GetAllcsValues();
+		
+		SizeReader sizeReader = new SizeReader();
+		SizeList.clear();
+		Sizesettings.clear();
+		SizeList = sizeReader.GetAllcsValues();
 		 
-		System.out.println(csList);
-		System.out.println("---------------");
+		VariableReader variableReader = new VariableReader();
+		VarList.clear();
+		Varsettings.clear();
+		VarList = variableReader.GetAllcsValues();
+		
+		CouplingReader couplingReader = new CouplingReader();
+		CupList.clear();
+		Cupettings.clear();
+		CupList = couplingReader.GetAllcsValues();
+		
+		
+		System.out.println("Control XML Values :" + csList);
+		System.out.println("Cupling XML Values :" + CupList);
+		System.out.println("Inheritance XML Values :" + InhList);
+		System.out.println("Size XML Values :" + SizeList);
+		System.out.println("Method XML Values :" + MethList);
+		System.out.println("Variable XML Values :" + VarList);
+		
 		Csettings.add(csList);
+		Cupettings.add(CupList);
+		Inhsettings.add(InhList);
+		Sizesettings.add(SizeList);
+		Methsettings.add(MethList);
+		Varsettings.add(VarList);
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/views/settings.jsp");
 		request.setAttribute("CsList",Csettings);
-	//	request.setAttribute("InhList",csList);
+		request.setAttribute("CupList",Cupettings);
+		request.setAttribute("InhList",Inhsettings);
+		request.setAttribute("SizeList",Sizesettings);
+		request.setAttribute("MethList",Methsettings);
+		request.setAttribute("VarList",Varsettings);
 		dispatcher.forward(request, response);
 	}
 

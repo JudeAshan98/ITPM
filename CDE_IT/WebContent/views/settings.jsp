@@ -63,79 +63,36 @@
 										<th>Weight</th>
 									</tr>
 								</thead>
-<%-- 								<c:forEach items="${CsList}" var="post" varStatus="theCount1"> --%>
+								<c:forEach items="${SizeList}" var="Listsz" varStatus="theCountSz">
 								<tbody>
 									<tr>
 										<td>Keyword</td>
-										<td><input type="number" class="form-control" style="width:60px"></td>
+										<td><input type="number" class="form-control" value="${Listsz[0]}" style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Identifier</td>
-										<td><input type="number" class="form-control"    style="width:60px"></td>
+										<td><input type="number" class="form-control"  value="${Listsz[1]}"  style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Operator</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
+										<td><input type="number" class="form-control" value="${Listsz[2]}"  style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Numerical value</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
+										<td><input type="number" class="form-control" value="${Listsz[3]}"  style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>String literal</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
+										<td><input type="number" class="form-control" value="${Listsz[4]}"  style="width:60px"></td>
 									</tr>
 								</tbody>
-<%-- 								</c:forEach> --%>
+								</c:forEach>
 							</table>
 						</div>
 						<button type="button" class="btn btn-success">Save</button>
 					</div>
 					&nbsp
 					<div class="col-sm border border-success">
-						<br>
-						<h5 align="center">Weights related to the variable factor</h5>
-						<div class="table-responsive">
-							<br>
-							<table class="table table-bordered">
-								<thead class="thead-light">
-									<tr>
-										<th>Program Component</th>
-										<th>Weight</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Method with a primitive return type</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
-									</tr>
-									<tr>
-										<td>Method with a composite return type</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
-									</tr>
-									<tr>
-										<td>Method with a void return type</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
-									</tr>
-									<tr>
-										<td>Primitive data type parameter</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
-									</tr>
-									<tr>
-										<td>Composite data type parameter</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
-									</tr>
-								</tbody>
-							</table>
-							
-						</div>
-						<button type="button" class="btn btn-success">Save</button>
-						<p></p>
-					</div>
-				</div>
-				<br>
-				<div class="row justify-content-md-center">
-					<div class="col-md-6 border border-success">
 						<br>
 						<h5 align="center">Weights related to the method factor</h5>
 						<div class="table-responsive">
@@ -147,24 +104,71 @@
 										<th>Weight</th>
 									</tr>
 								</thead>
+								<c:forEach items="${MethList}" var="Listv" varStatus="theCountv">
+								<tbody>
+									<tr>
+										<td>Method with a primitive return type</td>
+										<td><input type="number" class="form-control"  value="${Listv[0]}"   style="width:60px"></td>
+									</tr>
+									<tr>
+										<td>Method with a composite return type</td>
+										<td><input type="number" class="form-control"  value="${Listv[1]}"   style="width:60px"></td>
+									</tr>
+									<tr>
+										<td>Method with a void return type</td>
+										<td><input type="number" class="form-control"  value="${Listv[2]}"   style="width:60px"></td>
+									</tr>
+									<tr>
+										<td>Primitive data type parameter</td>
+										<td><input type="number" class="form-control"  value="${Listv[3]}"   style="width:60px"></td>
+									</tr>
+									<tr>
+										<td>Composite data type parameter</td>
+										<td><input type="number" class="form-control"  value="${Listv[4]}"   style="width:60px"></td>
+									</tr>
+								</tbody>
+								</c:forEach>
+							</table>
+							
+						</div>
+						<button type="button" class="btn btn-success">Save</button>
+						<p></p>
+					</div>
+				</div>
+				<br>
+				<div class="row justify-content-md-center">
+					<div class="col-md-6 border border-success">
+						<br>
+						<h5 align="center">Weights related to the variable factor</h5>
+						<div class="table-responsive">
+							<br>
+							<table class="table table-bordered">
+								<thead class="thead-light">
+									<tr>
+										<th>Program Component</th>
+										<th>Weight</th>
+									</tr>
+								</thead>
+								<c:forEach items="${VarList}" var="var" varStatus="theCountVar">
 								<tbody>
 									<tr>
 										<td>Global variable</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
+										<td><input type="number" class="form-control" value="${var[0]}"  style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Local variable</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
+										<td><input type="number" class="form-control" value="${var[1]}"  style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Primitive data type variable</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
+										<td><input type="number" class="form-control" value="${var[2]}"  style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Composite data type variable</td>
-										<td><input type="number" class="form-control"   style="width:60px"></td>
+										<td><input type="number" class="form-control"  value="${var[3]}" style="width:60px"></td>
 									</tr>
 								</tbody>
+								</c:forEach>
 							</table>
 						</div>
 						<button type="button" class="btn btn-success">Save</button>
@@ -187,28 +191,30 @@
 									<th>Weight</th>
 								</tr>
 							</thead>
+							<c:forEach items="${InhList}" var="ListInh" varStatus="theCount">
 							<tbody>
 								<tr>
 									<td>A class with no inheritance (direct or indirect)</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control" value="${ListInh[0]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A class inheriting (directly or indirectly) from one user-defined class</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control" value="${ListInh[1]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A class inheriting (directly or indirectly) from two user-defined classes</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control" value="${ListInh[2]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A class inheriting (directly or indirectly) from three user-defined classes</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control" value="${ListInh[3]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A class inheriting (directly or indirectly) from more than three user-defined classes</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control" value="${ListInh[4]}"  style="width:60px"></td>
 								</tr>
 							</tbody>
+							</c:forEach>
 						</table>
 					</div>
 					<button type="button" class="btn btn-success">Save</button>
@@ -229,60 +235,62 @@
 									<th>Weight</th>
 								</tr>
 							</thead>
+							<c:forEach items="${CupList}" var="postcup" varStatus="theCountcup">
 							<tbody>
 								<tr>
 									<td>A recursive call</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control"  value="${postcup[0]}" style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A regular method calling another regular method in the same file</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control" value="${postcup[1]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A regular method calling another regular method in a different file</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control" value="${postcup[2]}"   style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A regular method calling a recursive method in the same file</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control"  value="${postcup[3]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A regular method calling a recursive method in a different file</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control"  value="${postcup[4]}" style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A recursive method calling another recursive method in the same file</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control"  value="${postcup[5]}" style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A recursive method calling another recursive method in a different file</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control" value="${postcup[6]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A recursive method calling a regular method in the same file</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control" value="${postcup[7]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A recursive method calling a regular method in a different file</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control" value="${postcup[8]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A regular method referencing a global variable in the same file</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control"  value="${postcup[9]}" style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A regular method referencing a global variable in a different file</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control"  value="${postcup[10]}" style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A recursive method referencing a global variable in the same file</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control"  value="${postcup[11]}" style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A recursive method referencing a global variable in a different file</td>
-									<td><input type="number" class="form-control"   style="width:60px"></td>
+									<td><input type="number" class="form-control"  value="${postcup[12]}" style="width:60px"></td>
 								</tr>
 							</tbody>
+							</c:forEach>
 						</table>
 					</div>
 					<button type="button" class="btn btn-success">Save</button>
@@ -294,6 +302,7 @@
 				<div class="col-sm border border-success">
 					<br>
 					<h5 align="center">Weights related to the control structure factor</h5>
+					<form  method="post" action="ControlUpdater">
 					<div class="table-responsive">
 						<br>
 						<table class="table table-bordered">
@@ -304,28 +313,28 @@
 								</tr>
 							</thead>
 							<c:forEach items="${CsList}" var="post" varStatus="theCount1">
-							<tbody>
+							<tbody> 
 								<tr>
 									<td>A conditional control structure such as an 'if' or 'else-if' condition</td>
-									<td><input type="number" class="form-control" value="${post[0]}"  style="width:60px"></td>
+									<td><input type="number" name="ifelse" class="form-control" value="${post[0]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>An iterative control structure such as a 'for', 'while', or 'do-while' loop</td>
-									<td><input type="number" class="form-control" value="${post[1]}"  style="width:60px"></td>
+									<td><input type="number" name="fwd" class="form-control" value="${post[1]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>The 'switch' statement in a 'switch-case' control structure</td>
-									<td><input type="number" class="form-control" value="${post[2]}"  style="width:60px"></td>
+									<td><input type="number" name="switch" class="form-control" value="${post[2]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>Each 'case' statement in a 'switch-case' control structure </td>
-									<td><input type="number" class="form-control"  value="${post[3]}" style="width:60px"></td>
+									<td><input type="number"  name="case" class="form-control"  value="${post[3]}" style="width:60px"></td>
 								</tr>
 							</tbody>
 							</c:forEach>
 						</table>
 					</div>
-					<button type="button" class="btn btn-success">Save</button>
+					<button type="submit" value ="Save" class="btn btn-success">Save</button></form>
 					<p></p>
 				</div>
 			</div>

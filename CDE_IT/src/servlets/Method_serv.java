@@ -39,28 +39,28 @@ public class Method_serv extends HttpServlet {
 		//doGet(request, response);
 		
 		Result = request.getParameter("method_res");
-		Scanner scanner  = new Scanner(Result);
+		String extention = request.getParameter("MExtention");
+		Scanner scanner = new Scanner(Result);
 		MethodData methoddata = new MethodData();
-		List<List<Comparable>> p =new ArrayList<List<Comparable>>();
-		while(scanner.hasNextLine())  
-		{  
+		List<List<Comparable>> p = new ArrayList<List<Comparable>>();
+		while (scanner.hasNextLine()) {
 			token1 = scanner.nextLine();
-			
-			Wmrt = methoddata.FindWmrt(token1);
-			Npdtp = methoddata.FindNpdtp(token1);
-			Ncdtp = methoddata.FindNcdtp(token1);
+
+			Wmrt = methoddata.FindWmrt(token1, extention);
+			Npdtp = methoddata.FindNpdtp(token1, extention);
+			Ncdtp = methoddata.FindNcdtp(token1, extention);
 			Cm = methoddata.FindCm(token1);
-			
+
 			List<Comparable> c = new ArrayList<Comparable>();
-			
+
 			c.add(token1);
 			c.add(Wmrt);
 			c.add(Npdtp);
 			c.add(Ncdtp);
 			c.add(Cm);
 			p.add(c);
-		}  
-		scanner.close();     //close the scanner  
+		}
+		scanner.close(); // close the scanner
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/views/Methods.jsp");
 		request.setAttribute("Code_string", p);
 		dispatcher.forward(request, response);
