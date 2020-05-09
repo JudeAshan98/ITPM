@@ -67,6 +67,14 @@ pre .cl {
 	border-left: 1px solid gray;
 	height: 40px;
 }
+
+#myF{
+ 	max-height: 650px; max-height: 500px;overflow: auto;
+}
+
+#output{
+ 	height: 400px; 
+}
 </style>
 
 
@@ -89,6 +97,7 @@ pre .cl {
 	// //  document.getElementById("fileNum").innerHTML = nFiles;
 	//   document.getElementById("fileSize").innerHTML = sOutput;
 	// }
+	
 </script>
 
 
@@ -106,7 +115,7 @@ pre .cl {
 		<div class="row">
 			<div class="col">
 				<div class="custom-file">
-					<input type="file" class="custom-file-input" id="myFile">
+					<input type="file" class="custom-file-input" id="myFile" multiple >
 						 <label class="custom-file-label"
 						for="customFile">Choose file</label>
 				</div>
@@ -127,84 +136,12 @@ pre .cl {
 		<form id="myF">
 			<pre>
 				<code>
-					<div id="output" style="max-height: 650px; height: 500px">
+					<div id="output">
 </div></code>
 			
 			</pre>
 		</form>
-		<script>
-			var input = document.getElementById("myFile");
-			var output = document.getElementById("output");
 
-			input.addEventListener("change", function () {
-				  if (this.files && this.files[0]) {
-				    var myFile = this.files[0];
-				    var reader = new FileReader();
-				     document.getElementById('myF').reset();
-				    reader.addEventListener('load', function (e) {
-						var pre = document.getElementsByTagName('pre'),
-				        pl = pre.length;
-				        for (var i = 0; i < pl; i++) {
-						output.textContent = e.target.result;
-				        pre[i].innerHTML = '<span class="line-number"></span>' + pre[i].innerHTML + '<span class="cl"></span>';
-				        var num = pre[i].innerHTML.split(/\n/).length;
-				        for (var j = 0; j < num; j++) {
-				            var line_num = pre[i].getElementsByTagName('span')[0];
-				            line_num.innerHTML += '<span>' + (j + 1) + '</span>';
-							
-				        }
-															   sessionStorage.setItem("Result", output.textContent);
-															   document.getElementById("cont_res").value = sessionStorage.getItem("Result");
-															   //document.getElementById("cont_res").value = "Jude";
-															   document.getElementById("inh_res").value = sessionStorage.getItem("Result");
-															   document.getElementById("size_res").value = sessionStorage.getItem("Result");
-															   document.getElementById("method_res").value = sessionStorage.getItem("Result");
-															   document.getElementById("variable_res").value = sessionStorage.getItem("Result");
-															   document.getElementById("couple_res").value = sessionStorage.getItem("Result");
-															   document.getElementById("summary_res").value = sessionStorage.getItem("Result");
-														}
-
-													});
-
-									reader.readAsBinaryString(myFile);
-									input.setAttribute("disabled", true);
-
-								}
-								var file = input.files[0];
-								var filename = file.name;
-								// Get the file extention.
-								var fileExtension = filename.substr((filename
-										.lastIndexOf('.') + 1));
-								console.log(fileExtension);
-								sessionStorage.setItem("Ext", fileExtension);
-								document.getElementById("CExtention").value = sessionStorage.getItem("Ext");
-								document.getElementById("IExtention").value = sessionStorage.getItem("Ext");
-								document.getElementById("CpExtention").value = sessionStorage.getItem("Ext");
-								document.getElementById("SExtention").value = sessionStorage.getItem("Ext");
-								document.getElementById("VExtention").value = sessionStorage.getItem("Ext");
-								document.getElementById("MExtention").value = sessionStorage.getItem("Ext");
-								// Check the file type.. Should only support for .java and .cpp files only.
-								if (fileExtension == 'java') {
-									//	editor.session.setMode("ace/mode/java");
-									//	alert("I am JAVA!")
-								} else if (fileExtension == 'cpp') {
-									//editor.session.setMode("ace/mode/c_cpp");
-									//	alert("I am c++!");
-								} else {
-									alert("Invalid file format, Please select java or c++ file!");
-									window.location.reload(false);
-								}
-
-							});
-		</script>
-		<script>
-			// Add the following code if you want the name of the file appear on select
-			$(".custom-file-input").on("change",function() {
-						var fileName = $(this).val().split("\\").pop();
-						$(this).siblings(".custom-file-label").addClass(
-								"selected").html(fileName);
-					});
-		</script>
 		<div class="row">&nbsp &nbsp
 			<form method="post" action="Size_serv" accept-charset=utf-8> 
 				<textarea id = "size_res" name = "size_res" style="width:30%;Height:30%" hidden></textarea>
@@ -261,11 +198,94 @@ pre .cl {
 		function clearAll() {
 			document.getElementById('cont_res').value = '';
 			document.getElementById('inh_res').value = '';
-			document.getElementById('svm_res').value = '';
+	//		document.getElementById('svm_res').value = '';
 			document.getElementById('couple_res').value = '';
 			document.getElementById('summary_res').value = '';
 			window.location.reload(false);
 		}
+		
+		function checkExt(filename){
+			
+			// Get the file extention.
+			var fileExtension = filename.substr((filename
+					.lastIndexOf('.') + 1));
+			console.log(fileExtension);
+			sessionStorage.setItem("Ext", fileExtension);
+			document.getElementById("CExtention").value = sessionStorage.getItem("Ext");
+			document.getElementById("IExtention").value = sessionStorage.getItem("Ext");
+//				document.getElementById("CpExtention").value = sessionStorage.getItem("Ext");
+//				document.getElementById("SExtention").value = sessionStorage.getItem("Ext");
+//				document.getElementById("VExtention").value = sessionStorage.getItem("Ext");
+//				document.getElementById("MExtention").value = sessionStorage.getItem("Ext");
+			// Check the file type.. Should only support for .java and .cpp files only.
+			if (fileExtension == 'java') {
+				//	editor.session.setMode("ace/mode/java");
+				//	alert("I am JAVA!")
+			} else if (fileExtension == 'cpp') {
+				//editor.session.setMode("ace/mode/c_cpp");
+				//	alert("I am c++!");
+			} else {
+				alert("Invalid file format, Please select java or c++ file!");
+				window.location.reload(false);
+			}
+			
+		}
+		
+		
+		function reacfilecontent(file) {
+		    var name = file.name;
+		    var reader = new FileReader();
+		    var output = document.getElementById("output");
+		    reader.onload = function(e) {  
+		        // get file content  
+		        var text = e.target.result; 
+		        var div = document.createElement("div");
+		        div.innerHTML = '________'+ name + "__________"+'\n' +'\n' + text +'\n' +'\n';
+		        output.appendChild(div);
+		        
+		        // Store the file content in a session variable.
+			    sessionStorage.setItem("Result", output.textContent);
+
+			    //Send file content to each function 
+				document.getElementById("cont_res").value = sessionStorage.getItem("Result");
+				document.getElementById("inh_res").value = sessionStorage.getItem("Result");
+				document.getElementById("size_res").value = sessionStorage.getItem("Result");
+				document.getElementById("method_res").value = sessionStorage.getItem("Result");
+				document.getElementById("variable_res").value = sessionStorage.getItem("Result");
+				document.getElementById("couple_res").value = sessionStorage.getItem("Result");
+				document.getElementById("summary_res").value = sessionStorage.getItem("Result");
+				
+		    }
+		    reader.readAsText(file, "UTF-8");
+
+		}
+
+			
+
 	</script>
+			<script>
+			var input = document.getElementById("myFile");
+			var filelist=new Array();
+			var file_next = '';
+			input.addEventListener("change", function () {
+				 document.getElementById('myF').reset();
+
+				 for (var a = 0; a < input.files.length; ++a) {			 
+					 reacfilecontent(input.files[a]); // Read File content
+					 checkExt(input.files.item(a).name); // Check file the extention
+				    	filelist[a] = a+1 + ') '+input.files.item(a).name + '\n'; // get file name details
+				    	fileSize.innerHTML = filelist;
+					}		
+		});
+							
+			$("pre code").each(function(){
+			    var html = $(this).html();
+			    var pattern = html.match(/\s*\n[\t\s]*/);
+			    $(this).html(html.replace(new RegExp(pattern, "g"),'\n'));
+			});
+							
+							
+		</script>
+
 </body>
 </html>
