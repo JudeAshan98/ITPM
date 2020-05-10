@@ -113,7 +113,7 @@ public class MethodData {
 					}
 
 					if (token1.endsWith("()")) {
-						Li_Count = Li_Count + 2;
+						Li_Count = Li_Count + 1;
 					} else if (token1.endsWith("(")) {
 						Li_Count = Li_Count + 1;
 					} else {
@@ -166,7 +166,7 @@ public class MethodData {
 			while (scanner.hasNext()) {
 				token1 = scanner.next();
 
-				if (token1.startsWith("#") || token1.startsWith("//") || token1.startsWith("/*")) {
+				if (token1.startsWith("#") || token1.startsWith("//") || token1.startsWith("/*") || token1.startsWith("public")) {
 					scanner.close();
 					return b = 0;
 				}
