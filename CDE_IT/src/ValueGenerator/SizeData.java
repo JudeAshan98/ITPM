@@ -132,7 +132,8 @@ public class SizeData {
 			while (scanner.hasNext()) {
 				token1 = scanner.next();
 
-				if (token1.startsWith("#") || token1.startsWith("//") || token1.startsWith("/*")) {
+				if (token1.startsWith("#") || token1.startsWith("//") || token1.startsWith("/*")
+						|| token1.equals("using")) {
 					scanner.close();
 					return a = 0;
 				}
@@ -145,16 +146,16 @@ public class SizeData {
 						|| (token1.contains("public")) || (token1.contains("typedef")) || (token1.contains("catch"))
 						|| (token1.contains("false")) || (token1.contains("register")) || (token1.contains("typeid"))
 						|| (token1.contains("reinterpret_cast")) || (token1.contains("typename"))
-						|| (token1.contains("class")) || (token1.contains("for")) || (token1.contains("return"))
+						|| (token1.contains("class")) || (token1.contains("return"))
 						|| (token1.contains("union")) || (token1.contains("const")) || (token1.contains("friend"))
 						|| (token1.contains("unsigned")) || (token1.contains("const_cast")) || (token1.contains("goto"))
 						|| (token1.contains("signed")) || (token1.contains("using")) || (token1.contains("continue"))
-						|| (token1.contains("if")) || (token1.contains("sizeof")) || (token1.contains("virtual"))
+						|| (token1.contains("sizeof")) || (token1.contains("virtual"))
 						|| (token1.contains("default")) || (token1.contains("inline")) || (token1.contains("static"))
 						|| (token1.contains("void")) || (token1.contains("delete")) || (token1.contains("static_cast"))
 						|| (token1.contains("volatile")) || (token1.contains("do")) || (token1.contains("long"))
 						|| (token1.contains("struct")) || (token1.contains("wchar_t")) || (token1.contains("mutable"))
-						|| (token1.contains("switch")) || (token1.contains("while"))
+						|| (token1.contains("switch"))
 						|| (token1.contains("dynamic_cast")) || (token1.contains("namespace"))
 						|| (token1.contains("template"))) {
 
@@ -268,14 +269,17 @@ public class SizeData {
 				}
 			}
 		} else if (extention.equals("cpp")) {
+			if (scanner.hasNext()) {
+				token1 = scanner.next();
+				if (token1.startsWith("#") || token1.startsWith("//") || token1.startsWith("/*")
+						|| token1.equals("using")) {
+					scanner.close();
+					return a = 0;
+				}
+			}
+
 			while (scanner.hasNext()) {
 				token1 = scanner.next();
-
-				if (token1.startsWith("#") || token1.startsWith("cout") || token1.startsWith("//")
-						|| token1.startsWith("/*")) {
-					scanner.close();
-					return b = 0;
-				}
 
 				if ((!token1.contains("asm")) && (!token1.contains("else")) && (!token1.contains("new"))
 						&& (!token1.contains("this")) && (!token1.contains("auto")) && (!token1.contains("enum"))
@@ -326,6 +330,9 @@ public class SizeData {
 						&& !token1.endsWith("\";") && !token1.equals(";"))) {
 					Li_Count = Li_Count + 1;
 					// System.out.println(token1);
+				} else if (token1.endsWith("()")) {
+					Li_Count = Li_Count + 1;
+					// System.out.println("-----------------------------"+token1);
 				}
 
 			}
@@ -395,14 +402,15 @@ public class SizeData {
 					return c = 0;
 				}
 				if ((token1.contains("+")) || (token1.contains("-")) || (token1.equals("*")) || (token1.equals("/"))
-						|| (token1.contains("%")) || (token1.contains("++")) || (token1.contains("--"))
-						|| (token1.contains("=")) || (token1.contains("+=")) || (token1.contains("-="))
-						|| (token1.contains("*=")) || (token1.contains("/=")) || (token1.contains("%="))
-						|| (token1.contains("==")) || (token1.contains("!=")) || (token1.contains(">"))
-						|| (token1.contains("<")) || (token1.contains(">=")) || (token1.contains("<="))
-						|| (token1.contains("&&")) || (token1.equals("||")) || (token1.contains("!"))
-						|| (token1.contains("&")) || (token1.contains("|")) || (token1.contains("^"))
-						|| (token1.contains("~")) || (token1.contains("<<")) || (token1.contains(">>"))) {
+						|| (token1.contains(",")) || (token1.contains("%")) || (token1.contains("++"))
+						|| (token1.contains("--")) || (token1.contains("=")) || (token1.contains("+="))
+						|| (token1.contains("-=")) || (token1.contains("*=")) || (token1.contains("/="))
+						|| (token1.contains("%=")) || (token1.contains("==")) || (token1.contains("!="))
+						|| (token1.contains(">")) || (token1.contains("<")) || (token1.contains(">="))
+						|| (token1.contains("<=")) || (token1.contains("&&")) || (token1.equals("||"))
+						|| (token1.contains("!")) || (token1.contains("&")) || (token1.contains("|"))
+						|| (token1.contains("^")) || (token1.contains("~")) || (token1.contains("<<"))
+						|| (token1.contains(">>"))) {
 
 					Li_Count = Li_Count + 1;
 				}
