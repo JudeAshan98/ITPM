@@ -236,7 +236,7 @@ pre .cl {
 			document.getElementById('inh_res').value = '';
 			//		document.getElementById('svm_res').value = '';
 			document.getElementById('couple_res').value = '';
-			document.getElementById('summary_res').value = '';
+// 			document.getElementById('summary_res').value = '';
 			window.location.reload(false);
 		}
 
@@ -300,8 +300,8 @@ pre .cl {
 						.getItem("Result");
 				document.getElementById("couple_res").value = sessionStorage
 						.getItem("Result");
-				document.getElementById("summary_res").value = sessionStorage
-						.getItem("Result");
+// 				document.getElementById("summary_res").value = sessionStorage
+// 						.getItem("Result");
 
 			}
 			reader.readAsText(file, "UTF-8");

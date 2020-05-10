@@ -3,6 +3,8 @@ package ValueGenerator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+//import sun.jvm.hotspot.oops.Array;
 import xmlReader.CsReader;
 
 public class ControlData {
@@ -13,6 +15,11 @@ public class ControlData {
 	private int Li_ncVal;
 	private int Li_ccpVal;
 	private int Li_case;
+
+	ArrayList<Integer> Open = new ArrayList<Integer>();
+	ArrayList<Integer> Close = new ArrayList<Integer>();
+	int case_count = 0;
+
 	List<Integer> ValueList = new ArrayList<Integer>();
 	CsReader csReader = new CsReader();
 	String previousLine = null;
@@ -58,16 +65,19 @@ public class ControlData {
 		int Li_Wtcs = 0;
 		while (scanner.hasNext()) {
 			token1 = scanner.next();
-			if (token1.contains("if") || token1.contains("else")) {
+			if (token1.contains("//")) {
+				return Li_Wtcs;
+			}
+			if (token1.contains("if")) {
 				setLi_WtVal(Li_WtVal);
 				Li_Wtcs = Li_Wtcs + getLi_WtVal();
-			} else if (token1.contains("for") || token1.contains("while") || token1.contains("do")) {
+			} else if (token1.equals("for") || token1.equals("while") || token1.equals("do")) {
 				setLi_ncVal(Li_ncVal);
 				Li_Wtcs = Li_Wtcs + getLi_ncVal();
-			} else if ((token1.contains("switch"))) {
+			} else if ((token1.equals("switch"))) {
 				setLi_ccpVal(Li_ccpVal);
 				Li_Wtcs = Li_Wtcs + getLi_ccpVal();
-			} else if ((token1.contains("case"))) {
+			} else if ((token1.equals("case"))) {
 				setLi_case(Li_case);
 				Li_Wtcs = Li_Wtcs + getLi_case();
 			}
@@ -83,9 +93,12 @@ public class ControlData {
 		int Li_Count = 0;
 		while (scanner.hasNext()) {
 			token1 = scanner.next();
-			if ((token1.contains("if")) || (token1.contains("for")) || (token1.contains("while"))
-					|| (token1.contains("while")) || (token1.contains("do")) || (token1.contains("switch"))
-					|| (token1.contains("case"))) {
+			if (token1.contains("//")) {
+				return Li_Count;
+			}
+			if ((token1.equals("if")) || (token1.contains("if(")) || (token1.equals("for")) || (token1.equals("while"))
+					|| (token1.equals("while")) || (token1.equals("do")) || (token1.equals("switch"))
+					|| (token1.equals("case")) || (token1.equals("&&")) || (token1.equals("||"))) {
 				Li_Count = Li_Count + 1;
 			}
 		}
@@ -95,19 +108,32 @@ public class ControlData {
 
 	}
 
-	public int previousComplex(String CodeLine) {
+	public int previousComplex(String CodeLine, int count) {
 		int Li_Ccspps = 0;
+		int Li_count = 0;
+		if (count > 0) {
+			Li_count = count;
+		}
 		Scanner scanner = new Scanner(CodeLine);
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
 			if (line.contains("if") || line.contains("for") || line.contains("while") || line.contains("while")
-					|| line.contains("do") || line.contains("switch") || line.contains("case")) {
-				if (previousLine.contains("if") || previousLine.contains("for") || previousLine.contains("while")
-						|| previousLine.contains("while") || previousLine.contains("do")
-						|| previousLine.contains("switch") || previousLine.contains("case")) {
+					|| line.contains("do") || line.contains("switch")) {
 
-					Li_Ccspps = Li_Ccspps + 2;
+				if (Li_count != 0) {
+					Li_Ccspps = Li_Ccspps + Li_count;
+				} else if (Li_count == 0) {
+					Li_Ccspps = Li_Ccspps + count;
 				}
+
+			}
+			if (line.contains("case")) {
+				if (previousLine.contains("switch")) {
+					case_count = count;
+					System.out.println(case_count);
+
+				}
+				Li_Ccspps = case_count;
 			}
 			previousLine = line;
 		}

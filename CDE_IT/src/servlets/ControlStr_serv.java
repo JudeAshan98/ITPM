@@ -60,7 +60,7 @@ public class ControlStr_serv extends HttpServlet {
 			token1 = scanner.nextLine();
 			Wtcs = controlData.CtrlWeight(token1);
 			NC = controlData.NofConditions(token1);
-			Ccspps = controlData.previousComplex(token1);
+			Ccspps = controlData.previousComplex(token1,Ccs);
 			List<Comparable> c = new ArrayList<Comparable>();
 			Ccs = (Wtcs*NC)+Ccspps;
 			c.add(token1);
