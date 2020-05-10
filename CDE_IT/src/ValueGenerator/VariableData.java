@@ -115,7 +115,7 @@ public class VariableData {
 					if (scanner.hasNext()) {
 						token1 = scanner.next();
 						if (!token1.endsWith(")")) {
-							Li_Count = Li_Count + 2;
+							Li_Count = Li_Count + 1;
 						}
 					}
 
@@ -123,7 +123,7 @@ public class VariableData {
 					if (scanner.hasNext()) {
 						token1 = scanner.next();
 						if (!token1.isEmpty()) {
-							Li_Count = Li_Count + 2;
+							Li_Count = Li_Count + 1;
 						}
 					}
 				}
@@ -213,9 +213,7 @@ public class VariableData {
 						if (!token2.endsWith(")")) {
 							Li_Count = Li_Count + 1;
 						}
-					} else {
-						Li_Count = Li_Count + 1;
-					}
+					} 
 					if (scanner.hasNext()) {
 						token1 = scanner.next();
 
@@ -228,9 +226,7 @@ public class VariableData {
 						}
 						if (token1.endsWith(";")) {
 							Li_Count = Li_Count + 1;
-						} else {
-							Li_Count = Li_Count + 1;
-						}
+						} 
 					}
 
 				} else if (token1.startsWith("::")) {
