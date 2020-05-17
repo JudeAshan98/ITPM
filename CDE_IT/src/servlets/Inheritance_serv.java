@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,6 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.jasper.tagplugins.jstl.core.Out;
 
 import ValueGenerator.ControlData;
 import ValueGenerator.InheritData;
@@ -81,7 +84,6 @@ public class Inheritance_serv extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
 	
-
     public Inheritance_serv() {
         super();
         // TODO Auto-generated constructor stub
@@ -101,42 +103,84 @@ public class Inheritance_serv extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		int value = 0;
+		
+		int totalIn=0;
+		int totalDir=0;
+		int totalin=0;
+		int totalcom=0;
 		
 		Result = request.getParameter("inh_res");
 		String extention = request.getParameter("IExtention");
 		Scanner scanner  = new Scanner(Result);
 		InheritData inheritData = new InheritData();
 		List<List<Comparable>> p =new ArrayList<List<Comparable>>();
+		List<Integer> excList=new ArrayList<Integer>();
+		
+		
 		while(scanner.hasNextLine())  
 		{  
 			token1 = scanner.nextLine();
-			//zero = inheritData.DirectInd(token1);
-			//One = inheritData.DirectInhone(token1);
+		
+			// passing code line to check direct inheritance
 			One=inheritData.DirectInh(token1,extention);
-			Two=inheritData.InDirectInh(token1);
-			//Three=inheritData.totalInDirectInh();
+		
+			
+			totalDir=totalDir+One;
+			
+			//passing code line to check indirect inheritance
+			Two=inheritData.InDirectInh(token1,extention);
+			totalIn=totalIn+Two;
+			
+			//checking if execption returned
+			if(One==-1||Two==-1)
+			{
+				excList.add(-1);
+			}
+			
+			//to calculate addition of direct and indirect inheritance per code line
 			Three=One+Two;
 			
+			totalin=totalin+Three;
+			
+			//to calculate total complexity per line
 			Li_four = inheritData.totalWeight(Three);
-//			NC = controlData.NofConditions(token1);
-//			Ccspps = controlData.previousComplex(token1);
+			totalcom=totalcom+Li_four;
+
 			List<Comparable> c = new ArrayList<Comparable>();
-//			Ccs = (Wtcs*NC)+Ccspps;
+
 			c.add(token1);
-			//c.add(One);
+			
 			c.add(One);
 			c.add(Two);
 			c.add(Three);
 			c.add(Li_four);
 			p.add(c);
 			
-			System.out.print(c);
+			
 		}  
 		scanner.close();     //close the scanner  
-		System.out.print(extention);
+		System.out.print(p);
 		
+		//setting attributes if exception returned
+		
+		if(!excList.isEmpty())
+		{
+			request.setAttribute("check", "There is error in your code.Please follow Coding standards and rectify error ");
+			request.setAttribute("link", "Link to check code standard");
+			
+		}
+		
+		// redirecting to inheritance view
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/views/Inheritance.jsp");
 		request.setAttribute("Code_string", p);
+		//returning total values
+		request.setAttribute("total_direct", totalDir);
+		request.setAttribute("total_indirect", totalIn);
+		request.setAttribute("total_inheritance", totalin);
+		request.setAttribute("total_complex", totalcom);
+		
+		//passing the attributes
 		dispatcher.forward(request, response);
 	}
 

@@ -7,6 +7,7 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,9 @@ public class CsReader {
 		  
     try {
 
-	File fXmlFile = new File("C:\\Users\\Jude Ashan\\Desktop\\Project\\Branch-Jude\\ITPM\\CDE_IT\\WebContent\\xml\\csParser.xml");
+    	URL url = getClass().getResource("csParser.xml");
+    	File fXmlFile = new File(url.getPath());
+//	File fXmlFile = new File("C:\\Users\\Jude Ashan\\Desktop\\Project\\Branch-Jude\\ITPM\\CDE_IT\\WebContent\\xml\\csParser.xml");
 	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 	Document doc = dBuilder.parse(fXmlFile);

@@ -1,6 +1,7 @@
 package xmlReader;
 
 import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +25,9 @@ public class inheritanceReader {
 	public List<Integer> GetAllcsValues(){
 		  
   try {
-
-	File fXmlFile = new File("C:\\Users\\Jude Ashan\\Desktop\\Project\\Branch-Jude\\ITPM\\CDE_IT\\WebContent\\xml\\inheritParser.xml");
+	  URL url = getClass().getResource("inheritParser.xml");
+	  	File fXmlFile = new File(url.getPath());
+//	File fXmlFile = new File("C:\\Users\\Jude Ashan\\Desktop\\Project\\Branch-Jude\\ITPM\\CDE_IT\\WebContent\\xml\\inheritParser.xml");
 	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 	Document doc = dBuilder.parse(fXmlFile);

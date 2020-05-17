@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ITPM_Functions>
+	<MethodSVM>
+		<PrimitiveReturnM>1</PrimitiveReturnM>
+		<CompositeReturnM>2</CompositeReturnM>
+		<VoidReturnM>0</VoidReturnM>
+		<PrimitiveParaM>1</PrimitiveParaM>
+		<CompositeParaM>2</CompositeParaM>
+	</MethodSVM>
+</ITPM_Functions>

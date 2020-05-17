@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ITPM_Functions>
+	<CouplingVariables>
+	
+		<!-- A recursive call  -->
+		<recursiveCall>2</recursiveCall>
+		
+		<!-- A regular method calling another regular method in the same file -->
+		<RGregularSame>2</RGregularSame>
+		
+		<!-- A regular method calling another regular method in a different file -->
+		<RGregularDiff>3</RGregularDiff>
+		
+		<!-- A regular method calling a recursive method in the same file -->
+		<RGrecursiveSame>3</RGrecursiveSame>
+		
+		<!-- A regular method calling a recursive method in a different file -->
+		<RGrecursiveDiff>4</RGrecursiveDiff>
+		
+		<!-- A recursive method calling another recursive method in the same file -->
+		<RSrecursiveSame>3</RSrecursiveSame>
+		
+		<!-- A recursive method calling another recursive method in a different file  -->
+		<RSrecursiveDiff>4</RSrecursiveDiff>
+		
+		<!-- A recursive method calling a regular method in the same file -->
+		<RSregularSame>4</RSregularSame>
+		
+		<!-- A recursive method calling a regular method in a different file -->
+		<RSregularDiff>5</RSregularDiff>
+		
+		<!-- A regular method referencing a global variable in the same file  -->
+		<RMGSame>1</RMGSame>
+		
+		<!-- A regular method referencing a global variable in a different file  -->
+		<RMGDiff>2</RMGDiff>
+		
+		<!-- A recursive method referencing a global variable in the same file  -->
+		<RSMGSame>1</RSMGSame>
+		
+		<!-- A recursive method referencing a global variable in a different file -->
+		<RSMGDiff>2</RSMGDiff>		
+		
+	</CouplingVariables>
+</ITPM_Functions>

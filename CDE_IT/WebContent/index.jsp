@@ -76,6 +76,7 @@ pre .cl {
 
 #output {
 	height: 400px;
+	
 }
 </style>
 

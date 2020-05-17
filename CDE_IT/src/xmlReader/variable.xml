@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ITPM_Functions>
+	<VariableSVM>
+		<GlobalV>2</GlobalV>
+		<LocalV>1</LocalV>
+		<PrimitiveDataV>1</PrimitiveDataV>
+		<CompositeDataV>2</CompositeDataV>
+	</VariableSVM>
+</ITPM_Functions>
