@@ -149,7 +149,7 @@ pre .cl {
 			
 			</pre>
 		</form>
-<br>
+		<br>
 		<div class="row" style="padding-left: 30px;">
 			&nbsp &nbsp
 			<form method="post" action="Size_serv" accept-charset=utf-8>
@@ -188,14 +188,21 @@ pre .cl {
 				&nbsp
 				<div id="inh_res" hidden></div>
 			</form>
-			<form method="post" action="Coupling_serv" accept-charset=utf-8>
-				<!-- <input type="text" name="VExtention" id="VExtention" hidden> -->
+			<form method="post" action="Coupling" accept-charset=utf-8>
+				<input type="text" name="VExtention" id="VExtention" hidden>
 				<textarea id="couple_res" name="couple_res"
 					style="width: 30%; Height: 30%" hidden></textarea>
-				<button type="Submit" id="coupling_btn" class="btn btn-primary btn-lg"
+				<button type="Submit" id="coupling_btn"
+					class="btn btn-primary btn-lg"
 					style="padding: 15px; width: 140px; height: 100px">Coupling</button>
 				&nbsp
 			</form>
+			<!-- <a href="Couplings.jsp">
+			<button type="Submit" id="coupling_btn"
+				class="btn btn-primary btn-lg"
+				style="padding: 15px; width: 140px; height: 100px">Coupling</button></a>
+			&nbsp -->
+
 			<form method="post" action="ControlStr_serv" accept-charset=utf-8>
 				<textarea id="cont_res" name="cont_res"
 					style="width: 30%; Height: 30%" hidden></textarea>
@@ -207,14 +214,16 @@ pre .cl {
 				&nbsp
 			</form>
 			<form method="post" action="Summary_serv" accept-charset=utf-8>
-			<textarea id="summary_res" name="summary_res"
+				<textarea id="summary_res" name="summary_res"
 					style="width: 30%; Height: 30%" hidden></textarea>
 				<input type="text" name="SumExtention" id="SumExtention" hidden>
 				<button type="Submit" id="summary_btn"
-					class="btn btn-success btn-lg" style="padding: 15px; width: 140px; height: 100px">Summary</button>
+					class="btn btn-success btn-lg"
+					style="padding: 15px; width: 140px; height: 100px">Summary</button>
 				&nbsp
 				<div id="summary_res" hidden></div>
 			</form>
+			<!-- <a href="Couplings.jsp">ABC</a> -->
 		</div>
 		<br />
 		<div class="row" style="width: 500px;">
@@ -255,7 +264,7 @@ pre .cl {
 			document.getElementById("MExtention").value = sessionStorage
 					.getItem("Ext");
 			document.getElementById("SumExtention").value = sessionStorage
-			.getItem("Ext");
+					.getItem("Ext");
 			// Check the file type.. Should only support for .java and .cpp files only.
 			if (fileExtension == 'java') {
 				//	editor.session.stMode("ace/mode/java");

@@ -149,7 +149,7 @@ public class Summary_serv extends HttpServlet {
 			Cv = variableData.FindCv(token1);
 			Cm = methoddata.FindCm(token1);
 			Ci = Li_four;
-			Ccp = (2 * Nr) + (2 * Nmcms) + (1 * Nmrgvs);
+			Ccp = (2 * Nr) + (2 * Nmcms) + (1 * Nmrgvs); // Pending
 			Ccs = (Wtcs * NC) + Ccspps;
 			Tcps = Cs + Cv + Cm + Ci + Ccp + Ccs;
 			

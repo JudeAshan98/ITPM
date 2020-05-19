@@ -203,24 +203,7 @@ public class CouplingData {
 	// NMCMS
 	public int findNmcms(String CodeLine) {
 		int Li_Count = 0;
-		String token1 = "";
-
-		Scanner scanner = new Scanner(CodeLine);
-
-		while (scanner.hasNext()) {
-			token1 = scanner.next();
-
-			if (token1.contains("Scanner(System.in);") || token1.contains("sc.next();")
-					|| token1.contains("Integer.parseInt(enteredYear);")
-					|| token1.contains("Integer.parseInt(enteredMonthNumber);") || token1.contains("m.getMonth();")
-					|| token1.contains("Months()") || token1.contains("m.getYear();")) {
-
-				Li_Count = Li_Count + 1;
-
-			}
-		}
-
-		scanner.close();
+		
 		return b = Li_Count;
 	}
 
@@ -284,22 +267,7 @@ public class CouplingData {
 	// NMRGVS
 	public int findNmrgvs(String CodeLine) {
 		int Li_Count = 0;
-		String token1 = "";
-
-		Scanner scanner = new Scanner(CodeLine);
-
-		while (scanner.hasNext()) {
-			token1 = scanner.next();
-
-			if (token1.contains("Scanner(System.in);") || token1.contains("Integer.parseInt(enteredYear);")
-					|| token1.contains("Integer.parseInt(enteredMonthNumber);")) {
-
-				Li_Count = Li_Count + 1;
-
-			}
-		}
-
-		scanner.close();
+		
 		return c = Li_Count;
 	}
 
