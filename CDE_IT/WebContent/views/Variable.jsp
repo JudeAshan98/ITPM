@@ -41,6 +41,13 @@
 			<hr />
 		</div>
 
+		<%
+			int tot_Wvs = (Integer) request.getAttribute("Total_Wvs");
+			int tot_Npdtv = (Integer) request.getAttribute("Total_Npdtv");
+			int tot_Ncdtv = (Integer) request.getAttribute("Total_Ncdtv");
+			int tot_Cv = (Integer) request.getAttribute("Total_Cv");
+		%>
+
 		<div class="row">
 			<table class="table table-bordered table-hover">
 
@@ -65,6 +72,14 @@
 							<td>${post[4]}</td>
 						</tr>
 				</c:forEach>
+				<tr>
+					<td><b>#</b></td>
+					<td><b>Total</b></td>
+					<td><b><%=tot_Wvs%></b></td>
+					<td><b><%=tot_Npdtv%></b></td>
+					<td><b><%=tot_Ncdtv%></b></td>
+					<td><b><%=tot_Cv%></b></td>
+				</tr>
 				</tbody>
 			</table>
 		</div>

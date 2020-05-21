@@ -42,6 +42,13 @@
 			<hr />
 		</div>
 
+		<%
+			int tot_Wmrt = (Integer) request.getAttribute("Total_Wmrt");
+			int tot_Npdtp = (Integer) request.getAttribute("Total_Npdtp");
+			int tot_Ncdtp = (Integer) request.getAttribute("Total_Ncdtp");
+			int tot_Cm = (Integer) request.getAttribute("Total_Cm");
+		%>
+
 		<div class="row">
 			<table class="table table-bordered table-hover">
 
@@ -66,6 +73,14 @@
 							<td>${post[4]}</td>
 						</tr>
 				</c:forEach>
+				<tr>
+					<td><b>#</b></td>
+					<td><b>Total</b></td>
+					<td><b><%=tot_Wmrt%></b></td>
+					<td><b><%=tot_Npdtp%></b></td>
+					<td><b><%=tot_Ncdtp%></b></td>
+					<td><b><%=tot_Cm%></b></td>
+				</tr>
 				</tbody>
 			</table>
 		</div>

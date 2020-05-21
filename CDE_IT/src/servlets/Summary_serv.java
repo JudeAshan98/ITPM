@@ -19,7 +19,6 @@ import ValueGenerator.SizeData;
 import ValueGenerator.VariableData;
 import ValueGenerator.MethodData;
 
-
 @WebServlet("/Summary_serv")
 public class Summary_serv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -85,6 +84,15 @@ public class Summary_serv extends HttpServlet {
 	@SuppressWarnings("rawtypes")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		int tot_Cs = 0;
+		int tot_Cv = 0;
+		int tot_Cm = 0;
+		int tot_Ci = 0;
+		int tot_Ccp = 0;
+		int tot_Ccs = 0;
+		int tot_Tcps = 0;
+
 		SizeData sizeData = new SizeData();
 		VariableData variableData = new VariableData();
 		MethodData methoddata = new MethodData();
@@ -138,27 +146,39 @@ public class Summary_serv extends HttpServlet {
 			Nmrgvd = couplingData.findNmrgvd(token1);
 			Nrmrgvs = couplingData.findNrmrgvs(token1);
 			Nrmrgvd = couplingData.findNrmrgvd(token1);
-			
+
 			// Control Structures
 			Wtcs = controlData.CtrlWeight(token1);
 			NC = controlData.NofConditions(token1);
 			Ccspps = controlData.previousComplex(token1);
 
-			
 			Cs = sizeData.FindCs(token1);
+			tot_Cs = tot_Cs + Cs;
+
 			Cv = variableData.FindCv(token1);
+			tot_Cv = tot_Cv + Cv;
+
 			Cm = methoddata.FindCm(token1);
+			tot_Cm = tot_Cm + Cm;
+
 			Ci = Li_four;
-			Ccp = (2 * Nr) + (2 * Nmcms) + (1 * Nmrgvs); // Pending
+			tot_Ci = tot_Ci + Ci;
+
+			Ccp = (2 * Nr) + (2 * Nmcms) + (1 * Nmrgvs);
+			tot_Ccp = tot_Ccp + Ccp;
+
 			Ccs = (Wtcs * NC) + Ccspps;
+			tot_Ccs = tot_Ccs + Ccs;
+
 			Tcps = Cs + Cv + Cm + Ci + Ccp + Ccs;
-			
+			tot_Tcps = tot_Tcps + Tcps;
+
 			c.add(token1);
 			c.add(Cs); // Size
 			c.add(Cv); // variable
 			c.add(Cm); // Method
 			c.add(Ci); // Inheritance
-			c.add(Ccp); // Coupling 
+			c.add(Ccp); // Coupling
 			c.add(Ccs); // Control Structures
 			c.add(Tcps);
 			p.add(c);
@@ -166,6 +186,16 @@ public class Summary_serv extends HttpServlet {
 		scanner.close(); // close the scanner
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/views/summary.jsp");
 		request.setAttribute("Code_string", p);
+
+		// returning total values
+		request.setAttribute("Total_Cs", tot_Cs);
+		request.setAttribute("Total_Cv", tot_Cv);
+		request.setAttribute("Total_Cm", tot_Cm);
+		request.setAttribute("Total_Ci", tot_Ci);
+		request.setAttribute("Total_Ccp", tot_Ccp);
+		request.setAttribute("Total_Ccs", tot_Ccs);
+		request.setAttribute("Total_Tcps", tot_Tcps);
+
 		dispatcher.forward(request, response);
 
 	}

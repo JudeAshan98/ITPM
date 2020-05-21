@@ -38,6 +38,12 @@ public class Method_serv extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//doGet(request, response);
 		
+		int tot_Wmrt = 0;
+		int tot_Npdtp = 0;
+		int tot_Ncdtp = 0;
+		int tot_Cm = 0;
+		
+		
 		Result = request.getParameter("method_res");
 		String extention = request.getParameter("MExtention");
 		Scanner scanner = new Scanner(Result);
@@ -47,10 +53,17 @@ public class Method_serv extends HttpServlet {
 			token1 = scanner.nextLine();
 
 			Wmrt = methoddata.FindWmrt(token1, extention);
+			tot_Wmrt = tot_Wmrt + Wmrt;
+			
 			Npdtp = methoddata.FindNpdtp(token1, extention);
+			tot_Npdtp = tot_Npdtp + Npdtp;
+					
 			Ncdtp = methoddata.FindNcdtp(token1, extention);
+			tot_Ncdtp = tot_Ncdtp + Ncdtp;
+			
 			Cm = methoddata.FindCm(token1);
-
+			tot_Cm = tot_Cm + Cm;
+					
 			List<Comparable> c = new ArrayList<Comparable>();
 
 			c.add(token1);
@@ -63,6 +76,10 @@ public class Method_serv extends HttpServlet {
 		scanner.close(); // close the scanner
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/views/Methods.jsp");
 		request.setAttribute("Code_string", p);
+		request.setAttribute("Total_Wmrt", tot_Wmrt);
+		request.setAttribute("Total_Npdtp", tot_Npdtp);
+		request.setAttribute("Total_Ncdtp", tot_Ncdtp);
+		request.setAttribute("Total_Cm", tot_Cm);
 		dispatcher.forward(request, response);
 	}
 

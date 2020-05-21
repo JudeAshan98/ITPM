@@ -51,6 +51,12 @@ public class ControlStr_serv extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		
+		int tot_Wtcs = 0;
+		int tot_Nc = 0;
+		int tot_Ccspps = 0;
+		int tot_Ccs = 0;
+		
 		Result = request.getParameter("cont_res");
 		Scanner scanner  = new Scanner(Result);
 		ControlData controlData = new ControlData();
@@ -59,10 +65,18 @@ public class ControlStr_serv extends HttpServlet {
 		{  
 			token1 = scanner.nextLine();
 			Wtcs = controlData.CtrlWeight(token1);
+			tot_Wtcs = tot_Wtcs + Wtcs;
+					
 			NC = controlData.NofConditions(token1);
+			tot_Nc = tot_Nc + NC;
+					
 			Ccspps = controlData.previousComplex(token1);
+			tot_Ccspps = tot_Ccspps + Ccspps;
+					
 			List<Comparable> c = new ArrayList<Comparable>();
 			Ccs = (Wtcs*NC)+Ccspps;
+			tot_Ccs = tot_Ccs + Ccs;
+			
 			c.add(token1);
 			c.add(Wtcs);
 			c.add(NC);
@@ -73,6 +87,12 @@ public class ControlStr_serv extends HttpServlet {
 		scanner.close();     //close the scanner  
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/views/Control_structures.jsp");
 		request.setAttribute("Code_string", p);
+		
+		request.setAttribute("Total_Wtcs", tot_Wtcs);
+		request.setAttribute("Total_Nc", tot_Nc);
+		request.setAttribute("Total_Ccspps", tot_Ccspps);
+		request.setAttribute("Total_Ccs", tot_Ccs);
+		
 		dispatcher.forward(request, response);
 	}
 

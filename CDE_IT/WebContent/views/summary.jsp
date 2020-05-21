@@ -23,7 +23,8 @@
 			<img src="<%=request.getContextPath()%>/img/logoe.png"
 				style="max-height: 75px" />
 			<text style="font-size:30px; color:gray ; margin-left:30px">Summary<text>
-			<button type="button" onclick="window.print()" class="btn btn-info btn-lg"
+			<button type="button" onclick="window.print()"
+				class="btn btn-info btn-lg"
 				style="background-color: transparent; float: right; margin-top: 30px; margin-left: 30px">
 				<img src="<%=request.getContextPath()%>/img/print.png"
 					style="max-height: 40px; max-width =: 40px;">
@@ -33,6 +34,17 @@
 				Keywords</button>
 			<hr />
 		</div>
+
+		<%
+			int tot_Cs = (Integer) request.getAttribute("Total_Cs");
+			int tot_Cv = (Integer) request.getAttribute("Total_Cv");
+			int tot_Cm = (Integer) request.getAttribute("Total_Cm");
+			int tot_Ci = (Integer) request.getAttribute("Total_Ci");
+			int tot_Ccp = (Integer) request.getAttribute("Total_Ccp");
+			int tot_Ccs = (Integer) request.getAttribute("Total_Ccs");
+			int tot_Tcps = (Integer) request.getAttribute("Total_Tcps");
+		%>
+
 		<div class="row">
 			<table class="table table-bordered table-hover">
 				<thead class="thead-dark">
@@ -61,8 +73,20 @@
 							<td>${post[6]}</td>
 							<td>${post[7]}</td>
 						</tr>
-					</tbody>
 				</c:forEach>
+				<tr>
+					<td><b>#</b></td>
+					<td><b>Total</b></td>
+					<td><b><%=tot_Cs%></b></td>
+					<td><b><%=tot_Cv%></b></td>
+					<td><b><%=tot_Cm%></b></td>
+					<td><b><%=tot_Ci%></b></td>
+					<td><b><%=tot_Ccp%></b></td>
+					<td><b><%=tot_Ccs%></b></td>
+					<td><b><%=tot_Tcps%></b></td>
+				</tr>
+				</tbody>
+
 			</table>
 		</div>
 		<!-- The Modal -->
@@ -78,13 +102,12 @@
 
 					<!-- Modal body -->
 					<div class="modal-body">
-						CS - No of direct inheritances <br>
-						CV - No of indirect inheritances <br>
-						CM - Total inheritances <br>
-						CI - Inheritance complexity of a program statement of a class <br>
-						CCP - No of indirect inheritances <br>
-						CCS - Total inheritances <br>
-						TCPS - Inheritance complexity of a program statement of a class <br>
+						CS - No of direct inheritances <br> CV - No of indirect
+						inheritances <br> CM - Total inheritances <br> CI -
+						Inheritance complexity of a program statement of a class <br>
+						CCP - No of indirect inheritances <br> CCS - Total
+						inheritances <br> TCPS - Inheritance complexity of a program
+						statement of a class <br>
 					</div>
 
 					<!-- Modal footer -->

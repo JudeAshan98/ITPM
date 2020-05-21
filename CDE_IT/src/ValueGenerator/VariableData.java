@@ -3,26 +3,33 @@ package ValueGenerator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import xmlReader.VariableReader;
+import xmlReader.*;
 
 public class VariableData {
+	// declare the variables
+	String Result;
+	String token1 = "\n";
 	int Wvs;
 	int Npdtv;
 	int Ncdtv;
 	int Cv;
 
 	int a, b, c, sum;
-	String token1 = "";
-	List<Integer> ValueList = new ArrayList<Integer>();
-	VariableReader variablereader = new VariableReader();
 
+	// List for get values
+	List<Integer> ValueList = new ArrayList<Integer>();
+
+	// Reader for get weight
+	VariableReader variableReader = new VariableReader();
+	String previousLine = null;
+
+	// Getters and setters
 	public int getWvs() {
 		return Wvs;
 	}
 
 	public void setWvs(int wvs) {
-		ValueList = variablereader.GetAllcsValues();
+		ValueList = variableReader.GetAllcsValues();
 		Wvs = ValueList.get(0);
 	}
 
@@ -31,7 +38,7 @@ public class VariableData {
 	}
 
 	public void setNpdtv(int npdtv) {
-		ValueList = variablereader.GetAllcsValues();
+		ValueList = variableReader.GetAllcsValues();
 		Npdtv = ValueList.get(1);
 	}
 
@@ -40,7 +47,7 @@ public class VariableData {
 	}
 
 	public void setNcdtv(int ncdtv) {
-		ValueList = variablereader.GetAllcsValues();
+		ValueList = variableReader.GetAllcsValues();
 		Ncdtv = ValueList.get(2);
 	}
 
@@ -49,18 +56,20 @@ public class VariableData {
 	}
 
 	public void setCv(int cv) {
-		ValueList = variablereader.GetAllcsValues();
+		ValueList = variableReader.GetAllcsValues();
 		Cv = ValueList.get(3);
 	}
 
-	// Logic.
+	// Logic Part
 
-	// ------------------------------------------------------------------------------------------------------------------------------
-	// WVS Done
+	// -------------------------------------------------------------------------------------------------------------------
+	// WVS - Weight due to variable scope
+	// -------------------------------------------------------------------------------------------------------------------
 	public int FindWvs(String CodeLine, String extention) {
 		token1 = "";
 		int Li_Count = 0;
 		Scanner scanner = new Scanner(CodeLine);
+		setWvs(Wvs);
 
 		if (extention.equals("java")) {
 			if (scanner.hasNext()) {
@@ -78,7 +87,7 @@ public class VariableData {
 								|| (token1.equals("Dimension")) || (token1.equals("boolean[]"))
 								|| (token1.equals("char[]"))) {
 
-							Li_Count = Li_Count + 2;
+							Li_Count = Li_Count + 2 * (getWvs());
 
 						}
 					}
@@ -89,7 +98,7 @@ public class VariableData {
 						|| (token1.equals("float[]")) || (token1.equals("double[]")) || (token1.equals("Dimension"))
 						|| (token1.equals("boolean[]")) || (token1.equals("char[]"))) {
 
-					Li_Count = Li_Count + 1;
+					Li_Count = Li_Count + getWvs();
 
 				} else {
 					scanner.close();
@@ -115,7 +124,7 @@ public class VariableData {
 					if (scanner.hasNext()) {
 						token1 = scanner.next();
 						if (!token1.endsWith(")")) {
-							Li_Count = Li_Count + 1;
+							Li_Count = Li_Count + getWvs();
 						}
 					}
 
@@ -123,7 +132,7 @@ public class VariableData {
 					if (scanner.hasNext()) {
 						token1 = scanner.next();
 						if (!token1.isEmpty()) {
-							Li_Count = Li_Count + 1;
+							Li_Count = Li_Count + getWvs();
 						}
 					}
 				}
@@ -135,12 +144,14 @@ public class VariableData {
 		return a = Li_Count;
 	}
 
-	// ---------------------------------------------------------------------------------------------------------------------------------
-	// NPDTV Done
+	// -------------------------------------------------------------------------------------------------------------------
+	// NPDTV - Number of primitive data type variables
+	// -------------------------------------------------------------------------------------------------------------------
 	public int FindNpdtv(String CodeLine, String extention) {
 		token1 = "";
 		int Li_Count = 0;
 		Scanner scanner = new Scanner(CodeLine);
+		setNpdtv(Npdtv);
 
 		if (extention.equals("java")) {
 			if (scanner.hasNext()) {
@@ -158,16 +169,16 @@ public class VariableData {
 								token1 = scanner.next();
 
 								while (token1.endsWith(",")) {
-									Li_Count = Li_Count + 1;
+									Li_Count = Li_Count + getNpdtv();
 
 									if (scanner.hasNext()) {
 										token1 = scanner.next();
 									}
 								}
 								if (token1.endsWith(";")) {
-									Li_Count = Li_Count + 1;
+									Li_Count = Li_Count + getNpdtv();
 								} else {
-									Li_Count = Li_Count + 1;
+									Li_Count = Li_Count + getNpdtv();
 								}
 							}
 						}
@@ -180,16 +191,16 @@ public class VariableData {
 						token1 = scanner.next();
 
 						while (token1.endsWith(",")) {
-							Li_Count = Li_Count + 1;
+							Li_Count = Li_Count + getNpdtv();
 
 							if (scanner.hasNext()) {
 								token1 = scanner.next();
 							}
 						}
 						if (token1.endsWith(";")) {
-							Li_Count = Li_Count + 1;
+							Li_Count = Li_Count + getNpdtv();
 						} else {
-							Li_Count = Li_Count + 1;
+							Li_Count = Li_Count + getNpdtv();
 						}
 					}
 				}
@@ -211,29 +222,29 @@ public class VariableData {
 						String token2 = "";
 						token2 = scanner.next();
 						if (!token2.endsWith(")")) {
-							Li_Count = Li_Count + 1;
+							Li_Count = Li_Count + getNpdtv();
 						}
-					} 
+					}
 					if (scanner.hasNext()) {
 						token1 = scanner.next();
 
 						while (token1.endsWith(",")) {
-							Li_Count = Li_Count + 1;
+							Li_Count = Li_Count + getNpdtv();
 
 							if (scanner.hasNext()) {
 								token1 = scanner.next();
 							}
 						}
 						if (token1.endsWith(";")) {
-							Li_Count = Li_Count + 1;
-						} 
+							Li_Count = Li_Count + getNpdtv();
+						}
 					}
 
 				} else if (token1.startsWith("::")) {
 					if (scanner.hasNext()) {
 						token1 = scanner.next();
 						if (!token1.isEmpty()) {
-							Li_Count = Li_Count + 1;
+							Li_Count = Li_Count + getNpdtv();
 						}
 					}
 				}
@@ -245,12 +256,14 @@ public class VariableData {
 		return b = Li_Count;
 	}
 
-	// ----------------------------------------------------------------------------------------------------------------------------------
-	// NCDTV Done
+	// -------------------------------------------------------------------------------------------------------------------
+	// NCDTV - Number of composite data type variables
+	// -------------------------------------------------------------------------------------------------------------------
 	public int FindNcdtv(String CodeLine, String extention) {
 		token1 = "";
 		int Li_Count = 0;
 		Scanner scanner = new Scanner(CodeLine);
+		setNcdtv(Ncdtv);
 
 		if (extention.equals("java")) {
 			if (scanner.hasNext()) {
@@ -269,16 +282,16 @@ public class VariableData {
 								token1 = scanner.next();
 
 								while (token1.endsWith(",")) {
-									Li_Count = Li_Count + 1;
+									Li_Count = Li_Count + getNcdtv();
 
 									if (scanner.hasNext()) {
 										token1 = scanner.next();
 									}
 								}
 								if (token1.endsWith(";")) {
-									Li_Count = Li_Count + 1;
+									Li_Count = Li_Count + getNcdtv();
 								} else {
-									Li_Count = Li_Count + 1;
+									Li_Count = Li_Count + getNcdtv();
 								}
 							}
 
@@ -292,16 +305,16 @@ public class VariableData {
 						token1 = scanner.next();
 
 						while (token1.endsWith(",")) {
-							Li_Count = Li_Count + 1;
+							Li_Count = Li_Count + getNcdtv();
 
 							if (scanner.hasNext()) {
 								token1 = scanner.next();
 							}
 						}
 						if (token1.endsWith(";")) {
-							Li_Count = Li_Count + 1;
+							Li_Count = Li_Count + getNcdtv();
 						} else {
-							Li_Count = Li_Count + 1;
+							Li_Count = Li_Count + getNcdtv();
 						}
 					}
 
@@ -327,25 +340,25 @@ public class VariableData {
 						String token2 = "";
 						token2 = scanner.next();
 						if (!token2.endsWith(")")) {
-							Li_Count = Li_Count + 1;
+							Li_Count = Li_Count + getNcdtv();
 						}
 					} else {
-						Li_Count = Li_Count + 1;
+						Li_Count = Li_Count + getNcdtv();
 					}
 					if (scanner.hasNext()) {
 						token1 = scanner.next();
 
 						while (token1.endsWith(",")) {
-							Li_Count = Li_Count + 1;
+							Li_Count = Li_Count + getNcdtv();
 
 							if (scanner.hasNext()) {
 								token1 = scanner.next();
 							}
 						}
 						if (token1.endsWith(";")) {
-							Li_Count = Li_Count + 1;
+							Li_Count = Li_Count + getNcdtv();
 						} else {
-							Li_Count = Li_Count + 1;
+							Li_Count = Li_Count + getNcdtv();
 						}
 					}
 
@@ -353,7 +366,7 @@ public class VariableData {
 					if (scanner.hasNext()) {
 						token1 = scanner.next();
 						if (!token1.isEmpty()) {
-							Li_Count = Li_Count + 2;
+							Li_Count = Li_Count + 2 * (getNcdtv());
 						}
 					}
 				}
@@ -364,8 +377,9 @@ public class VariableData {
 		return c = Li_Count;
 	}
 
-	// -------------------------------------------------------------------------------------------------------------------------------------
-	// CV Done
+	// -------------------------------------------------------------------------------------------------------------------
+	// CV - Complexity of a program statement due to its variables
+	// -------------------------------------------------------------------------------------------------------------------
 	public int FindCv(String CodeLine) {
 		return sum = a * ((b * 1) + (c * 2));
 	}
