@@ -28,7 +28,8 @@
 				style="max-height: 75px; width: 141px; height: 81px" />
 			<text style="font-size:30px; color:gray ; margin-left:30px">
 			Control Structures<text>&nbsp
-			<button type="button" onclick="window.print()" class="btn btn-info btn-lg"
+			<button type="button" onclick="window.print()"
+				class="btn btn-info btn-lg"
 				style="background-color: transparent; float: right; margin-top: 30px; margin-left: 30px">
 				<img src="<%=request.getContextPath()%>/img/print.png"
 					style="max-height: 40px; max-width =: 40px;">
@@ -38,6 +39,14 @@
 				Keywords</button>
 			<hr />
 		</div>
+		
+		<!-- 		Getting the total values from the servlet -->
+		<%
+			int tot_Wtcs = (Integer) request.getAttribute("Total_Wtcs");
+			int tot_Nc = (Integer) request.getAttribute("Total_Nc");
+			int tot_Ccspps = (Integer) request.getAttribute("Total_Ccspps");
+			int tot_Ccs = (Integer) request.getAttribute("Total_Ccs");
+		%>
 
 		<div class="row">
 			<table class="table table-bordered table-hover">
@@ -52,20 +61,29 @@
 						<th scope="col">CCS</th>
 					</tr>
 				</thead>
+<!-- 				Loading the results in to the table using a foreach -->
 				<c:forEach items="${Code_string}" var="post" varStatus="theCount1">
 					<tbody>
-					
-							<tr>
-								
-								<td>${theCount1.count}</td>
-								<td>${post[0]}</td>
-								<td>${post[1]}</td>
-								<td>${post[2]}</td>
-								<td>${post[3]}</td>
-								<td>${post[4]}</td>
-							</tr>
-					</tbody>
+
+						<tr>
+
+							<td>${theCount1.count}</td>
+							<td>${post[0]}</td>
+							<td>${post[1]}</td>
+							<td>${post[2]}</td>
+							<td>${post[3]}</td>
+							<td>${post[4]}</td>
+						</tr>
 				</c:forEach>
+				<tr>
+					<td><b>#</b></td>
+					<td><b>Total</b></td>
+					<td><b><%=tot_Wtcs%></b></td>
+					<td><b><%=tot_Nc%></b></td>
+					<td><b><%=tot_Ccspps%></b></td>
+					<td><b><%=tot_Ccs%></b></td>
+				</tr>
+				</tbody>
 			</table>
 		</div>
 
@@ -81,11 +99,11 @@
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
 
-					<!-- Modal body -->
+					<!-- Keywords List -->
 					<div class="modal-body">
-						WTCS - Weight due to control structure type <br>
-						NC - Number of conditions in the control structure <br>
-						CCSPPS - Control structure complexity of the previous program statement<br>
+						WTCS - Weight due to control structure type <br> NC - Number
+						of conditions in the control structure <br> CCSPPS - Control
+						structure complexity of the previous program statement<br>
 						CCS - Complexity of a program statement with a control structure <br>
 					</div>
 

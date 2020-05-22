@@ -7,6 +7,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="style/bootsrtap.min.css">
+<link rel="stylesheet" href="style/main.css">
 <script src="style/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -14,94 +15,6 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js">
 	
 </script>
-
-<!--  <script>
-  document.getElementById("cont_res").innerHTML = sessionStorage.getItem("Result");
-  document.getElementById("inh_res").innerHTML = sessionStorage.getItem("Result");
-  document.getElementById("svm_res").innerHTML = sessionStorage.getItem("Result");
-  document.getElementById("couple_res").innerHTML = sessionStorage.getItem("Result");
-  document.getElementById("summary_res").innerHTML = sessionStorage.getItem("Result");
-</script> -->
-
-<style>
-<!--
-body {
-	background-color: white;
-	padding: 50px 50px
-}
-
--->
-pre {
-	background-color: black;
-	overflow: auto;
-	margin: 0 0 1em;
-	padding: .5em 1em;
-}
-
-pre code, pre .line-number {
-	/* Ukuran line-height antara teks di dalam tag <code> dan <span class="line-number"> harus sama! */
-	font: normal normal 12px/14px "Courier New", Courier, Monospace;
-	color: white;
-	display: block;
-}
-
-pre .line-number {
-	user-select: none;
-	float: left;
-	margin: 0 1em 0 -1em;
-	border-right: 1px solid;
-	text-align: right;
-}
-
-pre .line-number span {
-	display: block;
-	padding: 0 .5em 0 1em;
-}
-
-pre .cl {
-	display: block;
-	clear: both;
-}
-
-.vl {
-	border-left: 1px solid gray;
-	height: 40px;
-}
-
-#myF {
-	max-height: 650px;
-	max-height: 500px;
-	overflow: auto;
-}
-
-#output {
-	height: 400px;
-	
-}
-</style>
-
-
-
-<script>
-	// function updateSize() {
-	//   let nBytes = 0,
-	//       oFiles = document.getElementById("uploadInput").files,
-	//       nFiles = oFiles.length;
-	//   for (let nFileId = 0; nFileId < nFiles; nFileId++) {
-	//     nBytes += oFiles[nFileId].size;
-	//   }
-	//   let sOutput = nBytes + " bytes";
-	//   // optional code for multiples approximation
-	//   const aMultiples = ["KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB"];
-	//   for (nMultiple = 0, nApprox = nBytes / 1024; nApprox > 1; nApprox /= 1024, nMultiple++); {
-	//     sOutput = nApprox.toFixed(3) + " " + aMultiples[nMultiple] + " (" + nBytes + " bytes)";
-	//   }
-	//   // end of optional code
-	// //  document.getElementById("fileNum").innerHTML = nFiles;
-	//   document.getElementById("fileSize").innerHTML = sOutput;
-	// }
-</script>
-
 
 </head>
 
@@ -131,7 +44,7 @@ pre .cl {
 					<form action="Settings_serv" method="post">
 						&nbsp &nbsp
 						<button type="submit"
-							style="border: none; padding: 0; background: none;">
+							style="border: none; padding: 0; background: none;height:0;width:0;margin-right: 44px;"">
 							<img src="img/green-settings.png"
 								style="height: 40px; width: 40px" id="settings_btn">
 						</button>
@@ -140,25 +53,27 @@ pre .cl {
 			</div>
 		</div>
 
+<!-- 			<div class="progress" style="max-width:83%"> -->
+<!--  		 		<div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 25%; Margin-top:1px ;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" value="25"></div> -->
+<!-- 		</div> -->
 		<hr>
 		<form id="myF">
 			<pre>
 				<code>
 					<div id="output">
-</div>
+					</div>
 				</code>
 			
 			</pre>
 		</form>
 <br>
-		<div class="row" style="padding-left: 100px;">
+		<div class="row" ">
 			&nbsp &nbsp
 			<form method="post" action="Size_serv" accept-charset=utf-8>
 				<input type="text" name="SExtention" id="SExtention" hidden>
 				<textarea id="size_res" name="size_res"
 					style="width: 30%; Height: 30%" hidden></textarea>
-				<button type="Submit" id="size_btn" class="btn btn-primary btn-lg"
-					style="padding: 15px; width: 140px; height: 100px">Size</button>
+				<button type="Submit" id="size_btn" class="btn btn-primary btn-lg"><span>Size</span></button>
 				&nbsp
 			</form>
 
@@ -166,8 +81,7 @@ pre .cl {
 				<input type="text" name="MExtention" id="MExtention" hidden>
 				<textarea id="method_res" name="method_res"
 					style="width: 30%; Height: 30%" hidden></textarea>
-				<button type="Submit" id="method_btn" class="btn btn-primary btn-lg"
-					style="padding: 15px; width: 140px; height: 100px">Method</button>
+				<button type="Submit" id="method_btn" class="btn btn-primary btn-lg"><span>Method</span></button>
 				&nbsp
 			</form>
 
@@ -175,8 +89,7 @@ pre .cl {
 				<input type="text" name="VExtention" id="VExtention" hidden>
 				<textarea id="variable_res" name="variable_res"
 					style="width: 30%; Height: 30%" hidden></textarea>
-				<button type="Submit" id="size_btn" class="btn btn-primary btn-lg"
-					style="padding: 15px; width: 140px; height: 100px">Variable</button>
+				<button type="Submit" id="size_btn" class="btn btn-primary btn-lg"><span>Variable</span></button>
 				&nbsp
 			</form>
 			<form method="post" action="Inheritance_serv" accept-charset=utf-8>
@@ -184,42 +97,35 @@ pre .cl {
 					style="width: 30%; Height: 30%" hidden></textarea>
 				<input type="text" name="IExtention" id="IExtention" hidden>
 				<button type="Submit" id="inheritance_btn"
-					class="btn btn-primary btn-lg"
-					style="padding: 15px; width: 140px; height: 100px">Inheritance</button>
+					class="btn btn-primary btn-lg"><span>Inheritance</span></button>
 				&nbsp
 				<div id="inh_res" hidden></div>
 			</form>
-			<form method="post" action="Coupling_serv" accept-charset=utf-8>
+			<form method="post" action="Coupling" accept-charset=utf-8>
 				<!-- <input type="text" name="VExtention" id="VExtention" hidden> -->
 				<textarea id="couple_res" name="couple_res"
 					style="width: 30%; Height: 30%" hidden></textarea>
-				<button type="Submit" id="coupling_btn" class="btn btn-primary btn-lg"
-					style="padding: 15px; width: 140px; height: 100px">Coupling</button>
+				<button type="Submit" id="coupling_btn" class="btn btn-primary btn-lg"><span>Coupling</span></button>
 				&nbsp
 			</form>
-			<!-- <form method="post" action="Coupling_serv" accept-charset=utf-8>
-				<button type="Submit" id="coupling_btn"
-					class="btn btn-primary btn-lg"
-					style="padding: 15px; width: 140px; height: 100px">Coupling</button>
-				&nbsp
-				<div id="couple_res" hidden></div>
-			</form> -->
 			<form method="post" action="ControlStr_serv" accept-charset=utf-8>
 				<textarea id="cont_res" name="cont_res"
 					style="width: 30%; Height: 30%" hidden></textarea>
 				<input type="text" name="Extention" id="CExtention" hidden>
 				<button type="Submit" id="control_btn"
-					class="btn btn-primary btn-lg"
-					style="padding: 15px; width: 140px; height: 100px">Control
-					Structures</button>
+					class="btn btn-primary btn-lg"><span>Control
+					Structures</span></button>
 				&nbsp
 			</form>
-			<!-- <form method="post" action="Summary_serv" accept-charset=utf-8>
+			<form method="post" action="Summary_serv" accept-charset=utf-8>
+			<textarea id="summary_res" name="summary_res"
+					style="width: 30%; Height: 30%" hidden></textarea>
+			<input type="text" name="SumExtention" id="SumExtention" hidden>
 				<button type="Submit" id="summary_btn"
-					class="btn btn-success btn-lg" style="padding: 45px; height: 100px">Summary</button>
+					class="btn btn-success btn-lg"><span>Summary</span></button>
 				&nbsp
 				<div id="summary_res" hidden></div>
-			</form> -->
+			</form>
 		</div>
 		<br />
 		<div style="float: right; margin-top: -10px;">
@@ -235,9 +141,8 @@ pre .cl {
 		function clearAll() {
 			document.getElementById('cont_res').value = '';
 			document.getElementById('inh_res').value = '';
-			//		document.getElementById('svm_res').value = '';
 			document.getElementById('couple_res').value = '';
-// 			document.getElementById('summary_res').value = '';
+ 			document.getElementById('summary_res').value = '';
 			window.location.reload(false);
 		}
 
@@ -259,6 +164,8 @@ pre .cl {
 					.getItem("Ext");
 			document.getElementById("MExtention").value = sessionStorage
 					.getItem("Ext");
+			document.getElementById("SumExtention").value = sessionStorage
+			.getItem("Ext");
 			// Check the file type.. Should only support for .java and .cpp files only.
 			if (fileExtension == 'java') {
 				//	editor.session.setMode("ace/mode/java");
@@ -301,8 +208,8 @@ pre .cl {
 						.getItem("Result");
 				document.getElementById("couple_res").value = sessionStorage
 						.getItem("Result");
-// 				document.getElementById("summary_res").value = sessionStorage
-// 						.getItem("Result");
+ 				document.getElementById("summary_res").value = sessionStorage
+ 						.getItem("Result");
 
 			}
 			reader.readAsText(file, "UTF-8");

@@ -42,6 +42,13 @@ public class Size_serv extends HttpServlet {
 			throws ServletException, IOException {
 		// doGet(request, response);
 
+		int tot_Nkw = 0;
+		int tot_Nid = 0;
+		int tot_Nop = 0;
+		int tot_Nnv = 0;
+		int tot_Nsl = 0;
+		int tot_Cs = 0;
+
 		Result = request.getParameter("size_res");
 		String extention = request.getParameter("SExtention");
 		Scanner scanner = new Scanner(Result);
@@ -51,11 +58,22 @@ public class Size_serv extends HttpServlet {
 			token1 = scanner.nextLine();
 
 			Nkw = sizeData.FindNkw(token1, extention);
+			tot_Nkw = tot_Nkw + Nkw;
+
 			Nid = sizeData.FindNid(token1, extention);
+			tot_Nid = tot_Nid + Nid;
+
 			Nop = sizeData.FindNop(token1, extention);
+			tot_Nop = tot_Nop + Nop;
+
 			Nnv = sizeData.FindNnv(token1);
+			tot_Nnv = tot_Nnv + Nnv;
+
 			Nsl = sizeData.FindNsl(token1);
+			tot_Nsl = tot_Nsl + Nsl;
+
 			Cs = sizeData.FindCs(token1);
+			tot_Cs = tot_Cs + Cs;
 
 			List<Comparable> c = new ArrayList<Comparable>();
 
@@ -71,6 +89,13 @@ public class Size_serv extends HttpServlet {
 		scanner.close(); // close the scanner
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/views/Size.jsp");
 		request.setAttribute("Code_string", p);
+		// returning total values
+		request.setAttribute("Total_Nkw", tot_Nkw);
+		request.setAttribute("Total_Nid", tot_Nid);
+		request.setAttribute("Total_Nop", tot_Nop);
+		request.setAttribute("Total_Nnv", tot_Nnv);
+		request.setAttribute("Total_Nsl", tot_Nsl);
+		request.setAttribute("Total_Cs", tot_Cs);
 		dispatcher.forward(request, response);
 	}
 

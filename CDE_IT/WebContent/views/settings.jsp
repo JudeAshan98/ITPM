@@ -54,6 +54,7 @@
 					<div class="col-sm border border-success">
 						<br>
 						<h5 align="center">Weights related to the size factor</h5>
+						<form  method="post" action="sizeUpdater">
 						<div class="table-responsive">
 							<br>
 							<table class="table table-bordered">
@@ -67,34 +68,35 @@
 								<tbody>
 									<tr>
 										<td>Keyword</td>
-										<td><input type="number" class="form-control" value="${Listsz[0]}" style="width:60px"></td>
+										<td><input type="number" name="keywordS" class="form-control" value="${Listsz[0]}" style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Identifier</td>
-										<td><input type="number" class="form-control"  value="${Listsz[1]}"  style="width:60px"></td>
+										<td><input type="number" name="IdentifierS" class="form-control"  value="${Listsz[1]}"  style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Operator</td>
-										<td><input type="number" class="form-control" value="${Listsz[2]}"  style="width:60px"></td>
+										<td><input type="number" name="OperatorS" class="form-control" value="${Listsz[2]}"  style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Numerical value</td>
-										<td><input type="number" class="form-control" value="${Listsz[3]}"  style="width:60px"></td>
+										<td><input type="number" name="NumericalS" class="form-control" value="${Listsz[3]}"  style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>String literal</td>
-										<td><input type="number" class="form-control" value="${Listsz[4]}"  style="width:60px"></td>
+										<td><input type="number" name="literalS" class="form-control" value="${Listsz[4]}"  style="width:60px"></td>
 									</tr>
 								</tbody>
 								</c:forEach>
 							</table>
 						</div>
-						<button type="button" class="btn btn-success">Save</button>
+						<button type="submit" value ="Save" class="btn btn-success">Save</button></form>
 					</div>
 					&nbsp
 					<div class="col-sm border border-success">
 						<br>
 						<h5 align="center">Weights related to the method factor</h5>
+						<form  method="post" action="methodUpdater">
 						<div class="table-responsive">
 							<br>
 							<table class="table table-bordered">
@@ -108,30 +110,30 @@
 								<tbody>
 									<tr>
 										<td>Method with a primitive return type</td>
-										<td><input type="number" class="form-control"  value="${Listv[0]}"   style="width:60px"></td>
+										<td><input type="number" name="PrimitiveReturnM" class="form-control"  value="${Listv[0]}"   style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Method with a composite return type</td>
-										<td><input type="number" class="form-control"  value="${Listv[1]}"   style="width:60px"></td>
+										<td><input type="number" name="CompositeReturnM" class="form-control"  value="${Listv[1]}"   style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Method with a void return type</td>
-										<td><input type="number" class="form-control"  value="${Listv[2]}"   style="width:60px"></td>
+										<td><input type="number" name="VoidReturnM" class="form-control"  value="${Listv[2]}"   style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Primitive data type parameter</td>
-										<td><input type="number" class="form-control"  value="${Listv[3]}"   style="width:60px"></td>
+										<td><input type="number" name="PrimitiveParaM" class="form-control"  value="${Listv[3]}"   style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Composite data type parameter</td>
-										<td><input type="number" class="form-control"  value="${Listv[4]}"   style="width:60px"></td>
+										<td><input type="number" name="CompositeParaM" class="form-control"  value="${Listv[4]}"   style="width:60px"></td>
 									</tr>
 								</tbody>
 								</c:forEach>
 							</table>
 							
 						</div>
-						<button type="button" class="btn btn-success">Save</button>
+						<button type="submit" value ="Save" class="btn btn-success">Save</button></form>
 						<p></p>
 					</div>
 				</div>
@@ -140,6 +142,7 @@
 					<div class="col-md-6 border border-success">
 						<br>
 						<h5 align="center">Weights related to the variable factor</h5>
+						<form  method="post" action="VarUpdater">
 						<div class="table-responsive">
 							<br>
 							<table class="table table-bordered">
@@ -153,25 +156,25 @@
 								<tbody>
 									<tr>
 										<td>Global variable</td>
-										<td><input type="number" class="form-control" value="${var[0]}"  style="width:60px"></td>
+										<td><input type="number" name="GlobalV" class="form-control" value="${var[0]}"  style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Local variable</td>
-										<td><input type="number" class="form-control" value="${var[1]}"  style="width:60px"></td>
+										<td><input type="number" name="LocalV" class="form-control" value="${var[1]}"  style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Primitive data type variable</td>
-										<td><input type="number" class="form-control" value="${var[2]}"  style="width:60px"></td>
+										<td><input type="number" name="PrimitiveDataV" class="form-control" value="${var[2]}"  style="width:60px"></td>
 									</tr>
 									<tr>
 										<td>Composite data type variable</td>
-										<td><input type="number" class="form-control"  value="${var[3]}" style="width:60px"></td>
+										<td><input type="number" name="CompositeDataV" class="form-control"  value="${var[3]}" style="width:60px"></td>
 									</tr>
 								</tbody>
 								</c:forEach>
 							</table>
 						</div>
-						<button type="button" class="btn btn-success">Save</button>
+						<button type="submit" value ="Save" class="btn btn-success">Save</button></form>
 						<p></p>
 					</div>
 				</div>
@@ -182,6 +185,7 @@
 				<div class="col-sm border border-success">
 					<br>
 					<h5 align="center">Weights related to the inheritance factor</h5>
+					<form  method="post" action="InhUpdater">
 					<div class="table-responsive">
 						<br>
 						<table class="table table-bordered">
@@ -195,29 +199,29 @@
 							<tbody>
 								<tr>
 									<td>A class with no inheritance (direct or indirect)</td>
-									<td><input type="number" class="form-control" value="${ListInh[0]}"  style="width:60px"></td>
+									<td><input type="number" name="zeroU" class="form-control" value="${ListInh[0]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A class inheriting (directly or indirectly) from one user-defined class</td>
-									<td><input type="number" class="form-control" value="${ListInh[1]}"  style="width:60px"></td>
+									<td><input type="number" name="oneU" class="form-control" value="${ListInh[1]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A class inheriting (directly or indirectly) from two user-defined classes</td>
-									<td><input type="number" class="form-control" value="${ListInh[2]}"  style="width:60px"></td>
+									<td><input type="number" name="twoU" class="form-control" value="${ListInh[2]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A class inheriting (directly or indirectly) from three user-defined classes</td>
-									<td><input type="number" class="form-control" value="${ListInh[3]}"  style="width:60px"></td>
+									<td><input type="number" name="threeU" class="form-control" value="${ListInh[3]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A class inheriting (directly or indirectly) from more than three user-defined classes</td>
-									<td><input type="number" class="form-control" value="${ListInh[4]}"  style="width:60px"></td>
+									<td><input type="number" name="fourU" class="form-control" value="${ListInh[4]}"  style="width:60px"></td>
 								</tr>
 							</tbody>
 							</c:forEach>
 						</table>
 					</div>
-					<button type="button" class="btn btn-success">Save</button>
+					<button type="submit" value ="Save" class="btn btn-success">Save</button></form>
 					<p></p>
 				</div>
 			</div>
@@ -226,6 +230,7 @@
 				<div class="col-sm border border-success">
 					<br>
 					<h5 align="center">Weights related to the coupling factor</h5>
+					<form  method="post" action="CouplingUpdater">
 					<div class="table-responsive">
 						<br>
 						<table class="table table-bordered">
@@ -239,61 +244,61 @@
 							<tbody>
 								<tr>
 									<td>A recursive call</td>
-									<td><input type="number" class="form-control"  value="${postcup[0]}" style="width:60px"></td>
+									<td><input type="number" name="recursiveCall" class="form-control"  value="${postcup[0]}" style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A regular method calling another regular method in the same file</td>
-									<td><input type="number" class="form-control" value="${postcup[1]}"  style="width:60px"></td>
+									<td><input type="number" name="RGregularSame" class="form-control" value="${postcup[1]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A regular method calling another regular method in a different file</td>
-									<td><input type="number" class="form-control" value="${postcup[2]}"   style="width:60px"></td>
+									<td><input type="number" name="RGregularDiff" class="form-control" value="${postcup[2]}"   style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A regular method calling a recursive method in the same file</td>
-									<td><input type="number" class="form-control"  value="${postcup[3]}"  style="width:60px"></td>
+									<td><input type="number" name="RGrecursiveSame" class="form-control"  value="${postcup[3]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A regular method calling a recursive method in a different file</td>
-									<td><input type="number" class="form-control"  value="${postcup[4]}" style="width:60px"></td>
+									<td><input type="number" name="RGrecursiveDiff" class="form-control"  value="${postcup[4]}" style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A recursive method calling another recursive method in the same file</td>
-									<td><input type="number" class="form-control"  value="${postcup[5]}" style="width:60px"></td>
+									<td><input type="number" name="RSrecursiveSame" class="form-control"  value="${postcup[5]}" style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A recursive method calling another recursive method in a different file</td>
-									<td><input type="number" class="form-control" value="${postcup[6]}"  style="width:60px"></td>
+									<td><input type="number" name="RSrecursiveDiff" class="form-control" value="${postcup[6]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A recursive method calling a regular method in the same file</td>
-									<td><input type="number" class="form-control" value="${postcup[7]}"  style="width:60px"></td>
+									<td><input type="number" name="RSregularSame" class="form-control" value="${postcup[7]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A recursive method calling a regular method in a different file</td>
-									<td><input type="number" class="form-control" value="${postcup[8]}"  style="width:60px"></td>
+									<td><input type="number" name="RSregularDiff" class="form-control" value="${postcup[8]}"  style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A regular method referencing a global variable in the same file</td>
-									<td><input type="number" class="form-control"  value="${postcup[9]}" style="width:60px"></td>
+									<td><input type="number" name="RMGSame" class="form-control"  value="${postcup[9]}" style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A regular method referencing a global variable in a different file</td>
-									<td><input type="number" class="form-control"  value="${postcup[10]}" style="width:60px"></td>
+									<td><input type="number" name="RMGDiff" class="form-control"  value="${postcup[10]}" style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A recursive method referencing a global variable in the same file</td>
-									<td><input type="number" class="form-control"  value="${postcup[11]}" style="width:60px"></td>
+									<td><input type="number" name="RSMGSame" class="form-control"  value="${postcup[11]}" style="width:60px"></td>
 								</tr>
 								<tr>
 									<td>A recursive method referencing a global variable in a different file</td>
-									<td><input type="number" class="form-control"  value="${postcup[12]}" style="width:60px"></td>
+									<td><input type="number" name="RSMGDiff" class="form-control"  value="${postcup[12]}" style="width:60px"></td>
 								</tr>
 							</tbody>
 							</c:forEach>
 						</table>
 					</div>
-					<button type="button" class="btn btn-success">Save</button>
+					<button type="submit" value ="Save" class="btn btn-success">Save</button></form>
 					<p></p>
 				</div>
 			</div>

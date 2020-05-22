@@ -40,7 +40,16 @@
 				Keywords</button>
 			<hr />
 		</div>
+		<!-- setting values to variables from servlet -->
 
+		<%
+			int tot_Nkw = (Integer) request.getAttribute("Total_Nkw");
+		int tot_Nid = (Integer) request.getAttribute("Total_Nid");
+		int tot_Nop = (Integer) request.getAttribute("Total_Nop");
+		int tot_Nnv = (Integer) request.getAttribute("Total_Nnv");
+		int tot_Nsl = (Integer) request.getAttribute("Total_Nsl");
+		int tot_Cs = (Integer) request.getAttribute("Total_Cs");
+		%>
 		<div class="row">
 			<table class="table table-bordered table-hover">
 
@@ -69,6 +78,18 @@
 							<td>${post[6]}</td>
 						</tr>
 				</c:forEach>
+
+				<tr>
+					<td><b>#</b></td>
+					<td><b>Total</b></td>
+					<td><b><%=tot_Nkw%></b></td>
+					<td><b><%=tot_Nid%></b></td>
+					<td><b><%=tot_Nop%></b></td>
+					<td><b><%=tot_Nnv%></b></td>
+					<td><b><%=tot_Nsl%></b></td>
+					<td><b><%=tot_Cs%></b></td>
+				</tr>
+
 				</tbody>
 			</table>
 		</div>

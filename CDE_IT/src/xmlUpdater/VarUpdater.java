@@ -20,83 +20,76 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import org.w3c.dom.Node;
 
 /**
- * Servlet implementation class ControlUpdater
+ * Servlet implementation class VarUpdater
  */
-@WebServlet("/ControlUpdater")
-public class ControlUpdater extends HttpServlet {
+@WebServlet("/VarUpdater")
+public class VarUpdater extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public VarUpdater() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public ControlUpdater() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		doGet(request, response);
-//		Getting the user defined weightages from the settings JSP
-		String Li_if_u = request.getParameter("ifelse");
-		String Li_Fwd_u = request.getParameter("fwd");
-		String Li_Case_u = request.getParameter("switch");
-		String Li_Switch_u = request.getParameter("case");
+		String GlobalV_val = request.getParameter("GlobalV");
+		String LocalV_val = request.getParameter("LocalV");
+		String PrimitiveDataV_val = request.getParameter("PrimitiveDataV");
+		String CompositeDataV_val = request.getParameter("CompositeDataV");
 
 		try {
 
-//			Store the user defined weightages in the xml file
-			
-			URL url = getClass().getResource("/xmlReader/csParser.xml"); //XML file Path
+			URL url = getClass().getResource("/xmlReader/variable.xml");
 			File fXmlFile = new File(url.getPath());
 			String filepath = fXmlFile.toString();
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
 
-			// Get the Csvariables element by tag name directly
-			Node values = doc.getElementsByTagName("Csvariables").item(0);
+			// Get the VariableSVM element by tag name directly
+			Node values = doc.getElementsByTagName("VariableSVM").item(0);
 
-			// loop the Csvariables child node
+			// loop the VariableSVM child node
 			NodeList list = values.getChildNodes();
 
 			for (int i = 0; i < list.getLength(); i++) {
 
 				Node node = list.item(i);
 
-				// get the salary element, and update the value
-				if ("IfCon".equals(node.getNodeName())) {
-					node.setTextContent(Li_if_u);
+				// get the child elements, and update the value
+				if ("GlobalV".equals(node.getNodeName())) {
+					node.setTextContent(GlobalV_val);
 				}
-				if ("Fwd".equals(node.getNodeName())) {
-					node.setTextContent(Li_Fwd_u);
+				if ("LocalV".equals(node.getNodeName())) {
+					node.setTextContent(LocalV_val);
 				}
-				if ("SwitchCon".equals(node.getNodeName())) {
-					node.setTextContent(Li_Case_u);
+				if ("PrimitiveDataV".equals(node.getNodeName())) {
+					node.setTextContent(PrimitiveDataV_val);
 				}
-				if ("CaseCon".equals(node.getNodeName())) {
-					node.setTextContent(Li_Switch_u);
+				if ("CompositeDataV".equals(node.getNodeName())) {
+					node.setTextContent(CompositeDataV_val);
 				}
+
 			}
 
 			// write the content into xml file

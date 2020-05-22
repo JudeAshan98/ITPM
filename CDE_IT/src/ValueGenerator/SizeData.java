@@ -3,11 +3,12 @@ package ValueGenerator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import xmlReader.SizeReader;
 
 public class SizeData {
-
+	// declare the variables
+	String Result;
+	String token1 = "\n";
 	int Nkw;
 	int Nid;
 	int Nop;
@@ -15,17 +16,22 @@ public class SizeData {
 	int Nsl;
 	int CS;
 
-	String token1 = "";
 	int sum, a, b, c, d, e, f;
-	List<Integer> ValueList = new ArrayList<Integer>();
-	SizeReader sizereader = new SizeReader();
 
+	// List for get values
+	List<Integer> ValueList = new ArrayList<Integer>();
+
+	// Reader for get weight
+	SizeReader sizeReader = new SizeReader();
+	String previousLine = null;
+
+	// Getters and setters
 	public int getNkw() {
 		return Nkw;
 	}
 
 	public void setNkw(int nkw) {
-		ValueList = sizereader.GetAllcsValues();
+		ValueList = sizeReader.GetAllcsValues();
 		Nkw = ValueList.get(0);
 	}
 
@@ -34,7 +40,7 @@ public class SizeData {
 	}
 
 	public void setNid(int nid) {
-		ValueList = sizereader.GetAllcsValues();
+		ValueList = sizeReader.GetAllcsValues();
 		Nid = ValueList.get(1);
 	}
 
@@ -43,7 +49,7 @@ public class SizeData {
 	}
 
 	public void setNop(int nop) {
-		ValueList = sizereader.GetAllcsValues();
+		ValueList = sizeReader.GetAllcsValues();
 		Nop = ValueList.get(2);
 	}
 
@@ -52,7 +58,7 @@ public class SizeData {
 	}
 
 	public void setNnv(int nnv) {
-		ValueList = sizereader.GetAllcsValues();
+		ValueList = sizeReader.GetAllcsValues();
 		Nnv = ValueList.get(3);
 	}
 
@@ -61,7 +67,7 @@ public class SizeData {
 	}
 
 	public void setNsl(int nsl) {
-		ValueList = sizereader.GetAllcsValues();
+		ValueList = sizeReader.GetAllcsValues();
 		Nsl = ValueList.get(4);
 	}
 
@@ -70,18 +76,19 @@ public class SizeData {
 	}
 
 	public void setCS(int cS) {
-		ValueList = sizereader.GetAllcsValues();
+		ValueList = sizeReader.GetAllcsValues();
 		CS = ValueList.get(5);
 	}
 
-	// Logic.
+	// Logic Part
 
-	// NKW Done
-	// ---------------------------------------------------------------------------------------------------------------------
+	// -------------------------------------------------------------------------------------------------------------------
+	// NKW - No of keywords
+	// -------------------------------------------------------------------------------------------------------------------
 	public int FindNkw(String CodeLine, String extention) {
 		int Li_Count = 0;
 		Scanner scanner = new Scanner(CodeLine);
-
+		setNkw(Nkw);
 		if (extention.equals("java")) {
 			String pattern1 = "//.*";
 			String pattern2 = "System.*";
@@ -116,10 +123,8 @@ public class SizeData {
 						|| (token1.contains("void")) || (token1.contains("volatile")) || (token1.contains("true"))
 						|| (token1.contains("false")) || (token1.contains("null"))) {
 
-//					if ((!token1.contains("System.out.print")) && (!token1.contains("System.out.println"))
-//							&& (!token1.contains("System.err.print")) && (!token1.contains("System.err.println"))) {
-					Li_Count = Li_Count + 1;
-//					}
+					Li_Count = Li_Count + getNkw();
+
 				}
 
 				if (scanner.hasNext(pattern1)) {
@@ -132,7 +137,8 @@ public class SizeData {
 			while (scanner.hasNext()) {
 				token1 = scanner.next();
 
-				if (token1.startsWith("#") || token1.startsWith("//") || token1.startsWith("/*")) {
+				if (token1.startsWith("#") || token1.startsWith("//") || token1.startsWith("/*")
+						|| token1.equals("using")) {
 					scanner.close();
 					return a = 0;
 				}
@@ -145,20 +151,19 @@ public class SizeData {
 						|| (token1.contains("public")) || (token1.contains("typedef")) || (token1.contains("catch"))
 						|| (token1.contains("false")) || (token1.contains("register")) || (token1.contains("typeid"))
 						|| (token1.contains("reinterpret_cast")) || (token1.contains("typename"))
-						|| (token1.contains("class")) || (token1.contains("for")) || (token1.contains("return"))
-						|| (token1.contains("union")) || (token1.contains("const")) || (token1.contains("friend"))
-						|| (token1.contains("unsigned")) || (token1.contains("const_cast")) || (token1.contains("goto"))
-						|| (token1.contains("signed")) || (token1.contains("using")) || (token1.contains("continue"))
-						|| (token1.contains("if")) || (token1.contains("sizeof")) || (token1.contains("virtual"))
-						|| (token1.contains("default")) || (token1.contains("inline")) || (token1.contains("static"))
-						|| (token1.contains("void")) || (token1.contains("delete")) || (token1.contains("static_cast"))
-						|| (token1.contains("volatile")) || (token1.contains("do")) || (token1.contains("long"))
-						|| (token1.contains("struct")) || (token1.contains("wchar_t")) || (token1.contains("mutable"))
-						|| (token1.contains("switch")) || (token1.contains("while"))
+						|| (token1.contains("class")) || (token1.contains("return")) || (token1.contains("union"))
+						|| (token1.contains("const")) || (token1.contains("friend")) || (token1.contains("unsigned"))
+						|| (token1.contains("const_cast")) || (token1.contains("goto")) || (token1.contains("signed"))
+						|| (token1.contains("using")) || (token1.contains("continue")) || (token1.contains("sizeof"))
+						|| (token1.contains("virtual")) || (token1.contains("default")) || (token1.contains("inline"))
+						|| (token1.contains("static")) || (token1.contains("void")) || (token1.contains("delete"))
+						|| (token1.contains("static_cast")) || (token1.contains("volatile")) || (token1.contains("do"))
+						|| (token1.contains("long")) || (token1.contains("struct")) || (token1.contains("wchar_t"))
+						|| (token1.contains("mutable")) || (token1.contains("switch"))
 						|| (token1.contains("dynamic_cast")) || (token1.contains("namespace"))
 						|| (token1.contains("template"))) {
 
-					Li_Count = Li_Count + 1;
+					Li_Count = Li_Count + getNkw();
 				}
 			}
 		}
@@ -166,12 +171,13 @@ public class SizeData {
 		return a = Li_Count;
 	}
 
-	// NID Done
-	// ---------------------------------------------------------------------------------------------------------------------
+	// -------------------------------------------------------------------------------------------------------------------
+	// NID - No of identifiers
+	// -------------------------------------------------------------------------------------------------------------------
 	public int FindNid(String CodeLine, String extention) {
 		int Li_Count = 0;
 		Scanner scanner = new Scanner(CodeLine);
-
+		setNid(Nid);
 		if (extention.equals("java")) {
 			String pattern = "//.*";
 			String pattern1 = "System.*";
@@ -184,7 +190,7 @@ public class SizeData {
 				return 0;
 			}
 			if (scanner.hasNext(pattern1)) {
-				Li_Count = Li_Count + 3;
+				Li_Count = Li_Count + 3 * (getNid());
 				scanner.close();
 
 				return b = Li_Count;
@@ -193,21 +199,21 @@ public class SizeData {
 				token1 = scanner.next();
 
 				if (token1.endsWith("()") || token1.contains("year;") || token1.contains("month;")) {
-					Li_Count = Li_Count + 1;
+					Li_Count = Li_Count + getNid();
 				}
 				if (token1.equals("int") || token1.equals("float") || token1.equals("String")) {
 					String word = "";
 					word = scanner.next();
 					while (word.endsWith(",")) {
-						Li_Count = Li_Count + 1;
+						Li_Count = Li_Count + getNid();
 						word = scanner.next();
 					}
 					if (word.endsWith(";")) {
-						Li_Count = Li_Count + 1;
+						Li_Count = Li_Count + getNid();
 						scanner.close();
 						return b = Li_Count;
 					} else {
-						Li_Count = Li_Count + 1;
+						Li_Count = Li_Count + getNid();
 					}
 				}
 
@@ -254,7 +260,7 @@ public class SizeData {
 
 					if ((!token1.contains("\"")) || (token1.contains("getSize().width"))
 							|| (token1.contains("getSize().height"))) {
-						Li_Count = Li_Count + 1;
+						Li_Count = Li_Count + getNid();
 					}
 
 				}
@@ -264,18 +270,21 @@ public class SizeData {
 				}
 				if ((token1.contains("sc.next();")) || token1.contains("Integer.parseInt(enteredYear);")
 						|| token1.contains("Integer.parseInt(enteredMonthNumber);")) {
-					Li_Count = Li_Count + 2;
+					Li_Count = Li_Count + 2 * (getNid());
 				}
 			}
 		} else if (extention.equals("cpp")) {
+			if (scanner.hasNext()) {
+				token1 = scanner.next();
+				if (token1.startsWith("#") || token1.startsWith("//") || token1.startsWith("/*")
+						|| token1.equals("using")) {
+					scanner.close();
+					return a = 0;
+				}
+			}
+
 			while (scanner.hasNext()) {
 				token1 = scanner.next();
-
-				if (token1.startsWith("#") || token1.startsWith("cout") || token1.startsWith("//")
-						|| token1.startsWith("/*")) {
-					scanner.close();
-					return b = 0;
-				}
 
 				if ((!token1.contains("asm")) && (!token1.contains("else")) && (!token1.contains("new"))
 						&& (!token1.contains("this")) && (!token1.contains("auto")) && (!token1.contains("enum"))
@@ -320,12 +329,15 @@ public class SizeData {
 						&& (!token1.contains("\"")) && (!token1.contains("int")) && (!token1.contains("double"))
 						&& (!token1.contains("float")) && (!token1.endsWith(":")) && (!token1.contains("char"))) {
 
-					Li_Count = Li_Count + 1;
+					Li_Count = Li_Count + getNid();
 
 				} else if (token1.endsWith(";") && (!token1.endsWith(");") && !token1.endsWith("';")
 						&& !token1.endsWith("\";") && !token1.equals(";"))) {
-					Li_Count = Li_Count + 1;
-					// System.out.println(token1);
+					Li_Count = Li_Count + getNid();
+
+				} else if (token1.endsWith("()")) {
+					Li_Count = Li_Count + getNid();
+
 				}
 
 			}
@@ -335,12 +347,13 @@ public class SizeData {
 		return b = Li_Count;
 	}
 
-	// NOP Done
-	// ---------------------------------------------------------------------------------------------------------------------
+	// -------------------------------------------------------------------------------------------------------------------
+	// NOP - No of operators
+	// -------------------------------------------------------------------------------------------------------------------
 	public int FindNop(String CodeLine, String extention) {
 		int Li_Count = 0;
 		Scanner scanner = new Scanner(CodeLine);
-
+		setNop(Nop);
 		if (extention.equals("java")) {
 			String pattern = "//.*";
 			String pattern1 = "System.*";
@@ -351,7 +364,7 @@ public class SizeData {
 				return 0;
 			}
 			if (scanner.hasNext(pattern1)) {
-				Li_Count = Li_Count + 2;
+				Li_Count = Li_Count + 2 * (getNop());
 			}
 
 			while (scanner.hasNext()) {
@@ -377,7 +390,7 @@ public class SizeData {
 								|| (token1.contains("&=")) || (token1.contains("%=")) || (token1.contains("<<="))
 								|| (token1.contains(">>=")) || (token1.contains("^=")))) {
 
-					Li_Count = Li_Count + 1;
+					Li_Count = Li_Count + getNop();
 				}
 				if (scanner.hasNext(pattern)) {
 					scanner.close();
@@ -395,16 +408,17 @@ public class SizeData {
 					return c = 0;
 				}
 				if ((token1.contains("+")) || (token1.contains("-")) || (token1.equals("*")) || (token1.equals("/"))
-						|| (token1.contains("%")) || (token1.contains("++")) || (token1.contains("--"))
-						|| (token1.contains("=")) || (token1.contains("+=")) || (token1.contains("-="))
-						|| (token1.contains("*=")) || (token1.contains("/=")) || (token1.contains("%="))
-						|| (token1.contains("==")) || (token1.contains("!=")) || (token1.contains(">"))
-						|| (token1.contains("<")) || (token1.contains(">=")) || (token1.contains("<="))
-						|| (token1.contains("&&")) || (token1.equals("||")) || (token1.contains("!"))
-						|| (token1.contains("&")) || (token1.contains("|")) || (token1.contains("^"))
-						|| (token1.contains("~")) || (token1.contains("<<")) || (token1.contains(">>"))) {
+						|| (token1.contains(",")) || (token1.contains("%")) || (token1.contains("++"))
+						|| (token1.contains("--")) || (token1.contains("=")) || (token1.contains("+="))
+						|| (token1.contains("-=")) || (token1.contains("*=")) || (token1.contains("/="))
+						|| (token1.contains("%=")) || (token1.contains("==")) || (token1.contains("!="))
+						|| (token1.contains(">")) || (token1.contains("<")) || (token1.contains(">="))
+						|| (token1.contains("<=")) || (token1.contains("&&")) || (token1.equals("||"))
+						|| (token1.contains("!")) || (token1.contains("&")) || (token1.contains("|"))
+						|| (token1.contains("^")) || (token1.contains("~")) || (token1.contains("<<"))
+						|| (token1.contains(">>"))) {
 
-					Li_Count = Li_Count + 1;
+					Li_Count = Li_Count + getNop();
 				}
 			}
 		}
@@ -413,12 +427,13 @@ public class SizeData {
 		return c = Li_Count;
 	}
 
-	// NNV Done
-	// ---------------------------------------------------------------------------------------------------------------------
+	// -------------------------------------------------------------------------------------------------------------------
+	// NNV - No of numerical values
+	// -------------------------------------------------------------------------------------------------------------------
 	public int FindNnv(String CodeLine) {
 		int Li_Count = 0;
 		Scanner scanner = new Scanner(CodeLine);
-
+		setNnv(Nnv);
 		String pattern = "//.*";
 
 		if (scanner.hasNext(pattern)) {
@@ -436,7 +451,7 @@ public class SizeData {
 			}
 
 			if (token1.contains("case")) {
-				Li_Count = Li_Count + 1;
+				Li_Count = Li_Count + getNnv();
 			}
 
 			boolean numeric = true;
@@ -449,7 +464,7 @@ public class SizeData {
 			}
 
 			if (numeric) {
-				Li_Count = Li_Count + 1;
+				Li_Count = Li_Count + getNnv();
 			}
 			if (scanner.hasNext(pattern)) {
 				scanner.close();
@@ -461,12 +476,13 @@ public class SizeData {
 		return d = Li_Count;
 	}
 
-	// NSL Done
-	// ---------------------------------------------------------------------------------------------------------------------
+	// -------------------------------------------------------------------------------------------------------------------
+	// NSL - No of string literals
+	// -------------------------------------------------------------------------------------------------------------------
 	public int FindNsl(String CodeLine) {
 		int Li_Count = 0;
 		Scanner scanner = new Scanner(CodeLine);
-
+		setNsl(Nsl);
 		String pattern = "//.*";
 		if (scanner.hasNext(pattern)) {
 			scanner.close();
@@ -487,7 +503,7 @@ public class SizeData {
 			}
 
 			if ((token1.contains("\""))) {
-				Li_Count = Li_Count + 1;
+				Li_Count = Li_Count + getNsl();
 			}
 			if (scanner.hasNext(pattern)) {
 				scanner.close();
@@ -499,7 +515,9 @@ public class SizeData {
 		return e = (Li_Count / 2);
 	}
 
-	// CS Done
+	// -------------------------------------------------------------------------------------------------------------------
+	// CS - Complexity of a program statement due to its size
+	// -------------------------------------------------------------------------------------------------------------------
 	public int FindCs(String CodeLine) {
 
 		return sum = a + b + c + d + e;

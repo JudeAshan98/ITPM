@@ -9,6 +9,7 @@ import xmlReader.CsReader;
 
 public class ControlData {
 
+//	Declaring variables
 	String Result;
 	String token1 = "\n";
 	private int Li_WtVal;
@@ -18,6 +19,8 @@ public class ControlData {
 
 	ArrayList<Integer> Open = new ArrayList<Integer>();
 	ArrayList<Integer> Close = new ArrayList<Integer>();
+	ArrayList<Integer> ccsList = new ArrayList<Integer>();
+	int Li_ccs = 0;
 	int case_count = 0;
 
 	List<Integer> ValueList = new ArrayList<Integer>();
@@ -60,6 +63,7 @@ public class ControlData {
 		Li_case = ValueList.get(3);
 	}
 
+	//find Weight due to control structure type 
 	public int CtrlWeight(String CodeLine) {
 		Scanner scanner = new Scanner(CodeLine);
 		int Li_Wtcs = 0;
@@ -88,6 +92,7 @@ public class ControlData {
 
 	}
 
+//	find Number of conditions
 	public int NofConditions(String CodeLine) {
 		Scanner scanner = new Scanner(CodeLine);
 		int Li_Count = 0;
@@ -108,34 +113,44 @@ public class ControlData {
 
 	}
 
-	public int previousComplex(String CodeLine, int count) {
+//	find Control structure complexity of the previous program statement
+	public int previousComplex(String CodeLine, int ccs) {
 		int Li_Ccspps = 0;
-		int Li_count = 0;
-		if (count > 0) {
-			Li_count = count;
+		if (ccs == 0 && (ccsList != null && !ccsList.isEmpty())) {
+			ccs = ccsList.get(ccsList.size() - 1);
+		} else if (ccs == 0 && (ccsList == null && ccsList.isEmpty())) {
+			ccs = ccs;
+		}
+		if (ccsList != null && !ccsList.isEmpty()) {
+			Li_ccs = ccsList.get(ccsList.size() - 1);
 		}
 		Scanner scanner = new Scanner(CodeLine);
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
+			if (line.contains("case")) {
+				ccsList.add(ccs);
+				if (ccsList.get(ccsList.size() - 1) == ccsList.get(ccsList.size() - 2)) {
+					ccsList.remove(ccsList.size() - 1);
+				}
+				Li_ccs = ccsList.get(ccsList.size() - 1);
+				Li_Ccspps = Li_Ccspps + Li_ccs;
+				return Li_Ccspps;
+			}
+
 			if (line.contains("if") || line.contains("for") || line.contains("while") || line.contains("while")
 					|| line.contains("do") || line.contains("switch")) {
 
-				if (Li_count != 0) {
-					Li_Ccspps = Li_Ccspps + Li_count;
-				} else if (Li_count == 0) {
-					Li_Ccspps = Li_Ccspps + count;
-				}
+				ccsList.add(ccs);
+				Li_ccs = ccsList.get(ccsList.size() - 1);
+
+				Li_Ccspps = Li_Ccspps + Li_ccs;
 
 			}
-			if (line.contains("case")) {
-				if (previousLine.contains("switch")) {
-					case_count = count;
-					System.out.println(case_count);
-
+			if (ccsList != null && !ccsList.isEmpty()) {
+				if (line.contains("}")) {
+					ccsList.remove(ccsList.size() - 1);
 				}
-				Li_Ccspps = case_count;
 			}
-			previousLine = line;
 		}
 		scanner.close();
 		return Li_Ccspps;
